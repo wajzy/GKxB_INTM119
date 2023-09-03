@@ -1,2 +1,2 @@
 # GKNB_INTM085
-OO Programozás
+OO Programozás (C++) előadás fóliák és forráskódok

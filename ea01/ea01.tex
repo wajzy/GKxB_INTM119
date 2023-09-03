@@ -1,0 +1,502 @@
+\documentclass[usenames,dvipsnames,aspectratio=169]{beamer}
+\usepackage{../common/cpp}
+
+\title[OO Programozás - C++]{OO Programozás}
+\subtitle{Osztályok}
+
+\begin{document}
+
+%1
+\begin{frame}[plain]
+  \titlepage
+  \logoalul
+\end{frame}
+
+\section{Struktúrák}
+
+\begin{frame}
+    Struktúrák C-ben:
+    \begin{itemize}
+        \item[$+$] Logikailag összetartozó \emph{adatok} egységbe zárása
+        \item[$-$] Függvények nem lehetnek tagok (de függvényeket címző mutatók igen)
+        \item[$-$] Minden adat mindenki számára hozzáférhető
+        \item[$-$] A \emph{tagok} inicializálhatók, de el lehet feledkezni róla 
+    \end{itemize}
+    \vfill
+    Hogyan valósítanánk meg téglalapok kerületének és területének kiszámítását a régi eszközökkel?
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle01.cpp}{Rectangle01.cpp}}
+        \lstinputlisting[language=C++,linerange={1-11},numbers=left,firstnumber=1]{Rectangle01.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle01.cpp}{Rectangle01.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={13-26},numbers=left,firstnumber=13]{Rectangle01.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{Rectangle01.cpp}{Rectangle01.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={28-37},numbers=left,firstnumber=28]{Rectangle01.cpp}
+    \end{exampleblock}
+    \begin{block}{Kimenet}
+        \vspace{-.3cm}
+        \tiny
+        \begin{verbatim}
+Rectangle[dimensions: 6.95335e-310 x 0]
+Rectangle[dimensions: 5 x 3]
+Rectangle[dimensions: 4.5 x 3]
+Area: 13.5
+Perimeter: 15
+\end{verbatim}
+    \vspace{-.3cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    Használjuk ki a C++ struktúrák képességeit:
+    \begin{itemize}
+        \item[$+$] Egységbezárás elve: adatok és műveletek (tagfüggvények) egyetlen struktúrában
+        \item[$+$] Névteret képez 
+        \item[$+$] Láthatósági kategóriák: \texttt{public} (alapértelmezett), \texttt{private} 
+    \end{itemize}
+    \vfill
+    További változtatások:
+    \begin{itemize}
+        \item Tagok minősítése (változó\kiemel{.}tagnév)
+        \item \emph{const} függvények $\to$ adattagokat nem módosíthatják
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle02.cpp}{Rectangle02.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={1-12},numbers=left,firstnumber=1]{Rectangle02.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle02.cpp}{Rectangle02.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={14-26},numbers=left,firstnumber=14]{Rectangle02.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{Rectangle02.cpp}{Rectangle02.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={35-43},numbers=left,firstnumber=35]{Rectangle02.cpp}
+    \end{exampleblock}
+    \begin{block}{Kimenet}
+        \vspace{-.3cm}
+        \tiny
+        \begin{verbatim}
+Rectangle[dimensions: 5 x 3]
+Area: 15
+Perimeter: 16
+\end{verbatim}
+    \vspace{-.3cm}
+    \end{block}
+\end{frame}
+
+\section{Osztályok}
+
+\begin{frame}
+    \emph{Osztályok} (\texttt{class}) C++-ban:
+    \begin{itemize}
+        \item Új, felhasználói adattípust hoz létre
+        \item Adatok és rajtuk végezhető műveletek \emph{egységbe zárása} (encapsulation)
+        \item Szigorúbb \emph{adatrejtés}: \texttt{private} (alapértelmezett), \texttt{public} $\to$ hibák elkerülése
+        \item Adatszerkezet és a megvalósítás részletei változtathatók, ameddig az interfész (nyilvános függvények) változatlan
+        \item \emph{Adattagok} és \emph{tagfüggvények} tekintetében névteret képez
+    \end{itemize}
+    \vfill
+    Osztály: ,,terv'', \kiemel{nincs memóriafoglalás!} \\
+    \emph{Objektum} (példány): saját memóriaterület az adatokhoz, de osztoznak a függvényeken (mindig az aktuális példány adatain dolgoznak $\to$ \texttt{this})
+\end{frame}
+
+\begin{frame}
+    További lehetőségek:
+    \begin{itemize}
+        \item \texttt{inline} függvények: ha lehet, a fordító a kódot többször is beágyazza annak hívása helyett
+        \item Tagfüggvények az osztályon belül (implicit inline) és kívül is definiálhatók
+    \end{itemize}    
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle03.cpp}{Rectangle03.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,linerange={3-17},numbers=left,firstnumber=3]{Rectangle03.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle03.cpp}{Rectangle03.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={18-28},numbers=left,firstnumber=18]{Rectangle03.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle03.cpp}{Rectangle03.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={30-39},numbers=left,firstnumber=30]{Rectangle03.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle03.cpp}{Rectangle03.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={41-47},numbers=left,firstnumber=41]{Rectangle03.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    Az inline függvények alternatívája C-ben: paraméteres makrók (ld. \texttt{cctype}).
+    \begin{exampleblock}{\textattachfile{macro-vs-inline.cpp}{macro-vs-inline.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={3-17},numbers=left,firstnumber=3]{macro-vs-inline.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \begin{tabular}{ p{2.5cm}|p{5cm}|p{5cm} } 
+        Szempont & Inline fv. & Makro \\
+        \hline
+        Felhasználható & \multicolumn{2}{c}{Rövid, gyakran futó kódoknál} \\
+        Feldolgozza & fordító & előfeldolgozó \\ 
+        Paraméterek kiértékelése & egyszer & minden ,,hívásnál'' \\ 
+        Kifejtés & nem garantált & garantált \\ 
+        Adattagok elérése & közvetlenül & csak közvetetten (nem tagja osztálynak) \\ 
+        Nyomkövetés & egyszerű & nehézkes \\
+        Típusok & fordító kikényszeríti a megfelelő típusú paramétereket; biztonságos, de rugalmatlan $\to$ felültöltés, sablonok & nincs típusellenőrzés; rugalmas, de nem biztonságos \\
+        \end{tabular}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    Hatókör feloldó operátor (\texttt{::})
+    \begin{itemize}
+        \item Adott névtér elemeinek eléréséhez (pl. \texttt{std::cout})
+        \item Adott osztály tagfüggvényének külső definiálásakor (pl. \texttt{void Rectangle::print() \{\dots \}})
+        \item Azonos nevű változó által elfedett globális változó eléréséhez
+        \item Statikus adattagok eléréséhez (ld. később)
+        \item És még néhány további esetben
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{columns}
+        \begin{column}{0.75\textwidth}
+            \begin{exampleblock}{\textattachfile{scope-resolution.cpp}{scope-resolution.cpp}}
+                \scriptsize
+                \lstinputlisting[language=C++,linerange={1-16},numbers=left,firstnumber=1]{scope-resolution.cpp}
+            \end{exampleblock}
+        \end{column}
+        \begin{column}{0.25\textwidth}
+            \begin{block}{Kimenet}
+                \begin{verbatim}
+global i=1
+A/global i=2
+local i=3
+\end{verbatim}
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{Kódok elrendezése}
+
+\begin{frame}
+    Nagyobb programoknál célszerű osztályonként két fájlt létrehozni:
+    \begin{itemize}
+        \item fejfájlt (\texttt{.h}, \texttt{.hpp}) a deklarációknak, inline függvényeknek, majd védeni többszörös beszerkesztés ellen
+        \item forrásfájlt (\texttt{.cpp}, \texttt{.cc}, \texttt{.cxx}) a definícióknak
+    \end{itemize}
+    Gyorsabb fordítás, kisebb binárisok.
+    \begin{exampleblock}{\textattachfile{Rectangle04.h}{Rectangle04.h}}
+        \footnotesize
+        \lstinputlisting[language=C++,linerange={1-6},numbers=left,firstnumber=1]{Rectangle04.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle04.h}{Rectangle04.h}}
+        \footnotesize
+        \lstinputlisting[language=C++,linerange={8-21},numbers=left,firstnumber=8]{Rectangle04.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle04.h}{Rectangle04.h}}
+        \lstinputlisting[language=C++,linerange={23-29},numbers=left,firstnumber=23]{Rectangle04.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle04.cpp}{Rectangle04.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={1-12},numbers=left,firstnumber=1]{Rectangle04.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{main04.cpp}{main04.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={1-8},numbers=left,firstnumber=1]{main04.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\section{Konstruktorok}
+
+\begin{frame}
+    Régi probléma: inicializálás elfelejthető, megkerülhető $\to$ konstruktor\\
+    Neve egyezik az osztályéval, visszatérési érték/típus nincs.
+    \begin{exampleblock}{\textattachfile{Rectangle05.h}{Rectangle05.h}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={6-10},numbers=left,firstnumber=6]{Rectangle05.h}
+    \end{exampleblock}
+    \begin{exampleblock}{\textattachfile{Rectangle05.cpp}{Rectangle05.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={3-6},numbers=left,firstnumber=3]{Rectangle05.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{main05.cpp}{main05.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,linerange={2-9},numbers=left,firstnumber=2]{main05.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    Alapértelmezett (default) konstruktor:
+    \begin{itemize}
+        \item nem kapnak paramétereket, vagy mindegyiknek van alapértelmezett értéke
+        \item adattagok alapértelmezett értékekkel feltöltésére, többnyire nullázásra
+        \item néha létre \emph{kell} hozni (pl. sok objektum dinamikus létrehozásához)
+        \item ha nem készítünk konstruktort egy osztályhoz, akkor a fordító létrehoz egy alapértelmezettet (többnyire nem hasznos)
+        \item hívásakor ne használjunk zárójelpárt ($\to$ függvény, ami az osztály példányával tér vissza)
+    \end{itemize}
+    A konstruktorok felüldefiniálhatók.
+\end{frame}
+
+\begin{frame}
+    Két konstruktor egy osztályban.
+    \begin{exampleblock}{\textattachfile{Rectangle06.h}{Rectangle06.h}}
+        \lstinputlisting[language=C++,linerange={6-11},numbers=left,firstnumber=6]{Rectangle06.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle06.cpp}{Rectangle06.cpp}}
+        \lstinputlisting[language=C++,linerange={3-10},numbers=left,firstnumber=3]{Rectangle06.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{main06.cpp}{main06.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,linerange={2-11},numbers=left,firstnumber=2]{main06.cpp}
+    \end{exampleblock}
+    \vfill
+    \begin{enumerate}
+        \item A konstruktor \emph{még} nem ellenőrzi a megadott adatok helyességét.
+        \item A két konstruktor összevonható.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle07.h}{Rectangle07.h}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={6-11},numbers=left,firstnumber=6]{Rectangle07.h}
+    \end{exampleblock}
+    \begin{exampleblock}{\textattachfile{Rectangle07.cpp}{Rectangle07.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={4-8},numbers=left,firstnumber=4]{Rectangle07.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{columns}
+        \begin{column}{0.7\textwidth}
+            \begin{exampleblock}{\textattachfile{main07.cpp}{main07.cpp}}
+                \scriptsize
+                \lstinputlisting[language=C++,linerange={2-12},numbers=left,firstnumber=2]{main07.cpp}
+            \end{exampleblock}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \begin{block}{Kimenet}
+                \vspace{-0.4cm}
+                \scriptsize
+                \begin{verbatim}
+Rectangle[dimensions: 5 x 3]
+Area: 15
+Perimeter: 16
+Rectangle[dimensions: 0 x 10]
+Rectangle[dimensions: 5 x 0]
+Rectangle[dimensions: 0 x 0]
+\end{verbatim}
+                \vspace{-0.4cm}
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    Bővítések:
+    \begin{itemize}
+        \item adatok lekérdezése és ellenőrzött beállítása (getter, setter)
+        \item azonos nevű paraméter elrejti az adattagot $\to$ \texttt{this}
+    \end{itemize}
+    \begin{exampleblock}{\textattachfile{Rectangle08.h}{Rectangle08.h}}
+        \scriptsize
+        \vspace{-0.3cm}
+        \lstinputlisting[language=C++,linerange={7-10},numbers=left,firstnumber=7]{Rectangle08.h}
+        \lstinputlisting[language=C++,linerange={13-20},numbers=left,firstnumber=13]{Rectangle08.h}
+        \vspace{-0.3cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle08.h}{Rectangle08.h}}
+        \lstinputlisting[language=C++,linerange={22-30},numbers=left,firstnumber=22]{Rectangle08.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{main08.cpp}{main08.cpp}}
+        \lstinputlisting[language=C++,linerange={1-8},numbers=left,firstnumber=1]{main08.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    Destruktorok:
+    \begin{itemize}
+        \item objektum megsemmisülésekor kerül meghívásra
+        \item tipikusan a lefoglalt erőforrások felszabadítására használják
+        \item neve \kiemel{~} jellel kezdődik, az osztálynevével folytatódik
+        \item nincs visszatérési értéke/típusa
+        \item nem fogadhat paramétereket
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    Mikor hívják a konstruktorokat és destruktorokat?
+    \begin{center}
+        \begin{tabular}{ p{3cm}|p{4.5cm}|p{4.5cm} } 
+        Jelleg & Konstruktor & Destruktor \\
+        \hline
+        globális obj. & \texttt{main} előtt & \texttt{main} után \\
+        lokális obj. & vezérlés az obj. definíciójára kerül & vezérlés elhagyja a definiáló blokkot \\
+        lokális statikus obj. & vezérlés az obj. definíciójára kerül & program végén \\
+        dinamikus obj. & \texttt{new} hatására & \texttt{delete} hatására
+        \end{tabular}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    Statikus tagok
+    \begin{itemize}
+        \item minden objektum osztozik ugyanazon az adaton
+        \item \texttt{static} kulcsszóval hozható létre
+        \item változó definiálása, inicializálása  az osztályon kívül történik
+        \item az osztály nevével és hatókör feloldó operátorral érhető el
+        \item vagy egy statikus tagfüggvénnyel, ami csak statikus adattagokat érhet el és statikus tagfüggvényeket hívhat
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle09.h}{Rectangle09.h}}
+        \small
+        \lstinputlisting[language=C++,linerange={7-13},numbers=left,firstnumber=7]{Rectangle09.h}
+        \lstinputlisting[language=C++,linerange={40-43},numbers=left,firstnumber=40]{Rectangle09.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle09.cpp}{Rectangle09.cpp}}
+        \vspace{-.3cm}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={4-14},numbers=left,firstnumber=4]{Rectangle09.cpp}
+        \lstinputlisting[language=C++,linerange={20-25},numbers=left,firstnumber=20]{Rectangle09.cpp}
+        \vspace{-.3cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{main09.cpp}{main09.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={1-5},numbers=left,firstnumber=1]{main09.cpp}
+    \end{exampleblock}
+    \begin{block}{Kimenet}
+        \scriptsize
+        \vspace{-.3cm}
+        \begin{verbatim}
+Reactangle #1 created.
+Reactangle #2 created.
+Reactangle #3 created.
+Number of rectangles: 3
+Reactangle #3 freed.
+Reactangle #2 freed.
+Reactangle #1 freed.
+\end{verbatim}
+\vspace{-.3cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    Objektumtömbök létrehozása, memóriafoglalás/felszabadítás
+    \begin{exampleblock}{\textattachfile{message.cpp}{message.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={4-17},numbers=left,firstnumber=4]{message.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{message.cpp}{message.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={19-33},numbers=left,firstnumber=19]{message.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{message.cpp}{message.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,linerange={35-48},numbers=left,firstnumber=35]{message.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{block}{Kimenet}
+        \scriptsize
+        \vspace{-0.3cm}
+        \begin{verbatim}
+Created [0x7ffe101e7718]
+Hello C++ world!
+Created [0xbfa2e0, Object on heap.]
+Freed [0xbfa2e0, Object on heap.]
+Created [0x7ffe101e7720, alpha]
+Created [0x7ffe101e7728, beta]
+Created [0xbfa328]
+Created [0xbfa330]
+Created [0xbfa338]
+Freed [0xbfa338, ]
+Freed [0xbfa330, ]
+Freed [0xbfa328, ]
+Freed [0x7ffe101e7728, beta]
+Freed [0x7ffe101e7720, alpha]
+Freed [0x7ffe101e7718, Hello C++ world!
+]
+\end{verbatim}
+        \vspace{-0.3cm}
+    \end{block}
+\end{frame}
+
+\end{document}
