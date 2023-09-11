@@ -128,7 +128,7 @@ int main() {
   dsCopy(s3, "C++ programming!\n");
   dsCat(s2, s3);
   dsPrint(s2);
-  std::cout << "Length of s1 is: " << dsLength(s2) << " / " << dsAlloc(s2) << std::endl;
+  std::cout << "Length of s2 is: " << dsLength(s2) << " / " << dsAlloc(s2) << std::endl;
   */
   dsPrint(
     dsCat(
