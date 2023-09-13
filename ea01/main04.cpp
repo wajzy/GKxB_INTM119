@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Rectangle04.h"
 int main() {
   Rectangle r1;

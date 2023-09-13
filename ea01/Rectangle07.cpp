@@ -1,4 +1,3 @@
-#include <algorithm>
 #include "Rectangle07.h"
 
 Rectangle::Rectangle(double width, double height) {
