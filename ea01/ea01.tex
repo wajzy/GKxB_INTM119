@@ -14,6 +14,8 @@
 
 \section{Struktúrák}
 
+\subsection{C struktúrák}
+
 \begin{frame}
     Struktúrák C-ben:
     \begin{itemize}
@@ -57,6 +59,8 @@ Perimeter: 15
     \vspace{-.3cm}
     \end{block}
 \end{frame}
+
+\subsection{C++ struktúrák}
 
 \begin{frame}
     Használjuk ki a C++ struktúrák képességeit:
@@ -106,6 +110,8 @@ Perimeter: 16
 
 \section{Osztályok}
 
+\subsection{Osztályok, \texttt{inline} tagfüggvények}
+
 \begin{frame}
     \emph{Osztályok} (\texttt{class}) C++-ban:
     \begin{itemize}
@@ -116,8 +122,8 @@ Perimeter: 16
         \item \emph{Adattagok} és \emph{tagfüggvények} tekintetében névteret képez
     \end{itemize}
     \vfill
-    Osztály: ,,terv'', \kiemel{nincs memóriafoglalás!} \\
-    \emph{Objektum} (példány): saját memóriaterület az adatokhoz, de osztoznak a függvényeken (mindig az aktuális példány adatain dolgoznak $\to$ \texttt{this})
+    Osztály: ,,terv'', \kiemel{nincs memóriafoglalás!} Adatszerkezet és viselkedés leírása. \\
+    \emph{Objektum} (példány): saját memóriaterület az adatokhoz, de osztoznak a függvényeken (amik mindig az aktuális példány adatain dolgoznak $\to$ \texttt{this})
 \end{frame}
 
 \begin{frame}
@@ -156,6 +162,8 @@ Perimeter: 16
     \end{exampleblock}
 \end{frame}
 
+\subsection{\texttt{inline} függvények vs. makrók}
+
 \begin{frame}
     Az inline függvények alternatívája C-ben: paraméteres makrók (ld. \texttt{cctype}).
     \begin{exampleblock}{\textattachfile{macro-vs-inline.cpp}{macro-vs-inline.cpp}}
@@ -179,6 +187,8 @@ Perimeter: 16
         \end{tabular}
     \end{center}
 \end{frame}
+
+\subsection{A hatókör feloldó operátor}
 
 \begin{frame}
     Hatókör feloldó operátor (\texttt{::})
@@ -213,6 +223,8 @@ local i=3
 \end{frame}
 
 \section{Kódok elrendezése}
+
+\subsection{Források, fejfájlok, header guard}
 
 \begin{frame}
     Nagyobb programoknál célszerű osztályonként két fájlt létrehozni:
@@ -256,6 +268,8 @@ local i=3
 
 \section{Konstruktorok}
 
+\subsection{Általános konstruktor}
+
 \begin{frame}
     Régi probléma: inicializálás elfelejthető, megkerülhető $\to$ konstruktor\\
     Neve egyezik az osztályéval, visszatérési érték/típus nincs.
@@ -275,6 +289,8 @@ local i=3
         \lstinputlisting[language=C++,linerange={3-10},numbers=left,firstnumber=3]{main05.cpp}
     \end{exampleblock}
 \end{frame}
+
+\subsection{Alapértelmezett konstruktor}
 
 \begin{frame}
     Alapértelmezett (default) konstruktor:
@@ -350,11 +366,13 @@ Rectangle[dimensions: 0 x 0]
     \end{columns}
 \end{frame}
 
+\subsection{getter, setter, \texttt{this}}
+
 \begin{frame}
     Bővítések:
     \begin{itemize}
         \item adatok lekérdezése és ellenőrzött beállítása (getter, setter)
-        \item azonos nevű paraméter elrejti az adattagot $\to$ \texttt{this}
+        \item azonos nevű paraméter elfedi az adattagot $\to$ \texttt{this}
     \end{itemize}
     \begin{exampleblock}{\textattachfile{Rectangle08.h}{Rectangle08.h}}
         \scriptsize
@@ -376,6 +394,8 @@ Rectangle[dimensions: 0 x 0]
         \lstinputlisting[language=C++,linerange={1-9},numbers=left,firstnumber=1]{main08.cpp}
     \end{exampleblock}
 \end{frame}
+
+\subsection{Destruktorok}
 
 \begin{frame}
     Destruktorok:
@@ -401,6 +421,8 @@ Rectangle[dimensions: 0 x 0]
         \end{tabular}
     \end{center}
 \end{frame}
+
+\subsection{Statikus tagok}
 
 \begin{frame}
     Statikus tagok
@@ -451,6 +473,8 @@ Reactangle #1 freed.
 \vspace{-.3cm}
     \end{block}
 \end{frame}
+
+\subsection{Objektumtömbök}
 
 \begin{frame}
     Objektumtömbök létrehozása, memóriafoglalás/felszabadítás
