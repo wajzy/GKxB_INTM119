@@ -130,6 +130,7 @@ sys	0m0,000s
     Osztályok tagfüggvényei, sőt, konstruktor is jelölhető \texttt{constexpr}-nek, de
     \begin{itemize}
         \item Az adattagok kvázi konstansok lesznek, amik inicializálása túl későn van a konstruktorban $\to$ \emph{taginicializáló lista}
+        \item Konstans adattagok és referenciák csak taginicializáló listával hozhatók létre.
         \item Ez egyébként használható lett volna a nem konstans adattagok inicializálására is.
         \item Példányosításkor a paramétereknek konstansnak kell lenniük.
         \item A tagfüggvények implicit inline-ok lesznek.
@@ -305,6 +306,8 @@ sys	0m0,000s
         \scriptsize
         \lstinputlisting[language=C++,linerange={12-22},numbers=left,firstnumber=12]{Rectangle12.cpp}
     \end{exampleblock}
+    (Sajnos) néhány további kivételes helyzetben is módosíthatja a \texttt{const} tagfüggvény a példány állapotát, pl.
+    a tag struktúrát nem lehet lecserélni, de annak tagját már lehet módosítani (tranzitívan).
 \end{frame}
 
 \subsection{Beágyazott objektumok inicializálása}
