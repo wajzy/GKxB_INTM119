@@ -26,7 +26,7 @@
         \item értéke megjelenik a nyomkövető programokban (debugger),
         \item csak olvasható (fordító biztosítja),
         \item van típusa (vö. \texttt{\#define}).
-        \item Láthatóságuk az őket definiáló állományra terjed csak ki.
+        \item Láthatóságuk, hatókörük jobban szabályozható.
     \end{itemize}
     \vfill
     Tömbök definiálása, méret megadása
@@ -250,7 +250,7 @@ sys	0m0,000s
 \end{frame}
 
 \begin{frame}
-    Ha a visszatérési érték tíusa alaptípus, nincs haszna a \texttt{const}-nak (nem balérték). \\
+    Ha a visszatérési érték típusa alaptípus, nincs haszna a \texttt{const}-nak (nem balérték). \\
     De ha mutató vagy referencia, a visszatérési érték megváltoztatása tiltható \texttt{const}-tal.
     \begin{columns}[T]
         \begin{column}{0.45\textwidth}
@@ -279,7 +279,7 @@ sys	0m0,000s
 \subsection{Konstansok és objektumok}
 
 \begin{frame}
-    Példány is lehet konstans. Az adattagok többnyire eleve rejtettek, ezért nem írhatók. Nyilvános, konstans tag: getter elhagyható.\\
+    Példány is lehet konstans. Az adattagok többnyire eleve rejtettek, ezért kívülről nem írhatók. Nyilvános, konstans tag: getter elhagyható.\\
     Konstans tagfüggvény konstans objektumon is hívható!
     \begin{exampleblock}{\textattachfile{Rectangle11.cpp}{Rectangle11.cpp}}
         \small
