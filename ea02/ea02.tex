@@ -333,4 +333,139 @@ sys	0m0,000s
     \end{exampleblock}
 \end{frame}
 
+\section{Származtatás, absztrakt osztályok, interfészek}
+
+\subsection{Gyorsítótárazott síkidomok}
+
+\begin{frame}
+    Induljunk ki \textattachfile{Rectangle12.cpp}{Rectangle12}-ből, de 
+    \begin{itemize}
+        \item a kerület/terület lekérdezést (minden síkidomnál hasonlóan elvégezhető tevékenység) válasszuk külön a számítások elvégzésétől,
+        \item a méretek legyenek módosíthatóak, és
+        \item készítsünk háromszög (\texttt{Triangle}) osztályt is!
+    \end{itemize}
+\end{frame}    
+     
+\begin{frame}
+    \begin{columns}[T]
+        \column{.5\textwidth}
+            \begin{exampleblock}{\textattachfile{Rectangle14.h}{Rectangle14.h}}
+                \scriptsize
+                \lstinputlisting[language=C++,linerange={4-10},numbers=left,firstnumber=4]{Rectangle14.h}
+            \end{exampleblock}
+        \column{.5\textwidth}
+            \begin{exampleblock}{\textattachfile{Triangle14.h}{Triangle14.h}}
+                \scriptsize
+                \lstinputlisting[language=C++,linerange={6-11},numbers=right,firstnumber=6]{Triangle14.h}
+            \end{exampleblock}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \begin{columns}[T]
+        \column{.5\textwidth}
+            \begin{exampleblock}{\textattachfile{Rectangle14.h}{Rectangle14.h}}
+                \scriptsize
+                \lstinputlisting[language=C++,linerange={11-22},numbers=left,firstnumber=11]{Rectangle14.h}
+            \end{exampleblock}
+        \column{.5\textwidth}
+            \begin{exampleblock}{\textattachfile{Triangle14.h}{Triangle14.h}}
+                \scriptsize
+                \lstinputlisting[language=C++,linerange={12-23},numbers=right,firstnumber=12]{Triangle14.h}
+            \end{exampleblock}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \begin{columns}[T]
+        \column{.5\textwidth}
+            \begin{exampleblock}{\textattachfile{Rectangle14.h}{Rectangle14.h}}
+                \scriptsize
+                \lstinputlisting[language=C++,linerange={23-33},numbers=left,firstnumber=23]{Rectangle14.h}
+            \end{exampleblock}
+        \column{.5\textwidth}
+            \begin{exampleblock}{\textattachfile{Triangle14.h}{Triangle14.h}}
+                \scriptsize
+                \lstinputlisting[language=C++,linerange={24-34},numbers=right,firstnumber=24]{Triangle14.h}
+            \end{exampleblock}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \begin{columns}[T]
+        \column{.5\textwidth}
+            \begin{exampleblock}{\textattachfile{Rectangle14.cpp}{Rectangle14.cpp}}
+                \fontsize{7}{8} \selectfont
+                \lstinputlisting[language=C++,linerange={3-6},numbers=left,firstnumber=3]{Rectangle14.cpp}
+                \lstinputlisting[language=C++,linerange={13-19},numbers=left,firstnumber=13]{Rectangle14.cpp}
+                \lstinputlisting[language=C++,linerange={29-31},numbers=left,firstnumber=29]{Rectangle14.cpp}
+            \end{exampleblock}
+        \column{.5\textwidth}
+        \begin{exampleblock}{\textattachfile{Triangle14.cpp}{Triangle14.cpp}}
+            \fontsize{7}{8} \selectfont
+            \lstinputlisting[language=C++,linerange={3-6},numbers=left,firstnumber=3]{Triangle14.cpp}
+            \lstinputlisting[language=C++,linerange={18-24},numbers=left,firstnumber=18]{Triangle14.cpp}
+            \lstinputlisting[language=C++,linerange={34-38},numbers=left,firstnumber=34]{Triangle14.cpp}
+        \end{exampleblock}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{main14.cpp}{main14.cpp}}
+        \vspace{-.2cm}
+        \fontsize{7}{8} \selectfont
+        \lstinputlisting[language=C++,linerange={2-15},numbers=left,firstnumber=2]{main14.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+    \begin{block}{Kimenet}
+        \vspace{-.4cm}
+        \fontsize{7}{8} \selectfont
+        \begin{verbatim}
+Rectangle #1 Area: 2 Perimeter: 6
+Rectangle #2 Area: 6 Perimeter: 10
+Rectangle #3 Area: 12 Perimeter: 14
+        \end{verbatim}
+        \vspace{-.4cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{main14.cpp}{main14.cpp}}
+        \vspace{-.2cm}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={16-26},numbers=left,firstnumber=16]{main14.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+    \begin{block}{Kimenet}
+        \vspace{-.4cm}
+        \scriptsize
+        \begin{verbatim}
+Triangle #1 Area: 6 Perimeter: 12
+Triangle #2 Area: 30 Perimeter: 30
+Triangle #3 Area: 84 Perimeter: 56
+        \end{verbatim}
+        \vspace{-.4cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    Problémák:
+    \begin{itemize}
+        \item Sok ismétlődő kódrészlet
+        \item Az objektumokat eltérő típusuk miatt nem lehet egy tömbben tárolni
+    \end{itemize}
+    Megoldás:
+    \begin{itemize}
+        \item Származtatás/öröklés (inheritance)
+        \item Ősosztály/szülő osztály (superclass, base class) $\to$ \texttt{Shape}
+        \item Leszármazott/származtatott/gyerek osztály (subclass, derived class) $\to$ \texttt{Rectangle}, \texttt{Triangle}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \includegraphics[scale=0.6]{Shape15.eps}
+      \end{center}
+\end{frame}
+
 \end{document}

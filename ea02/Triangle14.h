@@ -10,7 +10,8 @@ class Triangle {
     mutable double perimeter;
     double mA, mB, mC;
   public:  
-    Triangle(double a, double b, double c){
+    Triangle(
+      double a, double b, double c) {
       mA = a; mB = b; mC = c;
       invalidateCache();
     }
@@ -21,12 +22,14 @@ class Triangle {
     double getArea() const;
     double getPerimeter() const;
   private:
-    // called from getArea(), must be const
+    // called from getArea(), 
+    // must be const
     void calcArea() const;
     void calcPerimeter() const;
     
     void invalidateCache() {
-      areaCached = perimeterCached = false;
+      areaCached = perimeterCached 
+        = false;
     }
 };
 

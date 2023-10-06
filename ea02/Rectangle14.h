@@ -9,7 +9,8 @@ class Rectangle {
     double mWidth;
     double mHeight;
   public:  
-    Rectangle(double width, double height) {
+    Rectangle(
+      double width, double height) {
       mWidth = width;
       mHeight = height;
       invalidateCache();
@@ -20,12 +21,14 @@ class Rectangle {
     double getArea() const;
     double getPerimeter() const;
   private:
-    // called from getArea(), must be const
+    // called from getArea(), 
+    // must be const
     void calcArea() const;
     void calcPerimeter() const;
     
     void invalidateCache() {
-      areaCached = perimeterCached = false;
+      areaCached = perimeterCached
+        = false;
     }
 };
 
