@@ -17,7 +17,9 @@ void Triangle::setC(double c) {
 
 void Triangle::calcArea() const {
   double s = (mA + mB + mC) / 2.;
-  area = sqrt(s * (s - mA) * (s - mB) * (s - mC));
+  area = sqrt(s * (s - mA) 
+                * (s - mB) 
+                * (s - mC));
 }
 
 void Triangle::calcPerimeter() const {

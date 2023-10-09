@@ -18,11 +18,14 @@ class Employee {
 class Programmer : public Employee {
     double bonusMult;
   public:
-    Programmer(int salary, double bonus) : Employee(salary) {
+    Programmer(int salary, double bonus)
+    : Employee(salary) {
       bonusMult = bonus;
     }
-    /* virtual */ int getSalary() const { // implicitely virtual
-      return (int)(baseSalary * bonusMult); // OK
+    // implicitely virtual
+    /* virtual */ int getSalary() const {
+    // OK to access protected member
+      return (int)(baseSalary * bonusMult);
     }
     void setBonus(double bonus) {
       bonusMult = bonus;

@@ -1,0 +1,320 @@
+\section{Konstansok}
+
+\subsection{\texttt{const}}
+
+\begin{frame}
+    A \texttt{const} típusmódosító változókkal használva
+    \begin{itemize}
+        \footnotesize
+        \item \emph{Konstans változó} (\kiemel{paradoxon!} $\to$ \emph{elnevezett konstans})
+        \item Memóriában helyezik el,
+        \item azonnali inicializálást igényel, 
+        \item értéke megjelenik a nyomkövető programokban (debugger),
+        \item csak olvasható (fordító biztosítja),
+        \item van típusa (vö. \texttt{\#define}).
+        \item Láthatóságuk, hatókörük jobban szabályozható.
+    \end{itemize}
+    \vfill
+    Tömbök definiálása, méret megadása
+    \begin{itemize}
+        \footnotesize
+        \item konstans kifejezéssel,
+        \item konstans kifejezéssel inicializált elnevezett konstanssal,
+        \item vagy tetszőleges kifejezéssel C99 / C++14-től
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{constMain.cpp}{constMain.cpp}}
+        \lstinputlisting[language=C++,linerange={1-11},numbers=left,firstnumber=1]{constMain.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{constMain.cpp}{constMain.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={12-24},numbers=left,firstnumber=12]{constMain.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{constHeader.h}{constHeader.h}}
+        \lstinputlisting[language=C++,linerange={1-3},numbers=left,firstnumber=1]{constHeader.h}
+    \end{exampleblock}
+    \begin{exampleblock}{\textattachfile{constSource.cpp}{constSource.cpp}}
+        \lstinputlisting[language=C++,linerange={1-1},numbers=left,firstnumber=1]{constSource.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\subsection{\texttt{constexpr}}
+
+\begin{frame}
+    A \texttt{constexpr} módosító (C++11/14) hatása a függvényekre:
+    \begin{itemize}
+        \item ,,Értékeld ki fordításkor!'' $\to$ gyorsabb programok, lassabb fordítás
+        \item Viszonylag egyszerű függvények készíthetők csak vele (C++11: csak 1 utasítás)
+        \item Csak olyan globális változókra hivatkozhat, melyek konstansok
+        \item Csak \texttt{constexpr} függvényt hívhat, akár önmagát is
+        \item Értékkel kell visszatérnie
+        \item Nem csak konstansokkal ,,hívható'', de akkor az eredmény nem használható konstans inicializálására
+        \item C++11-ben még tiltott volt a prefix $++$ operátor használata
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{constexpr.cpp}{constexpr.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={3-17},numbers=left,firstnumber=3]{constexpr.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{fibonacci1.cpp}{fibonacci1.cpp}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={3-10},numbers=left,firstnumber=3]{fibonacci1.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+    \begin{block}{Mérés}
+        \vspace{-.4cm}
+        \scriptsize
+        \begin{verbatim}
+$ time ./fibonacci1
+2178309
+
+real	0m0,005s
+user	0m0,005s
+sys	0m0,000s    
+\end{verbatim}
+        \vspace{-.4cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{fibonacci2.cpp}{fibonacci2.cpp}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={3-10},numbers=left,firstnumber=3]{fibonacci2.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+    \begin{block}{Mérés}
+        \vspace{-.4cm}
+        \scriptsize
+        \begin{verbatim}
+$ time ./fibonacci2
+2178309
+
+real	0m0,036s
+user	0m0,036s
+sys	0m0,000s            
+\end{verbatim}
+        \vspace{-.4cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    Osztályok tagfüggvényei, sőt, konstruktor is jelölhető \texttt{constexpr}-nek, de
+    \begin{itemize}
+        \item Az adattagok kvázi konstansok lesznek, amik inicializálása túl későn van a konstruktorban $\to$ \emph{taginicializáló lista}
+        \item Konstans adattagok és referenciák csak taginicializáló listával hozhatók létre.
+        \item Ez egyébként használható lett volna a nem konstans adattagok inicializálására is.
+        \item Példányosításkor a paramétereknek konstansnak kell lenniük.
+        \item A tagfüggvények implicit inline-ok lesznek.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle10.cpp}{Rectangle10.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={3-17},numbers=left,firstnumber=3]{Rectangle10.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle10.cpp}{Rectangle10.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={19-24},numbers=left,firstnumber=19]{Rectangle10.cpp}
+    \end{exampleblock}
+\end{frame}
+
+
+\subsection{Konstansok és mutatók}
+
+\begin{frame}
+    Mutató konstans változóra:
+    \begin{itemize}
+        \item Maga a mutató nem konstans, nem \emph{kell} inicializálni.
+        \item Mutathat változóra, csak olvashatóvá téve azt.
+    \end{itemize}
+    \begin{exampleblock}{\textattachfile{constptr.cpp}{constptr.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={5-11},numbers=left,firstnumber=5]{constptr.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    Mutató változóra:
+    \begin{itemize}
+        \item Nem tartalmazhatja elnevezett állandó címét, mert a védelem nem kerülhető meg.
+    \end{itemize}
+    \begin{exampleblock}{\textattachfile{constptr.cpp}{constptr.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={14-15},numbers=left,firstnumber=14]{constptr.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    Konstans mutató egy változóra:
+    \begin{itemize}
+        \item Mivel a mutató konstans, inicializálni kell.
+        \item A mutatott változó módosítható, de a mutató nem mutathat máshova.
+    \end{itemize}
+    \begin{exampleblock}{\textattachfile{constptr.cpp}{constptr.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={18-21},numbers=left,firstnumber=18]{constptr.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    Konstans mutató konstansra:
+    \begin{itemize}
+        \item Mindent csak olvasni lehet.
+        \item Kiolvasás hátulról előre:\\ \emph{cpci} egy \emph{const} mutató (\emph{*}), ami olyan \emph{int}-et címez, ami \emph{const}.
+    \end{itemize}
+    \begin{exampleblock}{\textattachfile{constptr.cpp}{constptr.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={24-26},numbers=left,firstnumber=24]{constptr.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\subsection{Konstansok és referenciák}
+
+\begin{frame}
+    Referencia konstansra:
+    \begin{itemize}
+        \item Minden referenciát inicializálni kell.
+        \item Ha változót rendelünk hozzá, akkor az érték ezen keresztül csak olvasható lesz.
+        \item Inicializálható konstans kifejezéssel!
+    \end{itemize}
+    \begin{exampleblock}{\textattachfile{constref.cpp}{constref.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={5-11},numbers=left,firstnumber=5]{constref.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    A referenciák mindig konstansok.
+    \begin{exampleblock}{\textattachfile{constref.cpp}{constref.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={14-14},numbers=left,firstnumber=14]{constref.cpp}
+    \end{exampleblock}
+    \vfill
+    Nem kerülhető meg a védelem konstansot címző nem konstans referenciával.
+    \begin{exampleblock}{\textattachfile{constref.cpp}{constref.cpp}}
+        \tiny
+        \lstinputlisting[language=C++,linerange={17-17},numbers=left,firstnumber=17]{constref.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\subsection{Konstansok és függvények}
+
+\begin{frame}
+    Ha a függvény paramétere konstans, akkor a fv.-en belül sem változtatható meg az értéke, de a hívót ez nem érdekli (érték szerinti paraméterátadás). \\
+    De ha a paraméter mutató vagy referencia, akkor a fv. megváltoztathatná a változó értékét!
+    \begin{exampleblock}{\textattachfile{constfn.cpp}{constfn.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={3-9},numbers=left,firstnumber=3]{constfn.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{constfn.cpp}{constfn.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={11-17},numbers=left,firstnumber=11]{constfn.cpp}
+        \lstinputlisting[language=C++,linerange={39-45},numbers=left,firstnumber=39]{constfn.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    Ha a visszatérési érték típusa alaptípus, nincs haszna a \texttt{const}-nak (nem balérték). \\
+    De ha mutató vagy referencia, a visszatérési érték megváltoztatása tiltható \texttt{const}-tal.
+    \begin{columns}[T]
+        \begin{column}{0.45\textwidth}
+            \begin{exampleblock}{\textattachfile{constfn.cpp}{constfn.cpp}}
+                \small
+                \lstinputlisting[language=C++,linerange={19-27},numbers=left,firstnumber=19]{constfn.cpp}
+            \end{exampleblock}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{exampleblock}{\textattachfile{constfn.cpp}{constfn.cpp}}
+                \small
+                \lstinputlisting[language=C++,linerange={29-37},numbers=left,firstnumber=29]{constfn.cpp}
+            \end{exampleblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{constfn.cpp}{constfn.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={39-39},numbers=left,firstnumber=39]{constfn.cpp}
+        \lstinputlisting[language=C++,linerange={46-50},numbers=left,firstnumber=46]{constfn.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\subsection{Konstansok és objektumok}
+
+\begin{frame}
+    Példány is lehet konstans. Az adattagok többnyire eleve rejtettek, ezért kívülről nem írhatók. Nyilvános, konstans tag: getter elhagyható.\\
+    Konstans tagfüggvény konstans objektumon is hívható!
+    \begin{exampleblock}{\textattachfile{Rectangle11.cpp}{Rectangle11.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={3-10},numbers=left,firstnumber=3]{Rectangle11.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle11.cpp}{Rectangle11.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={12-27},numbers=left,firstnumber=12]{Rectangle11.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    Konstans tagfüggvény is módosíthat egy adattagot, ha az \texttt{mutable}. Cél: érdemi állapotváltozást nem jelentő változások, pl. gyorsítótárak menedzselése.
+    \begin{exampleblock}{\textattachfile{Rectangle12.cpp}{Rectangle12.cpp}}
+        \lstinputlisting[language=C++,linerange={3-10},numbers=left,firstnumber=3]{Rectangle12.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle12.cpp}{Rectangle12.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={12-22},numbers=left,firstnumber=12]{Rectangle12.cpp}
+    \end{exampleblock}
+    (Sajnos) néhány további kivételes helyzetben is módosíthatja a \texttt{const} tagfüggvény a példány állapotát, pl.
+    a tag struktúrát nem lehet lecserélni, de annak tagját már lehet módosítani (tranzitívan).
+\end{frame}
+
+\subsection{Beágyazott objektumok inicializálása}
+
+\begin{frame}
+    Egy objektumnak lehet beágyazott objektuma, ami szintén a taginicializáló listán keresztül inicializálható. Ha ezt nem tesszük meg $\to$ alapértelmezett konstruktor hívása, ha van ilyen.
+    \begin{exampleblock}{\textattachfile{Rectangle13.cpp}{Rectangle13.cpp}}
+        \lstinputlisting[language=C++,linerange={4-10},numbers=left,firstnumber=4]{Rectangle13.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle13.cpp}{Rectangle13.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={12-26},numbers=left,firstnumber=12]{Rectangle13.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle13.cpp}{Rectangle13.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={28-32},numbers=left,firstnumber=28]{Rectangle13.cpp}
+    \end{exampleblock}
+\end{frame}

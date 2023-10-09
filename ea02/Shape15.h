@@ -15,9 +15,8 @@ class Shape {
     double getArea() const;
     double getPerimeter() const;
   protected: // private --> protected
-    // pure virtual
-    virtual void calcArea() const = 0;
-    virtual void calcPerimeter() const = 0;
+    virtual void calcArea() const = 0;      // pure
+    virtual void calcPerimeter() const = 0; // virtual
     void invalidateCache() {
       areaCached = perimeterCached = false;
     }

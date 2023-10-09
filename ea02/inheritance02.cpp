@@ -17,13 +17,16 @@ class Employee {
 class Programmer : public Employee {
     double bonusMult;
   public:
-    Programmer(int salary, double bonus) : Employee(salary) {
+    Programmer(int salary, double bonus) 
+    : Employee(salary) {
       bonusMult = bonus;
     }
     int getSalary() const {
-      // 'int Employee::baseSalary' is private within this context
+      // 'int Employee::baseSalary' is private 
+      // within this context
       // return (int)(baseSalary * bonusMult);
-      return (int)(Employee::getSalary() * bonusMult);
+      return (int)(Employee::getSalary() 
+        * bonusMult);
     }
     void setBonus(double bonus) {
       bonusMult = bonus;
