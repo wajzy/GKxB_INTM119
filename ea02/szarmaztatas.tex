@@ -145,16 +145,20 @@
 \begin{frame}
     Probléma:
     \begin{itemize}
-        \footnotesize
         \item Az ősre utaló típusú, de a leszármazott egyik példányát címző mutatóval csak az ős függvényét tudjuk hívni.
     \end{itemize}
     Megoldás:
     \begin{itemize}
-        \footnotesize
-        \item Amikor egy objektum tagfüggvényét hívjuk, mindig eldönthető, hogy az ős vagy a leszármazott felüldefiniált függvényéről van-e szó, és fordítási időben meghatározható annak címe (\emph{early/static bindig, korai/statikus kötés}). Pl. \texttt{Programmer p(300000, 2.5); p.getSalary();}
+        \item Amikor egy objektum tagfüggvényét hívjuk, mindig eldönthető, hogy az ős vagy a leszármazott felüldefiniált függvényéről van-e szó, és fordítási időben meghatározható annak címe (\emph{early/static bindig, korai/statikus kötés}). \\ Pl. \texttt{Programmer p(300000, 2.5); p.getSalary();} $\to$ 750000
         \item Viszont egy objektum elérhető az ős típust címző mutatóval is (biztonságos, mert a leszármazott mindennel rendelkezik, amivel az őse). A korai kötés miatt az ősben definiált függvényt tudjuk csak elérni.
-        \item A \emph{késői/dinamikus kötés} (late/dynamic binding) hatására a fordító \emph{virtuális metódustáblát} (VMT, vtable) hoz létre, melyben a leszármazottak felüldefiniált függvényeinek címei is benne vannak, melynek segítségével az aktuális objektum típusának megfelelő változat is hívható, típuskényszerítés nélkül. Pl.: \texttt{Employee* pe = new Programmer(); pe->getSalary();}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item A \emph{késői/dinamikus kötés} (late/dynamic binding) hatására a fordító \emph{virtuális metódustáblát} (VMT, vtable) hoz létre, melyben a leszármazottak felüldefiniált függvényeinek címei is benne vannak, melynek segítségével az aktuális objektum típusának megfelelő változat is hívható, típuskényszerítés nélkül. \\ Pl.: \texttt{Employee* pe = new Programmer(); pe->getSalary();} $\to$ 300000
         \item C++-ban késői kötést \emph{virtuális tagfüggvényekkel} (\texttt{virtual}) hozhatunk létre.
+        \item \emph{Polimorfizmus}: mindig az ős típusát címző mutatót használjuk, de a vele hívott tagfüggvény osztályonként eltérően működik
     \end{itemize}
 \end{frame}
 
@@ -421,4 +425,167 @@ Rectangle is NOT abstract.
         \end{verbatim}
         \vspace{-.6cm}
     \end{block}
+\end{frame}
+
+\subsection{Interfészek}
+
+\begin{frame}
+    Grafikus felületű, eseményvezérelt program modellje  interfésszel
+    \begin{itemize}
+        \item \texttt{Button}: ha rákattintanak, \texttt{ClickEvent} eseményt küld egy \texttt{ClickListener}nek
+        \item A \texttt{ClickListener}t megvalósító objektumnak fel kell iratkozni a \texttt{Button} eseményére
+    \end{itemize}
+    \begin{center}
+        \includegraphics[scale=0.54]{interface.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{ClickEvent.h}{ClickEvent.h}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={4-10},numbers=left,firstnumber=4]{ClickEvent.h}
+        \vspace{-.2cm}
+    \end{exampleblock}
+    \begin{exampleblock}{\textattachfile{ClickListener.h}{ClickListener.h}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={4-9},numbers=left,firstnumber=4]{ClickListener.h}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Listener.h}{Listener.h}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={4-19},numbers=left,firstnumber=4]{Listener.h}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Button.h}{Button.h}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={7-22},numbers=left,firstnumber=7]{Button.h}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Button.h}{Button.h}}
+        \small
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={23-31},numbers=left,firstnumber=23]{Button.h}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Button.cpp}{Button.cpp}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={1-17},numbers=left,firstnumber=1]{Button.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{eventMain.cpp}{eventMain.cpp}}
+        \footnotesize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={1-14},numbers=left,firstnumber=1]{eventMain.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{eventMain.cpp}{eventMain.cpp}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={15-22},numbers=left,firstnumber=15]{eventMain.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{block}{Kimenet}
+        \vspace{-.3cm}
+        \begin{verbatim}
+row: 0
+col: 0
+Listener1 received a click event from Button1
+Listener2 received a click event from Button1
+row: 0
+col: 150
+Listener1 received a click event from Button2
+row: 0
+col: 300
+row:     
+        \end{verbatim}
+        \vspace{-.6cm}
+    \end{block}
+\end{frame}
+
+\subsection{Többszörös öröklődés}
+
+\begin{frame}
+    \begin{columns}[]
+        \column{.8\textwidth}
+            \begin{itemize}
+                \item C++-ban létezik többszörös öröklődés (a legtöbb nyelv csak interfészekből enged többet megvalósítani, melyekre külön kulcsszó is van, pl. Java)
+                \item Ha egy őstől több útvonalon is örököl egy leszármazott, nem lesz egyértelmű, melyiket kellene használni $\to$ virtuális öröklés
+                      (vagy a probléma elodázása \texttt{::}-ral)
+            \end{itemize}
+        \column{.2\textwidth}
+            \begin{center}
+                \includegraphics[scale=0.8]{diamond1.eps}
+            \end{center}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \begin{columns}[T]
+        \column{.5\textwidth}
+            \begin{alertblock}{\textattachfile{diamond1.cpp}{diamond1.cpp}}
+                \scriptsize
+                \lstinputlisting[language=C++,linerange={1-14},numbers=left,firstnumber=1]{diamond1.cpp}
+            \end{alertblock}
+        \column{.5\textwidth}
+            \begin{alertblock}{\textattachfile{diamond1.cpp}{}}
+                \scriptsize
+                \lstinputlisting[language=C++,linerange={16-26},numbers=right,firstnumber=16]{diamond1.cpp}
+            \end{alertblock}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{block}{Kimenet}
+        \vspace{-.3cm}
+        \begin{verbatim}
+diamond1.cpp: In function 'int main()':
+diamond1.cpp:26:9: error: request for member 'i' is ambiguous
+        obj.i = 42;
+            ^
+diamond1.cpp:5:9: note: candidates are: int A::i
+        int i;
+            ^
+diamond1.cpp:5:9: note:                 int A::i   
+        \end{verbatim}
+        \vspace{-.6cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \begin{columns}[]
+        \column{.55\textwidth}
+            \begin{exampleblock}{\textattachfile{diamond2.cpp}{diamond2.cpp}}
+                \lstinputlisting[language=C++,linerange={6-14},numbers=left,firstnumber=6]{diamond2.cpp}
+            \end{exampleblock}
+        \column{.4\textwidth}
+            \begin{center}
+                \includegraphics[scale=0.8]{diamond2.eps}
+            \end{center}
+    \end{columns}
 \end{frame}
