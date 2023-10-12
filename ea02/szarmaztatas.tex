@@ -143,6 +143,32 @@
 \end{frame}
 
 \begin{frame}
+    \begin{center}
+        \begin{tabular}{ p{4cm}|p{3cm}|p{3cm} } 
+        Származtatás módja & \multicolumn{2}{c}{Láthatóság} \\
+        & ősben & leszármazottban \\
+        \hline
+        \texttt{public} & \texttt{public} & \texttt{public} \\ 
+        & \texttt{protected} & \texttt{protected} \\ 
+        & \texttt{private} & (nem érhető el) \\ 
+        \texttt{protected} & \texttt{public} & \texttt{\kiemel{protected}} \\ 
+        & \texttt{protected} & \texttt{protected} \\ 
+        & \texttt{private} & (nem érhető el) \\ 
+        \texttt{private} & \texttt{public} & \texttt{\kiemel{private}} \\ 
+        & \texttt{protected} & \texttt{\kiemel{private}} \\ 
+        & \texttt{private} & (nem érhető el) \\ 
+        \end{tabular}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \begin{description}[m]
+        \item[Mikor érdemes \texttt{protected} vagy \texttt{private} származtatást végezni?] \hfill \\ Meglévő implementáció újrahasznosításánál, ha forrásban nem elérhető, de új függvényekkel (pl. más paraméterezés) kellene ellátni. 
+    \end{description}
+    
+\end{frame}
+
+\begin{frame}
     Probléma:
     \begin{itemize}
         \item Az ősre utaló típusú, de a leszármazott egyik példányát címző mutatóval csak az ős függvényét tudjuk hívni.
@@ -158,7 +184,7 @@
     \begin{itemize}
         \item A \emph{késői/dinamikus kötés} (late/dynamic binding) hatására a fordító \emph{virtuális metódustáblát} (VMT, vtable) hoz létre, melyben a leszármazottak felüldefiniált függvényeinek címei is benne vannak, melynek segítségével az aktuális objektum típusának megfelelő változat is hívható, típuskényszerítés nélkül. \\ Pl.: \texttt{Employee* pe = new Programmer(); pe->getSalary();} $\to$ 300000
         \item C++-ban késői kötést \emph{virtuális tagfüggvényekkel} (\texttt{virtual}) hozhatunk létre.
-        \item \emph{Polimorfizmus}: mindig az ős típusát címző mutatót használjuk, de a vele hívott tagfüggvény osztályonként eltérően működik
+        \item \emph{Polimorfizmus} (többalakúság): mindig az ős típusát címző mutatót használjuk, de a vele hívott tagfüggvény osztályonként eltérően működik. (A felültöltött tagfüggvények is egyfajta polimorfizmust valósítanak meg.)
     \end{itemize}
 \end{frame}
 
