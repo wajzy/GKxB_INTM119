@@ -1,0 +1,126 @@
+\documentclass[usenames,dvipsnames,aspectratio=169]{beamer}
+\usepackage{../common/cpp}
+
+\title[OO Programozás - C++]{OO Programozás}
+\subtitle{Operátor felültöltés, másolás és átalakítás}
+
+\begin{document}
+
+%1
+\begin{frame}[plain]
+  \titlepage
+  \logoalul
+\end{frame}
+
+\section{Operátorok felültöltése}
+
+\subsection{Műveletek közönséges tagfüggvényekkel}
+
+\begin{frame}
+    Jelenlegi legjobb tudásunk szerint készítsünk osztályt egy \hiv{\href{https://hu.wikipedia.org/wiki/Komplex_sz\%C3\%A1mok}{komplex szám}} tárolására és műveletek elvégzésére, azaz:
+    \begin{itemize}
+        \item tároljuk a szám valós és képzetes részét, 
+        \item készítsünk konstruktorokat,
+        \item getter/setter tagfüggvényeket,
+        \item és olyan függvényeket, melyekkel komplex számok összeadhatók és szorozhatók!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Complex1.h}{Complex1.h}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={6-21},numbers=left,firstnumber=6]{Complex1.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Complex1.h}{Complex1.h}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={22-37},numbers=left,firstnumber=22]{Complex1.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{main1.cpp}{main1.cpp}}
+        \lstinputlisting[language=C++,linerange={1-10},numbers=left,firstnumber=1]{main1.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\subsection{Felültöltött operátorok tagfüggvényekkel}
+
+\begin{frame}
+    Operátor felültöltés
+    \begin{itemize}
+        \item A C++ megengedi, hogy az operátorok jelentését kiterjesszük a saját típusainkra (osztályainkra)
+        \item Pl. ha értelmezhető az összeadás két \texttt{int} vagy \texttt{float} között, akkor két \texttt{Complex} objektum miért ne lehetne összeadható?
+        \item Az operátorok működését (praktikusan nyilvános tag)függvények adják meg $\to$ \texttt{operatorX}, ahol \texttt{X} pl. \texttt{+}, \texttt{*}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Complex2.h}{Complex2.h}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={31-37},numbers=left,firstnumber=31]{Complex2.h}
+    \end{exampleblock}
+    \begin{itemize}
+        \small
+        \item $+$ művelet bal operandusa: aktuális objektum, a jobb oldalit paraméterként kapja.
+        \item Utóbbi felesleges (tagonkénti) másolásának elkerülésére referenciát használunk.
+        \item Új, ideiglenes (eredmény) objektum jön létre e kettő alapján, ezt adja vissza.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{main2.cpp}{main2.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,linerange={4-16},numbers=left,firstnumber=4]{main2.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{description}[mm]
+        \item[Probléma:] \hfill \\ Összeadásnál a jobb oldali operandusnak \texttt{Complex}-nek kell lennie.
+        \item[Megoldás:] \hfill \\ További felültöltött operátor függvények hozzáadása, pl. \texttt{double}-t hozzáadhatunk a valós részhez.
+    \end{description}
+    \begin{exampleblock}{\textattachfile{Complex3.h}{Complex3.h}}
+        \lstinputlisting[language=C++,linerange={35-37},numbers=left,firstnumber=32]{Complex3.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{main3.cpp}{main3.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={4-14},numbers=left,firstnumber=4]{main3.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\subsection{Felültöltött operátorok barát függvényekkel}
+
+\begin{frame}
+    \begin{itemize}
+        \item Ez sem segít, ha a \emph{bal} operandus \texttt{double} típusú $\to$ \emph{nem tag}, két paraméteres \texttt{operator} függvény.
+        \item Nem éri el a privát/védett tagokat $\to$ barát (\texttt{friend}) függvény: mindenhez hozzáfér az osztályon belül.
+        \item Tagobjektum is lehet az osztályunk barátja, pl.: \texttt{friend class FriendOfComplex;}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Complex4.h}{Complex4.h}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={6-8},numbers=left,firstnumber=6]{Complex4.h}
+        \lstinputlisting[language=C++,linerange={28-36},numbers=left,firstnumber=36]{Complex4.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Complex4.cpp}{Complex4.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,linerange={3-10},numbers=left,firstnumber=3]{Complex4.cpp}
+    \end{exampleblock}
+\end{frame}
+
+% main4.cpp
+% minden forgatókönyv lefedve, de körülményesen
+% mi az az ostream?
+
+\end{document}

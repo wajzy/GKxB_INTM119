@@ -23,7 +23,7 @@ class Message {
       std::cout << "Created [" << this << "]\n";
     } */
 
-    // C++11+
+    // C++11+ / delegating constructors
     Message(const Message& m) : Message(m.pStr) {}
 
     ~Message() {
@@ -69,8 +69,10 @@ int main() {
   m1 = m1;
   std::cout << m1 << std::endl;
 
-  Message m4 = m1; // OK, calls copy constructor
+  Message m4 = m1; // calls copy constructor
   std::cout << m4 << std::endl;
   Message m5(m1); // calls copy constructor
   std::cout << m5 << std::endl;
+  Message m6 = "Conversion ctor";
+  Message m7("Conversion ctor");
 }

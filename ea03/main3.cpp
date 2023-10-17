@@ -10,7 +10,8 @@ int main() {
   Complex sum2 = c + 100.;
   sum2.print();
   // Complex sum3 = 100. + c;
-  // error: no match for 'operator+' (operand types are 'double' and 'Complex')
+  // error: no match for 'operator+' 
+  // (operand types are 'double' and 'Complex')
   Complex total = c * Complex(3., 4.);
   total.print();
 }

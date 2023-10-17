@@ -1,0 +1,19 @@
+#include <iostream>
+#include "Complex6.h"
+
+int main() {
+  Complex c(1., 1.);
+  // Complex sum = operator+(c, Complex(2., 2.));
+  Complex sum = c + Complex(2., 2.);
+  std::cout << sum << std::endl; // 3+3i
+  // Complex sum2 = operator+(c, Complex(100., 0.))
+  Complex sum2 = c + 100.;
+  std::cout << sum2 << std::endl; // 101+1i
+  // Complex sum3 = operator+(Complex(100., 0.), c);
+  Complex sum3 = 100. + c;
+  std::cout << sum3 << std::endl; // 101+1i
+  Complex total = c * Complex(3., 4.);
+  std::cout << total << std::endl; // -1+7i
+  Complex numbers[] = { c, Complex(1., 2.), 10. };
+  std::cout << Complex() << std::endl;
+}
