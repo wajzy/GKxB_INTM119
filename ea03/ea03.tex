@@ -100,7 +100,7 @@
     \begin{itemize}
         \item Ez sem segít, ha a \emph{bal} operandus \texttt{double} típusú $\to$ \emph{nem tag}, két paraméteres \texttt{operator} függvény.
         \item Nem éri el a privát/védett tagokat $\to$ barát (\texttt{friend}) függvény: mindenhez hozzáfér az osztályon belül.
-        \item Tagobjektum is lehet az osztályunk barátja, pl.: \texttt{friend class FriendOfComplex;}
+        \item Tagobjektum is lehet az osztályunk barátja, pl.: \\ \texttt{friend class FriendOfComplex;}
     \end{itemize}
 \end{frame}
 
@@ -108,7 +108,7 @@
     \begin{exampleblock}{\textattachfile{Complex4.h}{Complex4.h}}
         \scriptsize
         \lstinputlisting[language=C++,linerange={6-8},numbers=left,firstnumber=6]{Complex4.h}
-        \lstinputlisting[language=C++,linerange={28-36},numbers=left,firstnumber=36]{Complex4.h}
+        \lstinputlisting[language=C++,linerange={28-36},numbers=left,firstnumber=28]{Complex4.h}
     \end{exampleblock}
 \end{frame}
 
@@ -119,8 +119,48 @@
     \end{exampleblock}
 \end{frame}
 
-% main4.cpp
-% minden forgatókönyv lefedve, de körülményesen
-% mi az az ostream?
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{main4.cpp}{main4.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={4-14},numbers=left,firstnumber=4]{main4.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    Az \hiv{\href{https://cplusplus.com/reference/ostream/ostream/}{\texttt{ostream}}} a \texttt{cout}, \texttt{cerr} és \texttt{clog} objektumok típusa.
+    \vfill
+    \begin{center}
+        \includegraphics[scale=.5]{ostream.png}
+    \end{center}
+    \vfill
+    Bár különösebb haszna nincs, de csupa nem tag barát függvénnyel is megoldhattuk volna az operátorok felültöltését.
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Complex5.h}{Complex5.h} (\textattachfile{Complex5.cpp}{Complex5.cpp})}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={6-8},numbers=left,firstnumber=6]{Complex5.h}
+        \lstinputlisting[language=C++,linerange={28-37},numbers=left,firstnumber=28]{Complex5.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \hiv{\href{https://en.cppreference.com/w/cpp/language/operators}{Operátor felültöltés}}
+    \begin{itemize}
+        \item Definiáltuk az operátor \emph{jelentését} olyan kifejezésben, melyben legalább egy operandus az osztály objektuma.
+        \item Nem változtatható meg az operátor \emph{szintakszisa}, \emph{precedenciája}, \emph{asszociativitása}, \emph{operandusainak száma}.
+        \item \emph{Majdnem} minden operátor felültölthető.
+    \end{itemize}
+\end{frame}
+
+\subsection{Az értékadás operátor felültöltése}
+
+\begin{frame}
+    \begin{itemize}
+        \item Az értékadás megengedett objektumok között $\to$ tagonkénti másolás.
+        \item Probléma: dinamikusan foglalt területet több objektum adattagja is címezhet. Ha az egyik destruktora ezt felszabadítja, a másik ezen próbálhat műveletet végezni vagy újra felszabadítani.
+        \item Egészítsük ki a \textattachfile{../ea01/message.cpp}{Message} osztályt felültöltött értékadás operátorral, készítsünk másolatot a tárolt szövegről!
+    \end{itemize}
+\end{frame}
 
 \end{document}
