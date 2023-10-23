@@ -54,7 +54,7 @@ int main() {
 
   Message m3;
   m3 = m2 = m1;
-  std::cout << m2 << std::endl;
+  std::cout << m3 << std::endl;
 
   m1 = m1;
   std::cout << m1 << std::endl;

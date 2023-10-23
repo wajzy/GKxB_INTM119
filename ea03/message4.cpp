@@ -16,15 +16,8 @@ class Message {
       std::cout << "Created [" << this << ", " << pStr << "]\n";
     }
 
-    /* for old compilers
-    Message(const Message& m) {
-      pStr = new char[strlen(m.pStr) + 1];
-      strcpy(pStr, m.pStr);
-      std::cout << "Created [" << this << ", " << m.pStr << "]\n";
-    } */
-
-    // C++11+ / delegating constructors
-    Message(const Message& m) : Message(m.pStr) {}
+    // C++11: deleted constructor
+    Message(const Message& m) = delete;
 
     ~Message() {
       std::cout << "Freed [" << this << ", " << pStr << "]\n";
@@ -33,13 +26,8 @@ class Message {
 
     friend std::ostream& operator<<(std::ostream& os, const Message& m);
 
-    // return reference instead of void to allow multiple assignments
-    Message& operator=(const Message& m) {
-      // do not copy to itself
-      if(&m == this) return *this;
-      setMessage(m.pStr);
-      return *this;
-    }
+    // deleted assignment operator
+    Message& operator=(const Message& m) = delete;
 
     void setMessage(const char* s) {
       delete[] pStr;
@@ -59,20 +47,15 @@ int main() {
   std::cout << m1 << std::endl;
 
   Message m2;
-  m2 = m1;
-  std::cout << m2 << std::endl;
+  // m2 = m1; error: use of deleted function 
+  // 'Message& Message::operator=(const Message&)'
 
-  Message m3;
-  m3 = m2 = m1;
-  std::cout << m3 << std::endl;
-
-  m1 = m1;
-  std::cout << m1 << std::endl;
-
-  Message m4 = m1; // calls copy ctor
-  std::cout << m4 << std::endl;
-  Message m5(m1); // calls copy ctor
-  std::cout << m5 << std::endl;
-  Message m6 = "Conversion + copy ctor";
-  Message m7("Conversion ctor");
+  // Message m4 = m1; error: use of deleted function
+  // 'Message::Message(const Message&)'
+  
+  // Message m6 = "Conversion + copy ctor"; error: use of deleted function 
+  // 'Message::Message(const Message&)'
+  // after user-defined conversion: Message::Message(const char*)
+  
+  Message m7("Conversion ctor"); // OK
 }
