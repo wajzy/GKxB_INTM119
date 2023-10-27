@@ -1,0 +1,125 @@
+\documentclass[usenames,dvipsnames,aspectratio=169]{beamer}
+\usepackage{../common/cpp}
+
+\title[OO Programozás - C++]{OO Programozás}
+\subtitle{Operátor felültöltés, másolás és átalakítás}
+
+\begin{document}
+
+%1
+\begin{frame}[plain]
+  \titlepage
+  \logoalul
+\end{frame}
+
+\section{Függvénysablonok}
+
+\begin{frame}
+    Sablonok (template)
+    \begin{itemize}
+        \item Különböző típusokat kezelő függvények / osztályok csoportjának egyszerű létrehozása
+        \item \emph{Típusparaméter} (fordítási időben eldől) vs. függvény paraméter (futási időben adják át)
+        \item Kulcsszó: \texttt{class} vagy \texttt{typename} (\emph{majdnem} egyenértékűek)
+        \item \emph{Sablon példányosítás:} adott típusparaméterrel új változat előállítása $\to$ egyszerűbb, mint sok felültöltött függvényt kézzel létrehozni
+    \end{itemize}
+    \vfill
+    \begin{description}[m]
+        \item[Feladat:] \hfill \\ Készítsünk \texttt{max} függvényt, ami két paramétere közül visszaadja a nagyobbat!
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{max1.cpp}{max1.cpp}}
+        \lstinputlisting[language=C++,linerange={3-10},numbers=left,firstnumber=3]{max1.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{max1.cpp}{max1.cpp}}
+        \vspace{-.2cm}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={12-22},numbers=left,firstnumber=12]{max1.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+    \begin{block}{Kimenet}
+        \vspace{-.4cm}
+        \scriptsize
+        \begin{verbatim}
+1 es 2 kozul 2 a nagyobb.
+1.5 es 2.5 kozul 2.5 a nagyobb.
+\end{verbatim}             
+        \vspace{-.4cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{max2.cpp}{max2.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={3-16},numbers=left,firstnumber=3]{max2.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item Egy sablon több típusparamétert is fogadhat, de akkor ezeket mind használni is kell!
+        \item Csak akkor állít elő kódot a fordító, amikor a függvény konkrét hívásával találkozik $\to$ a példányosításig a hibás sablon nem vált ki hibaüzenetet
+        \item Pontosan olyan változatok jönnek létre, amikre szükség is van
+        \item Típusonként pontosan egy változatot hoz létre, akkor is, ha létezik a típusok között implicit konverzió (pl. \texttt{int} $\to$ \texttt{long})
+        \item Mi történik, ha két \emph{eltérő} típusú paraméterrel hívják a függvényünket?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{max2.cpp}{max2.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={18-27},numbers=left,firstnumber=18]{max2.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{description}[m]
+        \item[Probléma:] \hfill \\ A két paraméter típusának mindenképpen egyeznie kell!
+        \item[Félmegoldás:] \hfill \\ Két típusparaméter használata (nem befolyásolható futásidőben, melyikben keletkezzen az eredmény)  
+    \end{description}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{columns}[T]
+        \column{0.65\textwidth}
+            \begin{exampleblock}{\textattachfile{max3.cpp}{max3.cpp}}
+                \scriptsize
+                \lstinputlisting[language=C++,linerange={3-14},numbers=left,firstnumber=3]{max3.cpp}
+            \end{exampleblock}
+        \column{0.35\textwidth}
+            \begin{block}{Kimenet}
+                \footnotesize
+                \vspace{-.4cm}
+                \begin{verbatim}
+3 es 4.5 kozul 4 a nagyobb.
+4.5 es 3 kozul 4.5 a nagyobb.
+                \end{verbatim}
+                \vspace{-.4cm}
+            \end{block}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    Ha létezik függvény a szükséges paraméterekkel, nem jön létre példány a sablonból, és a korábbi hiba orvosolható.
+    \begin{exampleblock}{\textattachfile{max4.cpp}{max4.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={3-9},numbers=left,firstnumber=3]{max4.cpp}
+    \end{exampleblock}
+    \begin{block}{Kimenet}
+        \footnotesize
+        \vspace{-.4cm}
+        \begin{verbatim}
+3 es 4.5 kozul 4.5 a nagyobb.
+4.5 es 3 kozul 4.5 a nagyobb.
+        \end{verbatim}
+        \vspace{-.4cm}
+    \end{block}
+\end{frame}
+
+\section{Osztálysablonok}
+
+\end{document}
