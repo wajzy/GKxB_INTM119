@@ -2,7 +2,7 @@
 \usepackage{../common/cpp}
 
 \title[OO Programozás - C++]{OO Programozás}
-\subtitle{Operátor felültöltés, másolás és átalakítás}
+\subtitle{Sablonok}
 
 \begin{document}
 
@@ -12,14 +12,20 @@
   \logoalul
 \end{frame}
 
-\section{Függvénysablonok}
+\section{Sablonok}
+
+\subsection{Függvénysablonok}
 
 \begin{frame}
     Sablonok (template)
     \begin{itemize}
         \item Különböző típusokat kezelő függvények / osztályok csoportjának egyszerű létrehozása
         \item \emph{Típusparaméter} (fordítási időben eldől) vs. függvény paraméter (futási időben adják át)
-        \item Kulcsszó: \texttt{class} vagy \texttt{typename} (\emph{majdnem} egyenértékűek)
+        \item Kulcsszavak:
+        \begin{itemize}
+            \item Sablon $\to$ \texttt{template}
+            \item Típusparaméterek $\to$ \texttt{class} vagy \texttt{typename} (\emph{majdnem} egyenértékűek)
+        \end{itemize}
         \item \emph{Sablon példányosítás:} adott típusparaméterrel új változat előállítása $\to$ egyszerűbb, mint sok felültöltött függvényt kézzel létrehozni
     \end{itemize}
     \vfill
@@ -120,6 +126,47 @@
     \end{block}
 \end{frame}
 
-\section{Osztálysablonok}
+\subsection{Osztálysablonok}
+
+\begin{frame}
+    Fontosabb tudnivalók:
+    \begin{itemize}
+        \item A függvénysablonokhoz hasonlóan \emph{osztálysablonokat} is létrehozhatunk.
+        \item A típusparaméterek mellett \emph{konstansparamétereket} is megadhatunk $\to$ bárhova helyettesíthetők, ahol konstans kifejezés állhat.
+        \item Ha egy tagfüggvényt az osztályon kívül definiálunk, meg kell ismételni a \texttt{template} kulcsszót a paraméterekkel együtt. A definíciónak kivételesen a fejfájlban a helye, hogy a fordító mindig elérje.
+        \item Osztálysablon példányosítása: a típus után \texttt{<} és \texttt{>} között meg kell adni a konkrét típusokat, konstansokat. Csak ezek együtt azonosítják egyértelműen a sablon alapján előállított osztályt!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Stack.h}{Stack.h}}
+        \lstinputlisting[language=C++,linerange={6-15},numbers=left,firstnumber=6]{Stack.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Stack.h}{Stack.h}}
+        \small
+        \lstinputlisting[language=C++,linerange={16-27},numbers=left,firstnumber=16]{Stack.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Stack.h}{Stack.h}}
+        \lstinputlisting[language=C++,linerange={29-36},numbers=left,firstnumber=29]{Stack.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{stackMain.cpp}{stackMain.cpp}}
+        \lstinputlisting[language=C++,linerange={1-10},numbers=left,firstnumber=10]{stackMain.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{stackMain.cpp}{stackMain.cpp}}
+        \lstinputlisting[language=C++,linerange={12-17},numbers=left,firstnumber=12]{stackMain.cpp}
+    \end{exampleblock}
+\end{frame}
 
 \end{document}

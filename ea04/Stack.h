@@ -26,6 +26,7 @@ template<class T, int I> class Stack {
     }
 };
 
+// It MUST be in the header!
 template<class T, int I> void Stack<T, I>::push(T data) {
   if(used < size) {
     array[used++] = data;
