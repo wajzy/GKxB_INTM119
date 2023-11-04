@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Stack.h"
+#include "Stack1.h"
 
 int main() {
   Stack<int, 3> si;

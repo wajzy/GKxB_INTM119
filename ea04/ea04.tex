@@ -2,7 +2,7 @@
 \usepackage{../common/cpp}
 
 \title[OO Programozás - C++]{OO Programozás}
-\subtitle{Sablonok}
+\subtitle{Sablonok, kivételkezelés}
 
 \begin{document}
 
@@ -139,34 +139,252 @@
 \end{frame}
 
 \begin{frame}
-    \begin{exampleblock}{\textattachfile{Stack.h}{Stack.h}}
-        \lstinputlisting[language=C++,linerange={6-15},numbers=left,firstnumber=6]{Stack.h}
+    \begin{exampleblock}{\textattachfile{Stack1.h}{Stack1.h}}
+        \lstinputlisting[language=C++,linerange={6-15},numbers=left,firstnumber=6]{Stack1.h}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
-    \begin{exampleblock}{\textattachfile{Stack.h}{Stack.h}}
+    \begin{exampleblock}{\textattachfile{Stack1.h}{Stack1.h}}
         \small
-        \lstinputlisting[language=C++,linerange={16-27},numbers=left,firstnumber=16]{Stack.h}
+        \lstinputlisting[language=C++,linerange={16-27},numbers=left,firstnumber=16]{Stack1.h}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
-    \begin{exampleblock}{\textattachfile{Stack.h}{Stack.h}}
-        \lstinputlisting[language=C++,linerange={29-36},numbers=left,firstnumber=29]{Stack.h}
+    \begin{exampleblock}{\textattachfile{Stack1.h}{Stack1.h}}
+        \lstinputlisting[language=C++,linerange={29-36},numbers=left,firstnumber=29]{Stack1.h}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
-    \begin{exampleblock}{\textattachfile{stackMain.cpp}{stackMain.cpp}}
-        \lstinputlisting[language=C++,linerange={1-10},numbers=left,firstnumber=10]{stackMain.cpp}
+    \begin{exampleblock}{\textattachfile{stackMain1.cpp}{stackMain1.cpp}}
+        \lstinputlisting[language=C++,linerange={1-10},numbers=left,firstnumber=1]{stackMain1.cpp}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
-    \begin{exampleblock}{\textattachfile{stackMain.cpp}{stackMain.cpp}}
-        \lstinputlisting[language=C++,linerange={12-17},numbers=left,firstnumber=12]{stackMain.cpp}
+    \begin{exampleblock}{\textattachfile{stackMain1.cpp}{stackMain1.cpp}}
+        \lstinputlisting[language=C++,linerange={12-17},numbers=left,firstnumber=12]{stackMain1.cpp}
     \end{exampleblock}
+\end{frame}
+
+\section{Kivételkezelés}
+
+\subsection{Általános szabályok}
+
+\begin{frame}
+    Kivételkezelés (\emph{exception handling})
+    \begin{itemize}
+        \item \emph{Kivételes}, azaz ritka események (hibák) kezelésére
+        \item Előidézheti hardveres (pl. elfogy a memória) vagy szoftveres (pl. dinamikus tömb túlindexelése) hiba
+        \item Védett blokk: felkészülés kivételes helyzet bekövetkezésére $\to$ \texttt{try}
+        \item Kivétel kiváltása $\to$ \texttt{throw}
+        \item Kivétel elfogása $\to$ \texttt{catch}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \texttt{try} blokkok jellemzői:
+    \begin{itemize}
+        \item Egymásba ágyazhatók.
+        \item Benne közvetlenül vagy közvetetten (függvényen belül) is használható \texttt{throw} utasítás.
+        \item Több \texttt{catch} ág is tartozhat egy \texttt{try}-hoz, vagy akár egy sem.
+    \end{itemize}
+    \vfill
+    \texttt{throw} jellemzői:
+    \begin{itemize}
+        \item Tetszőleges típusú kivétel kiváltható.
+        \item A \texttt{try} blokk végrehajtása azonnal félbeszakad a hatására.
+        \item Használható akár konstruktorban, vagy \texttt{catch} blokkban is.
+        \item A \texttt{throw;} utasítás a korábban kiváltott és már elfogott típusú és tartalmú kivétellel azonosat vált ki újra.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \texttt{catch} blokkok jellemzői:
+    \begin{itemize}
+        \item Az első illeszkedő blokk kezeli a kivételt.
+        \item Nyilvánosan származtatott kivétel osztályok esetén a szülő típusára illeszthető a leszármazott típusú kivétel $\to$ speciálisak előre, általánosabbak hátra!
+        \item Nem illeszkednek viszont az implicit típuskonverzióval egyébként egymásba alakítható típusok \texttt{catch} blokkjai (pl. \texttt{int} típusú kivételt nem fogja el a \texttt{float} kezelője).
+        \item A speciális, \texttt{\dots} típusú \texttt{catch} minden, korábban nem kezelt kivételt elfog $\to$ ez legyen az utolsó!
+        \item A kivétel kezelését követően a program fut tovább az utolsó \texttt{catch} blokk után.
+        \item Ha nincs illeszthető \texttt{catch} ág, a vezérlés a befoglaló \texttt{try-catch} szerkezetre kerül, és ott keres illeszkedő kivételkezelőt. Ha ilyen nincs, a vezérlés a \texttt{terminate()} függvényre kerül, és a program leáll.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    Kivételkezelési stratégiák:
+    \begin{enumerate}
+        \item Figyelmeztetés, felhasználói beavatkozás kérése, megpróbálkozás a hiba javításával.
+        \item Program leállítása (pl. \texttt{exit()}, \texttt{abort()}) súlyos hibák esetén.
+        \item Kivétel kezeletlenül hagyása.
+    \end{enumerate}
+    \vfill
+    A dinamikusan foglalt erőforrásokat szükség esetén fel kell szabadítani!
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{trycatch1.cpp}{trycatch1.cpp}}
+        \lstinputlisting[language=C++,linerange={1-11},numbers=left,firstnumber=1]{trycatch1.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{trycatch1.cpp}{trycatch1.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={12-23},numbers=left,firstnumber=12]{trycatch1.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{trycatch1.cpp}{trycatch1.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={24-36},numbers=left,firstnumber=24]{trycatch1.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{trycatch1.cpp}{trycatch1.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={37-45},numbers=left,firstnumber=37]{trycatch1.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{trycatch1.cpp}{trycatch1.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={46-56},numbers=left,firstnumber=46]{trycatch1.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{block}{Kimenet}
+        \vspace{-.3cm}
+        \begin{verbatim}
+Throwing int... caught an UNKNOWN exception
+Throwing double... caught 3.14
+Throwing const char*... caught an unknown message
+Throwing BaseException... caught BaseException object
+Throwing DerivedException... caught BaseException object
+Throwing char... caught x, re-throw exception
+terminate called after throwing an instance of 'char'
+Aborted (core dumped)            
+\end{verbatim}
+    \vspace{-.3cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{trycatch2.cpp}{trycatch2.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,linerange={3-13},numbers=left,firstnumber=3]{trycatch2.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{trycatch2.cpp}{trycatch2.cpp}}
+        \vspace{-.2cm}
+        \fontsize{8}{9} \selectfont
+        \lstinputlisting[language=C++,linerange={15-32},numbers=left,firstnumber=15]{trycatch2.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{block}{Kimenet1}
+        \vspace{-.45cm}
+        \small
+        \begin{verbatim}
+Do you want to throw an exception of type int? y
+Caught an int.
+\end{verbatim}
+    \vspace{-.45cm}
+    \end{block}
+    \begin{block}{Kimenet2}
+        \vspace{-.45cm}
+        \small
+        \begin{verbatim}
+Do you want to throw an exception of type int? n
+Caught a double.
+Do you want to throw an exception of type char? y
+Caught a char.
+\end{verbatim}
+    \vspace{-.45cm}
+    \end{block}
+    \begin{block}{Kimenet3}
+        \vspace{-.45cm}
+        \small
+        \begin{verbatim}
+Do you want to throw an exception of type int? n
+Caught a double.
+Do you want to throw an exception of type char? n
+Caught a pointer to char.
+\end{verbatim}
+    \vspace{-.45cm}
+    \end{block}
+\end{frame}
+
+\subsection{A verem mintafeladat átalakítása}
+
+\begin{frame}
+    Alakítsuk át a verem megvalósítását úgy, hogy kivételkezelést használjon! Használjuk fel a függvénykönyvtár \hiv{\href{https://en.cppreference.com/w/cpp/error/exception}{\texttt{exception}}} osztályát!
+    \begin{exampleblock}{\textattachfile{Stack2.h}{Stack2.h}}
+        \small
+        \lstinputlisting[language=C++,linerange={4-12},numbers=left,firstnumber=4]{Stack2.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Stack2.h}{Stack2.h}}
+        \small
+        \lstinputlisting[language=C++,style=C++,linerange={13-24},numbers=left,firstnumber=17]{Stack2.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Stack2.h}{Stack2.h}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={26-26},numbers=left,firstnumber=26]{Stack2.h}
+        \lstinputlisting[language=C++,style=C++,linerange={30-30},numbers=left,firstnumber=30]{Stack2.h}
+        \lstinputlisting[language=C++,style=C++,linerange={35-45},numbers=left,firstnumber=35]{Stack2.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Stack2.h}{Stack2.h}}
+        \lstinputlisting[language=C++,style=C++,linerange={51-60},numbers=left,firstnumber=51]{Stack2.h}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{stackMain2.cpp}{stackMain2.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,style=C++,linerange={4-16},numbers=left,firstnumber=4]{stackMain2.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{stackMain2.cpp}{stackMain2.cpp}}
+        \small
+        \lstinputlisting[language=C++,style=C++,linerange={18-29},numbers=left,firstnumber=18]{stackMain2.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{block}{Kimenet}
+        \vspace{-.45cm}
+        \small
+        \begin{verbatim}
+Error code: 2, Sorry, stack full.
+3
+2
+1
+Hello World!
+Error code: 1, Oops, the stack is empty.
+\end{verbatim}
+    \vspace{-.45cm}
+    \end{block}
 \end{frame}
 
 \end{document}
