@@ -33,10 +33,3 @@ int main() {
   }
   std::cout << std::endl;
 }
-
-// postfix alak: virtual Iterator operator++(int) = 0; -> de absztrakt osztályt nem lehet példányosítani, így a visszatérési érték típusa nem lehet Iterator
-// https://en.cppreference.com/w/cpp/language/override
-// static_cast -> nincs ellenőrzés; dynamic_cast bad_cast kivételt dobhat
-// range-based for loop: https://en.cppreference.com/w/cpp/language/range-for
-// out_of_range: https://en.cppreference.com/w/cpp/error/out_of_range
-// iterátorok hierarchiája, operátorok: https://cplusplus.com/reference/iterator/

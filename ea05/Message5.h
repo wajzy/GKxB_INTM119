@@ -27,46 +27,46 @@ class MessageIterator : public Iterator<char> {
 class Message {
   private:
     char* pStr;
-    int len;
+    int len; // The length of str is also stored
   public:
-    Message() {
+    Message() { // default ctor
       pStr = new char('\0');
       len = 0;
     }
 
-    Message(const char* s) {
+    Message(const char* s) { // conversion ctor
       len = strlen(s);
       pStr = new char[len + 1];
       strcpy(pStr, s);
     }
 
-    Message(const Message& m) : Message(m.pStr) {}
+    Message(const Message& m) : Message(m.pStr) {} // copy ctor
 
-    ~Message() {
+    ~Message() { // dtor
       delete[] pStr;
     }
 
+    Message& operator=(const Message& m); // assignment op.
+
     friend std::ostream& operator<<(std::ostream& os, const Message& m);
-
-    Message& operator=(const Message& m);
-
-    MessageIterator begin() {
-      return MessageIterator(pStr);
-    }
-
-    MessageIterator end() {
-      return MessageIterator(pStr + len);
-    }
-    
-    int length() {
-      return len;
-    }
     
     char& operator[](int i) {
       if (i < 0 || i >= len) {
         throw std::out_of_range("Message::operator[]");
       }
       return pStr[i];
+    }
+
+    int length() const {
+      return len;
+    }
+
+    MessageIterator begin() const {
+      return MessageIterator(pStr);
+    }
+
+    MessageIterator end() const {
+      return MessageIterator(pStr + len);
     }
 };
 
