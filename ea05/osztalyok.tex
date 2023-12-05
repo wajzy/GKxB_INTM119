@@ -191,3 +191,186 @@ Erasing: Reverse engineering
         \item[\hiv{\href{https://en.cppreference.com/w/cpp/string/basic_string/erase}{\texttt{erase(index, count)}}}] \hfill \\ Karakterek törlése az \texttt{index} helytől kezdve, \texttt{count} mennyiségben.
     \end{description}
 \end{frame}
+
+\subsection{A \texttt{vector} osztály}
+
+\begin{frame}
+    Standard Template Library (STL)
+    \small
+    \begin{description}[m]
+        \item[Gyűjtemények (containers)] \hfill \\ dinamikus tömb (\texttt{vector}), láncolt lista (\texttt{list}, \texttt{forward\_list}), leképezés (asszociatív tömb, szótár: \texttt{map}), halmaz (\texttt{set}), vermek és sorok (\texttt{stack}, \texttt{deque}), stb.
+        \item[Algoritmusok] \hfill \\ pl. keresés, csere. 
+        \item[Iterátorok] \hfill \\ elemek bejárása különféle irányokban és módokon
+        \item[\emph{Függvény objektumok} (functors)] \hfill \\ Függvények paramétereként átadható objektumok. Ezek tagfüggvényeivel a hívott függvény viselkedése befolyásolható, pl. egy gyűjtemény elemei átalakíthatók a kívánt (paraméterezésnek megfelelő) módon.
+        \item[\emph{Adapterek} (adapters)] \hfill \\ Más komponensek viselkedését módosítják, pl. egy iterátor bejárási irányát megfordítja. 
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    A \texttt{vector} osztály
+    \begin{itemize}
+        \item Fejfájl: \texttt<vector>
+        \item Dinamikus tömb osztálysablon
+        \item Speciális eset: \texttt{vector<bool>} $\to$ bithalmaz
+        \item Tartalma megváltoztatható (mutable)
+        \item Véletlen elérés: konstans  $\mathcal{O}(1)$, beszúrás/törlés a végén: amortizált $\mathcal{O}(1)$, tetszőleges helyen $\mathcal{O}(n)$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{vectorDemo.cpp}{vectorDemo.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={1-2},numbers=left,firstnumber=1]{vectorDemo.cpp}
+        \lstinputlisting[language=C++,style=C++,linerange={12-23},numbers=left,firstnumber=12]{vectorDemo.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{vectorDemo.cpp}{vectorDemo.cpp}}
+        \small
+        \lstinputlisting[language=C++,style=C++,linerange={25-35},numbers=left,firstnumber=25]{vectorDemo.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{vectorDemo.cpp}{vectorDemo.cpp}}
+        \footnotesize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,style=C++,linerange={37-51},numbers=left,firstnumber=37]{vectorDemo.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{block}{Kimenet}
+        \vspace{-.4cm}
+        \begin{verbatim}
+1 2 3 4 5 
+6 7 8 9 10 
+42 42 42 42 42 
+0 0 0 0 0 
+11 12 13 
+1 1 1 
+1 1 1
+\end{verbatim}
+        \vspace{-.3cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    Inicializálás, példányosítás
+    \begin{itemize}
+        \item inicializáló listával
+        \item explicit \hiv{\href{https://en.cppreference.com/w/cpp/container/vector/vector}{konstruktor}} hívással, pl.
+        \begin{itemize}
+            \item \texttt{vector();}
+            \item \texttt{explicit vector( size\_type count );}
+            \item \texttt{vector( size\_type count, const T\& value, const Allocator\& alloc = Allocator() );}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{vectorDemo.cpp}{vectorDemo.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={53-63},numbers=left,firstnumber=53]{vectorDemo.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{vectorDemo.cpp}{vectorDemo.cpp}}
+        \lstinputlisting[language=C++,style=C++,linerange={4-10},numbers=left,firstnumber=4]{vectorDemo.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{block}{Kimenet}
+        \vspace{-.4cm}
+        \begin{verbatim}
+Size of iv6: 5
+Capacity: 5
+Reserving memory... Capacity: 16
+Is it empty? No
+Shrinking... 1 2 3 
+Growing... 1 2 3 0 0 0 
+Further growing... 1 2 3 0 0 0 -1 -1 -1 
+Shrinking... Capacity: 9            
+\end{verbatim}
+        \vspace{-.3cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \begin{description}[m]
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/size}{\texttt{size()}}}] \hfill \\ Tárolt elemek száma.
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/capacity}{\texttt{capacity()}}}] \hfill \\ Ennyi elem számára van lefoglalva memóriaterület.
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/reserve}{\texttt{reserve(new\_cap)}}}] \hfill \\ Legalább \texttt{new\_cap} elemszámú adatnak foglal le memóriaterületet.
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/empty}{\texttt{empty()}}}] \hfill \\ Logikai igaz értékkel tér vissza, ha a vektor üres.
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/resize}{\texttt{resize(count)}, \texttt{resize(count, value)}}}] \hfill \\ Ha \texttt{count} kisebb \texttt{size()}-nál, akkor az utolsó elemeket levágja. Ha nagyobb, akkor kibővíti a vektort és a \texttt{value} másolataival tölti fel az új elemeket.
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/shrink_to_fit}{\texttt{shrink\_to\_fit()}}}] \hfill \\ Kezdeményezi (de nem feltétlenül hajtja végre) a kihasználatlan kapacitások törlését.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{vectorDemo.cpp}{vectorDemo.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={65-78},numbers=left,firstnumber=65]{vectorDemo.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{block}{Kimenet}
+        \vspace{-.4cm}
+        \begin{verbatim}
+First element: 1
+Last element: -1
+Element at idx. 1: 2
+Element at idx. 2: 3
+Elements in reverse order (using pointers): -1 -1 -1 0 0 0 3 2 1 
+Elements in reverse order (using rev. it.): -1 -1 -1 0 0 0 3 2 1             
+\end{verbatim}
+        \vspace{-.3cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \begin{description}[m]
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/front}{\texttt{front()}}}, \hiv{\href{https://en.cppreference.com/w/cpp/container/vector/back}{\texttt{back()}}}] \hfill \\ Visszaadják az első és utolsó tárolt elemet.
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/operator_at}{\texttt{operator[](pos)}}}, \hiv{\href{https://en.cppreference.com/w/cpp/container/vector/at}{\texttt{at(pos)}}}] \hfill \\ Visszaadják a \texttt{pos} indexű elemet.
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/data}{\texttt{data()}}}] \hfill \\ Visszaadja a lefoglalt memóriaterület kezdőcímét.
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/rbegin}{\texttt{crbegin()}}}, \hiv{\href{https://en.cppreference.com/w/cpp/container/vector/rend}{\texttt{crend()}}}] \hfill \\ Csak olvasásra alkalmas iterátorok az elemek fordított sorrendben történő eléréséhez.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{vectorDemo.cpp}{vectorDemo.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={80-90},numbers=left,firstnumber=80]{vectorDemo.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{block}{Kimenet}
+        \vspace{-.4cm}
+        \begin{verbatim}
+Assigning... 1 1 1 
+Pushing... 1 1 1 2 
+Popping... 1 1 1 
+Inserting... 1 1 1 2 
+Erasing... 1 1 1 
+Swapping vectors...
+    iv7: 1 2 3 0 0 0 -1 -1 -1 
+    iv6: 1 1 1         
+\end{verbatim}
+        \vspace{-.3cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \begin{description}[m]
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/assign}{\texttt{assign(count, value)}}}] \hfill \\ Lecseréli a vektor elemeit \texttt{count} darab \texttt{value}-ra.
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/push_back}{\texttt{push\_back(value)}}}, \hiv{\href{https://en.cppreference.com/w/cpp/container/vector/pop_back}{\texttt{pop\_back()}}}] \hfill \\ Hozzáfűznek vagy eltávolítanak egy elemet a vektor végéhez, -ről.
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/insert}{\texttt{insert(pos, value)}}}, \hiv{\href{https://en.cppreference.com/w/cpp/container/vector/erase}{\texttt{erase(pos)}}}] \hfill \\ \texttt{value} beszúrása a \texttt{pos} iterátorral adott helyre, vagy egy elem törlése onnan.
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/vector/swap}{\texttt{swap(other)}}}] \hfill \\ Két vektor elemeinek és lefoglalt tárterületének felcserélése.
+    \end{description}
+\end{frame}
