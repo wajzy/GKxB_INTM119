@@ -3,7 +3,7 @@
 int i = 1; // global 'i'
 
 namespace A {
-  int i = 2; // global 'i' in napespace 'A'
+  int i = 2; // global 'i' in namespace 'A'
 }
 
 int main() {
