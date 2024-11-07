@@ -13,13 +13,13 @@ class Complex {
       this->re = re;
       this->im = im;
     }
-    double getRe() {
+    double getRe() const {
       return re;
     }
     void setRe(double re) {
       this->re = re;
     }
-    double getIm() {
+    double getIm() const {
       return im;
     }
     void setIm(double im) {
@@ -27,18 +27,18 @@ class Complex {
     }
     friend std::ostream& operator<<(std::ostream& os, const Complex& cplx);
 
-    Complex operator+(const Complex& right) {
+    Complex operator+(const Complex& right) const {
       return Complex(re + right.re, im + right.im);
     }
-    Complex operator+(double re) {
+    Complex operator+(double re) const {
       return Complex(this->re + re, im);
     }
     friend Complex operator+(double re, const Complex& right);
 
-    Complex operator*(const Complex& right) {
+    Complex operator*(const Complex& right) const {
       return Complex(re*right.re - im*right.im, im*right.re + re*right.im);
     }
-    Complex operator*(double re) {
+    Complex operator*(double re) const {
       return Complex(this->re*re, this->im*re);
     }
     friend Complex operator*(double re, const Complex& right);

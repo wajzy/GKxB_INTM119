@@ -12,11 +12,11 @@ double max(double a, double b) {
 int main() {
   const int x = 1;
   const int y = 2;
-  std::cout << x << " es " << y << " kozul " 
-            << max(x, y) << " a nagyobb.\n";
+  std::cout << "Of " << x << " and " << y << ", " 
+            << max(x, y) << " is greater.\n";
             
   const double i = 1.5;
   const double j = 2.5;
-  std::cout << i << " es " << j << " kozul " 
-            << max(i, j) << " a nagyobb.\n";
+  std::cout << "Of " << i << " and " << j << ", " 
+            << max(i, j) << " is greater.\n";
 }

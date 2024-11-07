@@ -13,25 +13,25 @@ class Complex {
       this->re = re;
       this->im = im;
     }
-    double getRe() {
+    double getRe() const {
       return re;
     }
     void setRe(double re) {
       this->re = re;
     }
-    double getIm() {
+    double getIm() const {
       return im;
     }
     void setIm(double im) {
       this->im = im;
     }
-    void print() {
+    void print() const {
       std::cout << re << '+' << im << 'i' << std::endl;
     }
-    Complex add(Complex right) {
+    Complex add(Complex right) const {
       return Complex(re + right.re, im + right.im);
     }
-    Complex mult(Complex right) {
+    Complex mult(Complex right) const {
       return Complex(re*right.re - im*right.im, im*right.re + re*right.im);
     }
 };

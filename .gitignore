@@ -13,5 +13,7 @@
 *.tex.backup
 *.vrb
 *.synctex.gz
+*.fls
+*.fdb_latexmk
 
 Thumbs.*

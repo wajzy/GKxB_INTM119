@@ -7,8 +7,8 @@ template<class T1, class T2> T1 max(T1 a, T2 b) {
 int main() {
   const int i = 3;
   const double d = 4.5;
-  std::cout << i << " es " << d << " kozul " 
-            << max(i, d) << " a nagyobb.\n";
-  std::cout << d << " es " << i << " kozul " 
-            << max(d, i) << " a nagyobb.\n";
+  std::cout << "Of " << i << " and " << d << ", " 
+            << max(i, d) << " is greater.\n";
+  std::cout << "Of " << d << " and " << i << ", " 
+            << max(d, i) << " is greater.\n";
 }

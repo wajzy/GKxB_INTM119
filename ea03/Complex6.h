@@ -13,13 +13,13 @@ class Complex {
       this->re = re;
       this->im = im;
     }
-    double getRe() {
+    double getRe() const {
       return re;
     }
     void setRe(double re) {
       this->re = re;
     }
-    double getIm() {
+    double getIm() const {
       return im;
     }
     void setIm(double im) {
