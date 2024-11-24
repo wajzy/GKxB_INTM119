@@ -25,7 +25,7 @@ int main() {
   } catch(const std::out_of_range& e) {
     std::cerr << "\nException caught: " << e.what() << std::endl;
   }
-  
+
   LinkedList<int> l;
   l.append(1); l.append(2); l.append(3);
   for (auto i = l.begin(); i != l.end(); ++i) {

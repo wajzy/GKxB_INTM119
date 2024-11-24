@@ -10,32 +10,22 @@ struct ListItem {
 };
 
 template<class T>
-std::ostream& operator<<(std::ostream& os, const ListItem<T>& li) {
-  os << li.value;
-  return os;
-}
-
-template<class T>
-class ListIterator : public Iterator<ListItem<T>> {
+class ListIterator : public Iterator<T> {
+    ListItem<T>* p;
   public:
-    ListIterator(ListItem<T>* i) {
-      // use 'this' to force the compiler to look 
-      // for the name 'p' in the base class
-      this->p = i;
-      // Iterator<ListItem<T>>::p = i; // also OK
-    }
+    ListIterator(ListItem<T>* i) : p(i) {}
     
-    bool operator!=(const Iterator<ListItem<T>>& it) const override {
-      return this->p != static_cast<const ListIterator<T>&>(it).p;
+    bool operator!=(const Iterator<T>& it) const override {
+      return p != static_cast<const ListIterator<T>&>(it).p;
     }
     
     ListIterator<T>& operator++() override {
-      this->p = this->p->next;
+      p = p->next;
       return *this;
     }
         
-    ListItem<T>& operator*() const override {
-      return *(this->p);
+    T& operator*() const override {
+      return p->value;
     }
 };
 

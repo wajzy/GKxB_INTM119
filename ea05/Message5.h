@@ -5,6 +5,7 @@
 #include "Iterator.h"
 
 class MessageIterator : public Iterator<char> {
+    char* p;
   public:
     MessageIterator(char* s) {
       p = s;
