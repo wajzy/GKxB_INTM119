@@ -1,9 +1,9 @@
-\section{Néhány hasznos beépített osztály}
+\section{Néhány hasznos beépített osztály(sablon)}
 
 \subsection{A \texttt{string} osztály}
 
 \begin{frame}
-    Az \texttt{std::string} osztály néhány érdekes tulajdonsága:
+    Az \hiv{\href{https://en.cppreference.com/w/cpp/string/basic_string}{\texttt{std::string}}} osztály néhány érdekes tulajdonsága:
     \begin{itemize}
         \item Fejfájl: \texttt{<string>}
         \item Az \hiv{\href{https://en.cppreference.com/w/cpp/string/basic_string}{\texttt{std::basic\_string<char>}}} sablonpéldány szinonimája (\texttt{typedef})
@@ -207,9 +207,9 @@ Erasing: Reverse engineering
 \end{frame}
 
 \begin{frame}
-    A \texttt{vector} osztály
+    A \hiv{\href{https://en.cppreference.com/w/cpp/container/vector}{\texttt{vector}}} osztály
     \begin{itemize}
-        \item Fejfájl: \texttt<vector>
+        \item Fejfájl: \texttt{<vector>}
         \item Dinamikus tömb osztálysablon
         \item Speciális eset: \texttt{vector<bool>} $\to$ bithalmaz
         \item Tartalma megváltoztatható (mutable)
@@ -378,9 +378,9 @@ Swapping vectors...
 \subsection{A \texttt{deque} osztály}
 
 \begin{frame}
-    A \texttt{deque} osztály
+    A \hiv{\href{https://en.cppreference.com/w/cpp/container/deque}{\texttt{deque}}} osztály
     \begin{itemize}
-        \item Fejfájl: \texttt<deque>
+        \item Fejfájl: \texttt{<deque>}
         \item Hasonló a dinamikus tömbhöz, de lehetővé teszi a gyors ($\mathcal{O}(1)$) beszúrást és törlést a gyűjtemény mindkét végén. Ezt jellemzően úgy éri el, hogy az elemeket nem összefüggő memóriaterületen tárolja, hanem több, egymástól függetlenül lefoglalt memóriaterületen.
         \item Véletlen elérés: $\mathcal{O}(1)$, beszúrás vagy törlés a széleket leszámítva $\mathcal{O}(n)$.
         \item Tartalma megváltoztatható (mutable).
@@ -418,9 +418,9 @@ Swapping vectors...
 \subsection{A \texttt{list} osztály}
 
 \begin{frame}
-    A \texttt{list} osztály
+    A \hiv{\href{https://en.cppreference.com/w/cpp/container/list}{\texttt{list}}} osztály
     \begin{itemize}
-        \item Fejfájl: \texttt<list>
+        \item Fejfájl: \texttt{<list>}
         \item Két irányban láncolt lista. Egy irányban láncolt változat: \hiv{\href{https://en.cppreference.com/w/cpp/container/forward_list}{\texttt{forward\_list}}}
         \item Gyors ($\mathcal{O}(1)$) beszúrás és törlés a gyűjtemény bármely pontján, de az elemek véletlen elérése nem támogatott, a bejárás lassú.
         \item Tartalma megváltoztatható (mutable).
@@ -483,15 +483,76 @@ Removed duplicates: -3 -2 -1 0 1 4 9 16 25 36
     \end{description}
 \end{frame}
 
+\subsection{A \texttt{set} osztály}
+
+\begin{frame}
+    A \hiv{\href{https://en.cppreference.com/w/cpp/container/set}{\texttt{set}}} osztály
+    \begin{itemize}
+        \item Fejfájl: \texttt{<set>}
+        \item Rendezett halmaz, ismétlődés nem megengedett.
+        \item Keresés, beszúrás, eltávolítás: $\mathcal{O}(\log{}n)$ komplexitás $\to$ többnyire \hiv{\href{https://hu.wikipedia.org/wiki/Piros-fekete\_fa}{piros-fekete fával}} megvalósítva.
+        \item Tartalma megváltoztatható (mutable).
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{setDemo.cpp}{setDemo.cpp}}
+        \small
+        \lstinputlisting[language=C++,style=C++,linerange={1-10},numbers=left,firstnumber=1]{setDemo.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{setDemo.cpp}{setDemo.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,style=C++,linerange={12-21},numbers=left,firstnumber=12]{setDemo.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \footnotesize
+    \begin{exampleblock}{\textattachfile{setDemo.cpp}{setDemo.cpp}}
+        \footnotesize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,style=C++,linerange={23-38},numbers=left,firstnumber=23]{setDemo.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{setDemo.cpp}{setDemo.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,style=C++,linerange={40-42},numbers=left,firstnumber=40]{setDemo.cpp}
+    \end{exampleblock}
+    \begin{block}{Kimenet}
+        \vspace{-.3cm}
+        \begin{verbatim}
+Even numbers: 0 2 4 6 8 10 
+Numbers divisible by three: 0 3 6 9 
+Numbers divisable by six: 0 6
+        \end{verbatim}
+        \vspace{-.5cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \begin{description}[m]
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/set/find}{\texttt{find(key)}}}] \hfill \\ Visszaadja a \texttt{key}-t kijelölő iterátort, ha a kulcs létezik, különben az \texttt{end()} iterátort.
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/set/insert}{\texttt{insert(value)}}}] \hfill \\ Beszúr egy értéket.
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/container/set/erase}{\texttt{erase(pos)}}}] \hfill \\ Törli az iterátorral adott elemet, és a megváltozott adatszerkezet bejárására alkalmas új iterátort szolgáltat.
+    \end{description}
+\end{frame}
+
 \subsection{A \texttt{map} osztály}
 
 \begin{frame}
-    A \texttt{map} osztály
+    A \hiv{\href{https://en.cppreference.com/w/cpp/container/map}{\texttt{map}}} osztály
     \begin{itemize}
-        \item Fejfájl: \texttt<map>
+        \item Fejfájl: \texttt{<map>}
         \item Asszociatív tömb / leképezés / szótár: kulcs-érték párok halmaza (kulcs nem ismétlődhet).
         \item Elemei \hiv{\href{https://en.cppreference.com/w/cpp/utility/pair}{párok}}.
-        \item A megvalósítás többnyire \hiv{\href{https://hu.wikipedia.org/wiki/Piros-fekete_fa}{piros-fekete fával}} történik, ezért a keresés, beszúrás, törlés  ($\mathcal{O}\left(log(n)\right)$) időt vesz igénybe.
+        \item A megvalósítás többnyire \hiv{\href{https://hu.wikipedia.org/wiki/Piros-fekete_fa}{piros-fekete fával}} történik, ezért a keresés, beszúrás, törlés $\mathcal{O}\left(log(n)\right)$ időt vesz igénybe.
         \item Tartalma megváltoztatható (mutable).
     \end{itemize}
 \end{frame}
