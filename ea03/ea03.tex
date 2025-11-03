@@ -144,12 +144,95 @@
     \end{exampleblock}
 \end{frame}
 
+\subsection{A prefix/postfix formában is létező operátorok felültöltése}
+
+\begin{frame}
+    Készítsünk időt reprezentáló osztályt, ami 24 órás formátumban, óra, perc, mp. tagokkal
+    tárolja az időt! Egyebek mellett töltsük felül a növelő és csökkentő operátorokat!
+    \begin{exampleblock}{\textattachfile{Time.h}{Time.h}}
+        \scriptsize
+        \vspace{-.2cm}
+        \fontsize{8}{9} \selectfont
+        \lstinputlisting[language=C++,linerange={6-20},numbers=left,firstnumber=6]{Time.h}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Time.h}{Time.h}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={22-33},numbers=left,firstnumber=22]{Time.h}
+    \end{exampleblock}
+    \vfill
+    Az átvitelek kezelésénél figyelembe vettük, hogy \texttt{a \% b} eredménye mindig 
+    \texttt{a} előjelét kapja, azaz pl. \texttt{-1 \% 24 == -1}.
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Time.h}{Time.h}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={35-52},numbers=left,firstnumber=35]{Time.h}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    Fontos észrevenni:
+    \begin{itemize}
+        \item A \emph{postfix} alakot az \texttt{int} ,,paraméter'' különbözteti 
+        meg a \emph{prefix} változattól.
+        \item A prefix változat gyorsabb, mert a postfixnek másolatot kell készítenie
+        az objektumról.
+        \item A csökkentés operátora analóg módon készíthető el.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Time.h}{Time.h}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={68-76},numbers=left,firstnumber=68]{Time.h}
+    \end{exampleblock}
+    \vfill
+    A barát függvény definíciója most az osztály blokkján belülre került, de ennek egyetlen hatása
+    az, hogy a függvény implicit módon \texttt{inline}-ná válik. Az időegységek két karakter szélesen, 
+    elölnullázva jelennek meg. (Ld. \hiv{\href{https://en.cppreference.com/w/cpp/io/manip.html}{iomanip}} fejfájl.)
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{columns}[T]
+        \column{.7\textwidth}
+            \begin{exampleblock}{\textattachfile{TimeMain.cpp}{TimeMain.cpp}}
+                \vspace{-.2cm}
+                \fontsize{7}{8} \selectfont
+                \lstinputlisting[language=C++,linerange={4-18},numbers=left,firstnumber=4]{TimeMain.cpp}
+                \vspace{-.2cm}
+            \end{exampleblock}
+        \column{.3\textwidth}
+            \begin{block}{Kimenet}
+                \vspace{-.3cm}
+                \fontsize{7}{8} \selectfont
+                \begin{verbatim}
+Inital time: 23:59:58
+++t1 -> 23:59:59
+t1++ -> 23:59:59 (return value)
+after increasing t: 00:00:00
+--t1 -> 23:59:59
+t1-- -> 23:59:59 (return value)
+after reducing t: 23:59:58
+Inital time: 23:59:55
+\end{verbatim}             
+                \vspace{-.3cm}
+            \end{block}
+    \end{columns}
+\end{frame}
+
 \begin{frame}
     \hiv{\href{https://en.cppreference.com/w/cpp/language/operators}{Operátor felültöltés}}
     \begin{itemize}
         \item Definiáltuk az operátor \emph{jelentését} olyan kifejezésben, melyben legalább egy operandus az osztály objektuma.
         \item Nem változtatható meg az operátor \emph{szintakszisa}, \emph{precedenciája}, \emph{asszociativitása}, \emph{operandusainak száma}.
-        \item \emph{Majdnem} minden operátor felültölthető.
+        \item \emph{Majdnem} minden operátor felültölthető (kivétel pl. \texttt{::}, \texttt{.}).
     \end{itemize}
 \end{frame}
 
@@ -159,7 +242,7 @@
     \begin{itemize}
         \item Az értékadás megengedett objektumok között $\to$ tagonkénti másolás.
         \item Probléma: dinamikusan foglalt területet több objektum adattagja is címezhet. Ha az egyik destruktora ezt felszabadítja, a másik ezen próbálhat műveletet végezni vagy újra felszabadítani.
-        \item Egészítsük ki a \textattachfile{../ea01/message.cpp}{Message} osztályt felültöltött értékadás operátorral, készítsünk másolatot a tárolt szövegről!
+        \item Térjünk vissza a \textattachfile{../ea01/message.cpp}{Message} osztályhoz, lássuk el felültöltött értékadás operátorral, készítsünk másolatot a tárolt szövegről!
     \end{itemize}
 \end{frame}
 
