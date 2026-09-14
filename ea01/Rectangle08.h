@@ -10,11 +10,11 @@ class Rectangle {
   public:
     Rectangle(double=0., double=0.);
 
-    double getWidth() {
+    double getWidth() const {
       return mWidth;
     }
 
-    double getHeight() {
+    double getHeight() const {
       // legal but useless
       return this->mHeight;
     }
