@@ -1,4 +1,6 @@
 #include "Rectangle07.h"
+#include <iostream>
+#include <algorithm>
 
 Rectangle::Rectangle(double width, double height) {
   // negative values are not allowed

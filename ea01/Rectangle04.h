@@ -3,8 +3,6 @@
 // https://en.cppreference.com/w/cpp/preprocessor/impl#.23pragma_once
 // #pragma once
 
-#include <iostream>
-
 class Rectangle {
     double mWidth;
     double mHeight;

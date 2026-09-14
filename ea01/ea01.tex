@@ -229,26 +229,26 @@ local i=3
 \begin{frame}
     Nagyobb programoknál célszerű osztályonként két fájlt létrehozni:
     \begin{itemize}
-        \item fejfájlt (\texttt{.h}, \texttt{.hpp}) a deklarációknak, inline függvényeknek, majd védeni többszörös beszerkesztés ellen
+        \item fejfájlt (\texttt{.hpp}, \texttt{.h}) a deklarációknak, inline függvényeknek, majd védeni többszörös beszerkesztés ellen
         \item forrásfájlt (\texttt{.cpp}, \texttt{.cc}, \texttt{.cxx}) a definícióknak
     \end{itemize}
     Gyorsabb fordítás, kisebb binárisok.
     \begin{exampleblock}{\textattachfile{Rectangle04.h}{Rectangle04.h}}
         \footnotesize
-        \lstinputlisting[language=C++,linerange={1-6},numbers=left,firstnumber=1]{Rectangle04.h}
+        \lstinputlisting[language=C++,linerange={1-4},numbers=left,firstnumber=1]{Rectangle04.h}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
     \begin{exampleblock}{\textattachfile{Rectangle04.h}{Rectangle04.h}}
         \footnotesize
-        \lstinputlisting[language=C++,linerange={8-21},numbers=left,firstnumber=8]{Rectangle04.h}
+        \lstinputlisting[language=C++,linerange={6-19},numbers=left,firstnumber=6]{Rectangle04.h}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
     \begin{exampleblock}{\textattachfile{Rectangle04.h}{Rectangle04.h}}
-        \lstinputlisting[language=C++,linerange={23-29},numbers=left,firstnumber=23]{Rectangle04.h}
+        \lstinputlisting[language=C++,linerange={21-27},numbers=left,firstnumber=21]{Rectangle04.h}
     \end{exampleblock}
 \end{frame}
 
@@ -275,11 +275,11 @@ local i=3
     Neve egyezik az osztályéval, visszatérési érték/típus nincs.
     \begin{exampleblock}{\textattachfile{Rectangle05.h}{Rectangle05.h}}
         \scriptsize
-        \lstinputlisting[language=C++,linerange={6-10},numbers=left,firstnumber=6]{Rectangle05.h}
+        \lstinputlisting[language=C++,linerange={4-8},numbers=left,firstnumber=4]{Rectangle05.h}
     \end{exampleblock}
     \begin{exampleblock}{\textattachfile{Rectangle05.cpp}{Rectangle05.cpp}}
         \scriptsize
-        \lstinputlisting[language=C++,linerange={3-6},numbers=left,firstnumber=3]{Rectangle05.cpp}
+        \lstinputlisting[language=C++,linerange={4-7},numbers=left,firstnumber=4]{Rectangle05.cpp}
     \end{exampleblock}
 \end{frame}
 
@@ -307,13 +307,13 @@ local i=3
 \begin{frame}
     Két konstruktor egy osztályban.
     \begin{exampleblock}{\textattachfile{Rectangle06.h}{Rectangle06.h}}
-        \lstinputlisting[language=C++,linerange={6-11},numbers=left,firstnumber=6]{Rectangle06.h}
+        \lstinputlisting[language=C++,linerange={4-11},numbers=left,firstnumber=4]{Rectangle06.h}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
     \begin{exampleblock}{\textattachfile{Rectangle06.cpp}{Rectangle06.cpp}}
-        \lstinputlisting[language=C++,linerange={3-10},numbers=left,firstnumber=3]{Rectangle06.cpp}
+        \lstinputlisting[language=C++,linerange={4-12},numbers=left,firstnumber=6]{Rectangle06.cpp}
     \end{exampleblock}
 \end{frame}
 
@@ -332,11 +332,11 @@ local i=3
 \begin{frame}
     \begin{exampleblock}{\textattachfile{Rectangle07.h}{Rectangle07.h}}
         \scriptsize
-        \lstinputlisting[language=C++,linerange={7-12},numbers=left,firstnumber=7]{Rectangle07.h}
+        \lstinputlisting[language=C++,linerange={4-9},numbers=left,firstnumber=4]{Rectangle07.h}
     \end{exampleblock}
     \begin{exampleblock}{\textattachfile{Rectangle07.cpp}{Rectangle07.cpp}}
         \scriptsize
-        \lstinputlisting[language=C++,linerange={3-7},numbers=left,firstnumber=3]{Rectangle07.cpp}
+        \lstinputlisting[language=C++,linerange={5-9},numbers=left,firstnumber=5]{Rectangle07.cpp}
     \end{exampleblock}
 \end{frame}
 
@@ -377,15 +377,15 @@ Rectangle[dimensions: 0 x 0]
     \begin{exampleblock}{\textattachfile{Rectangle08.h}{Rectangle08.h}}
         \scriptsize
         \vspace{-0.3cm}
-        \lstinputlisting[language=C++,linerange={7-10},numbers=left,firstnumber=7]{Rectangle08.h}
-        \lstinputlisting[language=C++,linerange={13-20},numbers=left,firstnumber=13]{Rectangle08.h}
+        \lstinputlisting[language=C++,linerange={6-9},numbers=left,firstnumber=6]{Rectangle08.h}
+        \lstinputlisting[language=C++,linerange={12-19},numbers=left,firstnumber=12]{Rectangle08.h}
         \vspace{-0.3cm}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
     \begin{exampleblock}{\textattachfile{Rectangle08.h}{Rectangle08.h}}
-        \lstinputlisting[language=C++,linerange={22-30},numbers=left,firstnumber=22]{Rectangle08.h}
+        \lstinputlisting[language=C++,linerange={21-29},numbers=left,firstnumber=21]{Rectangle08.h}
     \end{exampleblock}
 \end{frame}
 
@@ -438,8 +438,8 @@ Rectangle[dimensions: 0 x 0]
 \begin{frame}
     \begin{exampleblock}{\textattachfile{Rectangle09.h}{Rectangle09.h}}
         \small
-        \lstinputlisting[language=C++,linerange={7-13},numbers=left,firstnumber=7]{Rectangle09.h}
-        \lstinputlisting[language=C++,linerange={40-43},numbers=left,firstnumber=40]{Rectangle09.h}
+        \lstinputlisting[language=C++,linerange={6-12},numbers=left,firstnumber=6]{Rectangle09.h}
+        \lstinputlisting[language=C++,linerange={39-42},numbers=left,firstnumber=39]{Rectangle09.h}
     \end{exampleblock}
 \end{frame}
 
@@ -447,8 +447,8 @@ Rectangle[dimensions: 0 x 0]
     \begin{exampleblock}{\textattachfile{Rectangle09.cpp}{Rectangle09.cpp}}
         \vspace{-.3cm}
         \scriptsize
-        \lstinputlisting[language=C++,linerange={3-13},numbers=left,firstnumber=3]{Rectangle09.cpp}
-        \lstinputlisting[language=C++,linerange={19-24},numbers=left,firstnumber=19]{Rectangle09.cpp}
+        \lstinputlisting[language=C++,linerange={4-14},numbers=left,firstnumber=4]{Rectangle09.cpp}
+        \lstinputlisting[language=C++,linerange={20-25},numbers=left,firstnumber=20]{Rectangle09.cpp}
         \vspace{-.3cm}
     \end{exampleblock}
 \end{frame}

@@ -1,8 +1,6 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
-#include <iostream>
-
 class Rectangle {
     double mWidth;
     double mHeight;

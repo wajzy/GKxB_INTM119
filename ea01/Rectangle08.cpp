@@ -1,4 +1,5 @@
 #include "Rectangle08.h"
+#include <iostream>
 
 Rectangle::Rectangle(double width, double height) {
   mWidth = std::max(0., width);

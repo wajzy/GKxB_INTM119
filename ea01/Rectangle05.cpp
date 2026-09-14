@@ -1,4 +1,5 @@
 #include "Rectangle05.h"
+#include <iostream>
 
 Rectangle::Rectangle(double width, double height) {
   mWidth = width;

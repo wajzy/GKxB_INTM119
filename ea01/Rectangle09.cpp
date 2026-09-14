@@ -1,4 +1,5 @@
 #include "Rectangle09.h"
+#include <iostream>
 
 Rectangle::Rectangle(double width, double height) {
   count++;

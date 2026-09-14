@@ -1,4 +1,5 @@
 #include "Rectangle06.h"
+#include <iostream>
 
 Rectangle::Rectangle() {
   mWidth = mHeight = 0.;
