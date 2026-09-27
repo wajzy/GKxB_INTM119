@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Rectangle05.h"
+#include "Rectangle05.hpp"
 int main() {
   // error: no matching constructor for initialization of 'Rectangle'
   // Rectangle r1;

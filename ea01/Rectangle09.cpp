@@ -3,13 +3,13 @@
 
 Rectangle::Rectangle(double width, double height) {
   count++;
-  std::cout << "Reactangle #" << count << " created.\n";
+  std::cout << "Rectangle #" << count << " created.\n";
   mWidth = std::max(0., width);
   mHeight = std::max(0., height);
 }
 
 Rectangle::~Rectangle() {
-  std::cout << "Reactangle #" << count << " freed.\n";
+  std::cout << "Rectangle #" << count << " freed.\n";
   count--;
 }
 

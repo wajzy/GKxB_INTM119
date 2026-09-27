@@ -6,12 +6,12 @@ class Message {
     char* pStr;
   public:
     Message() {
-      pStr = new char('\0');
+      pStr = new char[1]{'\0'};
       std::cout << "Created [" << this << "]\n";
     }
 
-    Message(const char* s) { // nullptr protection?
-      pStr = new char[strlen(s) + 1]; // extra capacity?
+    Message(const char* s) {
+      pStr = new char[strlen(s) + 1];
       strcpy(pStr, s);
       std::cout << "Created [" << this << ", " << pStr << "]\n";
     }
@@ -25,10 +25,11 @@ class Message {
       std::cout << pStr;
     }
 
-    void setMessage(const char* s) { // nullptr protection?
+    void setMessage(const char* s) { // protection against pStr == s
+      char* pNewStr = new char[strlen(s) + 1];
+      strcpy(pNewStr, s);
       delete[] pStr;
-      pStr = new char[strlen(s) + 1]; // extra capacity?
-      strcpy(pStr, s);
+      pStr = pNewStr;
     }
 };
 

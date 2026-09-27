@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Rectangle07.h"
+#include "Rectangle07.hpp"
 int main() {
   Rectangle r1(5., 3.);
   r1.print();

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Rectangle04.h"
+#include "Rectangle04.hpp"
 int main() {
   Rectangle r1;
   r1.init(5., 3.);

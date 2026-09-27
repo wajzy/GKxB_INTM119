@@ -1,5 +1,5 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef RECTANGLE_HPP
+#define RECTANGLE_HPP
 // https://en.cppreference.com/w/cpp/preprocessor/impl#.23pragma_once
 // #pragma once
 

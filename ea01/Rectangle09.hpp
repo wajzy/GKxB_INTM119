@@ -1,5 +1,5 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef RECTANGLE_HPP
+#define RECTANGLE_HPP
 
 #include <algorithm>
 

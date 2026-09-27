@@ -453,6 +453,13 @@ Rectangle[dimensions: 0 x 0]
     \end{exampleblock}
 \end{frame}
 
+\begin{frame}
+    Potenciális probléma:
+    \begin{itemize}
+        \item létező objektum másolása nem növeli a számláló értékét $\rightarrow$ explicit másoló konstruktor, vagy az alapértelmezett tiltása
+    \end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]
     \begin{exampleblock}{\textattachfile{main09.cpp}{main09.cpp}}
         \scriptsize
@@ -462,13 +469,13 @@ Rectangle[dimensions: 0 x 0]
         \scriptsize
         \vspace{-.3cm}
         \begin{verbatim}
-Reactangle #1 created.
-Reactangle #2 created.
-Reactangle #3 created.
+Rectangle #1 created.
+Rectangle #2 created.
+Rectangle #3 created.
 Number of rectangles: 3
-Reactangle #3 freed.
-Reactangle #2 freed.
-Reactangle #1 freed.
+Rectangle #3 freed.
+Rectangle #2 freed.
+Rectangle #1 freed.
 \end{verbatim}
 \vspace{-.3cm}
     \end{block}
@@ -487,14 +494,14 @@ Reactangle #1 freed.
 \begin{frame}
     \begin{exampleblock}{\textattachfile{message.cpp}{message.cpp}}
         \scriptsize
-        \lstinputlisting[language=C++,linerange={19-33},numbers=left,firstnumber=19]{message.cpp}
+        \lstinputlisting[language=C++,linerange={19-34},numbers=left,firstnumber=19]{message.cpp}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
     \begin{exampleblock}{\textattachfile{message.cpp}{message.cpp}}
         \footnotesize
-        \lstinputlisting[language=C++,linerange={35-48},numbers=left,firstnumber=35]{message.cpp}
+        \lstinputlisting[language=C++,linerange={36-49},numbers=left,firstnumber=36]{message.cpp}
     \end{exampleblock}
 \end{frame}
 
@@ -522,6 +529,15 @@ Freed [0x7ffe101e7718, Hello C++ world!
 \end{verbatim}
         \vspace{-0.3cm}
     \end{block}
+\end{frame}
+
+\begin{frame}
+    Potenciális problémák, továbbfejlesztési lehetőségek
+    \begin{itemize}
+        \item \texttt{nullptr} kezelése a konstruktorban és \texttt{setMessage}-ben
+        \item Ugyanitt extra pufferterület biztosítása a későbbi memória-újrafoglalások számának minimalizálására
+        \item Egy objektum másolása, pl. \texttt{Message m2 = m1;} sekély másolást eredményezne (két mutató ugyanazt a területet fogja címezni), és a destruktorok futásakor a dupla memóriafelszabadítás miatt azonnal leállna a program.
+    \end{itemize}
 \end{frame}
 
 \end{document}
