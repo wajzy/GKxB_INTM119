@@ -1,4 +1,4 @@
-#include "Rectangle06.h"
+#include "Rectangle06.hpp"
 #include <iostream>
 
 Rectangle::Rectangle() {

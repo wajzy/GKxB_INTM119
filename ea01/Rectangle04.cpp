@@ -1,4 +1,4 @@
-#include "Rectangle04.h"
+#include "Rectangle04.hpp"
 #include <iostream>
 
 void Rectangle::init(double width, double height) {

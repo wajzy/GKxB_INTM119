@@ -1,4 +1,4 @@
-#include "Rectangle09.h"
+#include "Rectangle09.hpp"
 #include <iostream>
 
 Rectangle::Rectangle(double width, double height) {
