@@ -36,7 +36,7 @@ class Rectangle {
     
     void print() const;
 
-    static int getCount();
+    static int getCount(); // `const` cannot be applied wo `this`
 
     ~Rectangle();
 };
