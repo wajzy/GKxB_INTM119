@@ -10,8 +10,8 @@ class Message {
       std::cout << "Created [" << this << "]\n";
     }
 
-    Message(const char* s) {
-      pStr = new char[strlen(s) + 1];
+    Message(const char* s) { // nullptr protection?
+      pStr = new char[strlen(s) + 1]; // extra capacity?
       strcpy(pStr, s);
       std::cout << "Created [" << this << ", " << pStr << "]\n";
     }
@@ -21,13 +21,13 @@ class Message {
       delete[] pStr;
     }
 
-    void print() {
+    void print() const {
       std::cout << pStr;
     }
 
-    void setMessage(const char* s) {
+    void setMessage(const char* s) { // nullptr protection?
       delete[] pStr;
-      pStr = new char[strlen(s) + 1];
+      pStr = new char[strlen(s) + 1]; // extra capacity?
       strcpy(pStr, s);
     }
 };
