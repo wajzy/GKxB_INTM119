@@ -1,8 +1,8 @@
-#ifndef BUTTON_H
-#define BUTTON_H
+#ifndef BUTTON_HPP
+#define BUTTON_HPP
 
 #include <string>
-#include "ClickListener.h"
+#include "ClickListener.hpp"
 
 class Button {
     const std::string label;

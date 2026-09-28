@@ -1,9 +1,9 @@
-#ifndef LISTENER_H
-#define LISTENER_H
+#ifndef LISTENER_HPP
+#define LISTENER_HPP
 
 #include <string>
-#include "ClickListener.h"
-#include "Button.h"
+#include "ClickListener.hpp"
+#include "Button.hpp"
 
 class Listener : public ClickListener {
     const std::string name;

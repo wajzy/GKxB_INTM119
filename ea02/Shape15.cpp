@@ -1,4 +1,4 @@
-#include "Shape15.h"
+#include "Shape15.hpp"
 
 double Shape::getArea() const {
   if(not areaCached) {

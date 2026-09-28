@@ -1,8 +1,8 @@
 #include <iostream>
 #include <typeinfo> // typeid() uses RTTI
-#include "Shape15.h"
-#include "Rectangle15.h"
-#include "Triangle15.h"
+#include "Shape15.hpp"
+#include "Rectangle15.hpp"
+#include "Triangle15.hpp"
 
 int main() {
   // cannot create array of abstract objects

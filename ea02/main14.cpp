@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Rectangle14.h"
-#include "Triangle14.h"
+#include "Rectangle14.hpp"
+#include "Triangle14.hpp"
 
 int main() {
   Rectangle rArray[] = { 

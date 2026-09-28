@@ -1,4 +1,4 @@
-#include "Rectangle14.h"
+#include "Rectangle14.hpp"
 
 void Rectangle::setWidth(double width) {
   mWidth = width;

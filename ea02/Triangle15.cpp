@@ -1,4 +1,4 @@
-#include "Triangle15.h"
+#include "Triangle15.hpp"
 
 void Triangle::setA(double a) {
   mA = a;

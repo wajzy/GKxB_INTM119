@@ -1,7 +1,7 @@
-#ifndef TRIANGLE_H
-#define TRIANGLE_H
+#ifndef TRIANGLE_HPP
+#define TRIANGLE_HPP
 
-#include "Shape15.h"
+#include "Shape15.hpp"
 #include <cmath>
 
 // inheritance; default is private

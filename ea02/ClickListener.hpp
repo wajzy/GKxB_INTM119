@@ -1,7 +1,7 @@
-#ifndef CLICKLISTENER_H
-#define CLICKLISTENER_H
+#ifndef CLICKLISTENER_HPP
+#define CLICKLISTENER_HPP
 
-#include "ClickEvent.h"
+#include "ClickEvent.hpp"
 
 class ClickListener {
   public:

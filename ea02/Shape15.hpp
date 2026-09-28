@@ -1,5 +1,5 @@
-#ifndef SHAPE_H
-#define SHAPE_H
+#ifndef SHAPE_HPP
+#define SHAPE_HPP
 
 class Shape {
   protected: // private --> protected

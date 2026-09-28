@@ -1,5 +1,5 @@
-#ifndef CLICKEVENT_H
-#define CLICKEVENT_H
+#ifndef CLICKEVENT_HPP
+#define CLICKEVENT_HPP
 
 class Button;
 

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "Listener.h"
-#include "Button.h"
+#include "Listener.hpp"
+#include "Button.hpp"
 
 int main() {
   Button b1("Button1", 0, 100, 0, 100);

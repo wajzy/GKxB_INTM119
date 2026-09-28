@@ -1,4 +1,4 @@
-#include "Button.h"
+#include "Button.hpp"
 
 bool Button::addClickListener(ClickListener* listener) {
   if(numListeners < maxListeners) {

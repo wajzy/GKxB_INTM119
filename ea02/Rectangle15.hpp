@@ -1,7 +1,7 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef RECTANGLE_HPP
+#define RECTANGLE_HPP
 
-#include "Shape15.h"
+#include "Shape15.hpp"
 
 // inheritance; base class -> subclass / derived class
 class Rectangle : public Shape {

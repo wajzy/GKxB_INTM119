@@ -1,5 +1,5 @@
 #include <iostream>
-#include "constHeader.h"
+#include "constHeader.hpp"
 #define MEANING_M 42 // no type, cumbersome debugging
 
 void array(int);

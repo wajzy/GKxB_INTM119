@@ -1,5 +1,5 @@
-#ifndef TRIANGLE_H
-#define TRIANGLE_H
+#ifndef TRIANGLE_HPP
+#define TRIANGLE_HPP
 
 #include <cmath>
 
