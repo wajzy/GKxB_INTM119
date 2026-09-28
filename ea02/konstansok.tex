@@ -282,16 +282,55 @@ sys	0m0,000s
 
 \begin{frame}
     Konstans tagfüggvény is módosíthat egy adattagot, ha az \texttt{mutable}. Cél: érdemi állapotváltozást nem jelentő változások, pl. gyorsítótárak menedzselése.
-    \begin{exampleblock}{\textattachfile{Rectangle12.cpp}{Rectangle12.cpp}}
-        \lstinputlisting[language=C++,linerange={3-10},numbers=left,firstnumber=3]{Rectangle12.cpp}
+    \begin{exampleblock}{\textattachfile{Rectangle12.hpp}{Rectangle12.hpp}}
+        \lstinputlisting[language=C++,linerange={4-10},numbers=left,firstnumber=4]{Rectangle12.hpp}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle12.hpp}{Rectangle12.hpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,linerange={12-25},numbers=left,firstnumber=12]{Rectangle12.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Rectangle12.hpp}{Rectangle12.hpp}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={40-44},numbers=left,firstnumber=40]{Rectangle12.hpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
     \begin{exampleblock}{\textattachfile{Rectangle12.cpp}{Rectangle12.cpp}}
         \scriptsize
-        \lstinputlisting[language=C++,linerange={12-22},numbers=left,firstnumber=12]{Rectangle12.cpp}
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={4-11},numbers=left,firstnumber=4]{Rectangle12.cpp}
+        \vspace{-.2cm}
     \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{main12.cpp}{main12.cpp}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={5-13},numbers=left,firstnumber=5]{main12.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+    \begin{block}{Kimenet}
+        \scriptsize
+        \vspace{-.2cm}
+        \begin{verbatim}
+Area (1st attempt): [calculating area] 15
+Area (2nd attempt): 15
+Perimeter (1st attempt): [calculating perimeter] 6
+Perimeter (2nd attempt): 6
+Perimeter (3rd attempt): [calculating perimeter] 10
+\end{verbatim}
+    \vspace{-.2cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
     (Sajnos) néhány további kivételes helyzetben is módosíthatja a \texttt{const} tagfüggvény a példány állapotát, pl.
     a tag struktúrát nem lehet lecserélni, de annak tagját már lehet módosítani (tranzitívan).
 \end{frame}
