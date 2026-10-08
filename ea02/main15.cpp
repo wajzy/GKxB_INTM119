@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iterator>
 #include <typeinfo> // typeid() uses RTTI
 #include "Shape15.hpp"
 #include "Rectangle15.hpp"
@@ -11,8 +12,7 @@ int main() {
     new Rectangle(1., 2.), new Rectangle(2., 3.),
     new Triangle(3., 4., 5.), new Triangle(5., 12., 13.)
   };
-  const int n = sizeof(sArray)/sizeof(sArray[0]);
-  for(int i=0; i<n; i++) {
+  for(size_t i = 0; i < std::size(sArray); ++i) {
     // name mangling
     std::cout << typeid(*sArray[i]).name() << " #" << (i+1)
               << " Area: " << sArray[i]->getArea()

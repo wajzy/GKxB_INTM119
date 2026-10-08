@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iterator>
 
 class Employee {
   protected: // private --> protected
@@ -39,7 +40,7 @@ int main() {
   std::cout << p.getSalary() << std::endl;
   
   Employee* eArray[] = { &e, &p };
-  for(unsigned i=0; i<sizeof(eArray)/sizeof(eArray[0]); i++) {
+  for(size_t i = 0; i < std::size(eArray); ++i) {
     // OK! Late / dynamic binding
     std::cout << eArray[i]->getSalary() << std::endl;
   }

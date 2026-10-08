@@ -41,7 +41,7 @@
         \begin{verbatim}
 300000
 750000
-        \end{verbatim}
+\end{verbatim}
         \vspace{-.6cm}
     \end{block}
 \end{frame}
@@ -194,14 +194,14 @@
             \begin{exampleblock}{\textattachfile{inheritance03.cpp}{Employee}}
                 \vspace{-.2cm}
                 \fontsize{7}{8} \selectfont
-                \lstinputlisting[language=C++,linerange={3-16},numbers=left,firstnumber=3]{inheritance03.cpp}
+                \lstinputlisting[language=C++,linerange={4-17},numbers=left,firstnumber=4]{inheritance03.cpp}
                 \vspace{-.2cm}
             \end{exampleblock}
         \column{.55\textwidth}
             \begin{exampleblock}{\textattachfile{inheritance03.cpp}{Programmer}}
                 \vspace{-.2cm}
                 \fontsize{7}{8} \selectfont
-                \lstinputlisting[language=C++,linerange={18-33},numbers=right,firstnumber=17]{inheritance03.cpp}
+                \lstinputlisting[language=C++,linerange={19-34},numbers=right,firstnumber=19]{inheritance03.cpp}
                 \vspace{-.2cm}
             \end{exampleblock}
     \end{columns}
@@ -210,8 +210,8 @@
 \begin{frame}[fragile]
     \begin{exampleblock}{\textattachfile{inheritance03.cpp}{main()}}
         \footnotesize
-        \lstinputlisting[language=C++,linerange={35-35},numbers=left,firstnumber=35]{inheritance03.cpp}
-        \lstinputlisting[language=C++,linerange={41-46},numbers=left,firstnumber=41]{inheritance03.cpp}
+        \lstinputlisting[language=C++,linerange={36-36},numbers=left,firstnumber=36]{inheritance03.cpp}
+        \lstinputlisting[language=C++,linerange={42-46},numbers=left,firstnumber=42]{inheritance03.cpp}
     \end{exampleblock}
     \begin{block}{Kimenet}
         \footnotesize
@@ -222,6 +222,30 @@
         \end{verbatim}
         \vspace{-.6cm}
     \end{block}
+\end{frame}
+
+\begin{frame}
+    Apró finomítás a tömb bejárására
+    \begin{exampleblock}{\textattachfile{inheritance02.cpp}{inheritance02.cpp}}
+        \vspace{-.2cm}
+        \small
+        \lstinputlisting[language=C++,linerange={44-44},numbers=left,firstnumber=44]{inheritance02.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+    \begin{exampleblock}{\textattachfile{inheritance03.cpp}{inheritance03.cpp}}
+        \vspace{-.2cm}
+        \small
+        \lstinputlisting[language=C++,linerange={43-43},numbers=left,firstnumber=43]{inheritance03.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+    \begin{itemize}
+        \footnotesize
+        \item Szükséges fejfájl pl. \texttt{iterator}
+        \item A \texttt{size\_t} többnyire az \texttt{unsigned int} átnevezése, méret jellegű adatokhoz
+        \item Védelem a mutatóvá degradálódás (pointer decay) ellen, ha a tömböt átadják paraméterként egy függvénynek
+        \item Egységes felület (uniform interface): használható C tömbökre és STL konténerekre (ld. később) egyaránt
+        \item Fordításkor kiértékelődik (\texttt{constexpr}) és garantáltan nem dob kivételt (\texttt{noexcept}) (ld. később)
+    \end{itemize}
 \end{frame}
 
 \subsection{Absztrakt osztályok}
@@ -307,7 +331,7 @@
     \begin{exampleblock}{\textattachfile{main14.cpp}{main14.cpp}}
         \vspace{-.2cm}
         \fontsize{7}{8} \selectfont
-        \lstinputlisting[language=C++,linerange={2-15},numbers=left,firstnumber=2]{main14.cpp}
+        \lstinputlisting[language=C++,linerange={3-15},numbers=left,firstnumber=3]{main14.cpp}
         \vspace{-.2cm}
     \end{exampleblock}
     \begin{block}{Kimenet}
@@ -326,7 +350,7 @@ Rectangle #3 Area: 12 Perimeter: 14
     \begin{exampleblock}{\textattachfile{main14.cpp}{main14.cpp}}
         \vspace{-.2cm}
         \fontsize{8}{9} \selectfont
-        \lstinputlisting[language=C++,linerange={16-27},numbers=left,firstnumber=16]{main14.cpp}
+        \lstinputlisting[language=C++,linerange={16-26},numbers=left,firstnumber=16]{main14.cpp}
         \vspace{-.2cm}
     \end{exampleblock}
     \begin{block}{Kimenet}
