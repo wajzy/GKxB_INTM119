@@ -477,7 +477,38 @@ Rectangle is NOT abstract.
     \end{block}
 \end{frame}
 
-\subsection{Interfészek}
+\subsection{Interfészek és alkalmazásuk: a \emph{Megfigyelő (Observer)} minta}
+
+\begin{frame}
+    \begin{description}[m]
+        \item[Tervezési minta (design pattern)] \hfill \\ ,,Az informatikában programtervezési mintának (angolul Software Design Patterns) nevezik a gyakran előforduló programozási feladatokra adható általános, újrafelhasználható megoldásokat. Egy programtervezési minta rendszerint egymással együttműködő objektumok és osztályok leírása.''\hiv{\href{https://hu.wikipedia.org/wiki/Programtervez\%C3\%A9si_minta}{*}}
+        \item[Első jelentős irodalom] \hfill \\ Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides: Design Patterns (\emph{Elements of Reusable Object-Oriented Software}), Addison-Wesley, 1994
+        
+        \vspace{.3cm}
+        "Gang of Four", GoF $\to$ 23 minta leírása
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \begin{description}[m]
+        \item[A szerzők által meghatározott kategóriák] \hfill \\ 
+            \begin{itemize}
+                \item Létrehozási (creational) minták
+                \item Szerkezeti (structural) minták
+                \item Viselkedési (behavioral) minták
+                    \begin{description}[m]
+                        \item[Megfigyelő] \hfill \\ ,,Az Observer, vagy Megfigyelő minta egy olyan szoftvertervezési minta, melyben egy objektum, melyet alanynak hívunk, listát vezet alárendeltjeiről, akiket megfigyelőknek hívunk és automatikusan értesíti őket bármilyen állapotváltozásról, többnyire valamely metódusuk meghívásán keresztül.''\hiv{\href{https://hu.wikipedia.org/wiki/Megfigyel\%C5\%91\_programtervez\%C3\%A9si\_minta}{*}}
+                    \end{description}
+            \end{itemize}
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \includegraphics[width=\textwidth]{eventHandling/observer.jpg} \\
+        \tiny \hiv{\href{https://en.wikipedia.org/wiki/Observer_pattern\#/media/File:W3sDesign\_Observer\_Design\_Pattern\_UML.jpg}{Forrás}}
+    \end{center}
+\end{frame}
 
 \begin{frame}
     Grafikus felületű, eseményvezérelt program modellje  interfésszel
@@ -486,95 +517,107 @@ Rectangle is NOT abstract.
         \item A \texttt{ClickListener}t megvalósító objektumnak fel kell iratkozni a \texttt{Button} eseményére
     \end{itemize}
     \begin{center}
-        \includegraphics[scale=0.54]{interface.eps}
+        \includegraphics[scale=0.44]{eventHandling/observer.pdf}
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \begin{exampleblock}{\textattachfile{ClickEvent.hpp}{ClickEvent.hpp}}
-        \scriptsize
+    \begin{exampleblock}{\textattachfile{eventHandling/ClickEvent.hpp}{ClickEvent.hpp}}
+        \fontSize{7pt}{8pt}  
         \vspace{-.2cm}
-        \lstinputlisting[language=C++,linerange={4-10},numbers=left,firstnumber=4]{ClickEvent.hpp}
-        \vspace{-.2cm}
-    \end{exampleblock}
-    \begin{exampleblock}{\textattachfile{ClickListener.hpp}{ClickListener.hpp}}
-        \scriptsize
-        \vspace{-.2cm}
-        \lstinputlisting[language=C++,linerange={4-9},numbers=left,firstnumber=4]{ClickListener.hpp}
+        \lstinputlisting[language=C++,linerange={6-25},numbers=left,firstnumber=6]{eventHandling/ClickEvent.hpp}
         \vspace{-.2cm}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
-    \begin{exampleblock}{\textattachfile{Listener.hpp}{Listener.hpp}}
+    \begin{exampleblock}{\textattachfile{eventHandling/ClickListener.hpp}{ClickListener.hpp}}
+        \fontSize{7pt}{8pt}
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={6-10},numbers=left,firstnumber=6]{eventHandling/ClickListener.hpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+    \begin{exampleblock}{\textattachfile{eventHandling/ConsoleLogger.hpp}{ConsoleLogger.hpp}}
+        \fontSize{7pt}{8pt}
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={8-19},numbers=left,firstnumber=8]{eventHandling/ConsoleLogger.hpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{eventHandling/ClickCounter.hpp}{ClickCounter.hpp}}
+        \fontSize{7pt}{8pt}
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={7-26},numbers=left,firstnumber=7]{eventHandling/ClickCounter.hpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{eventHandling/Button.hpp}{Button.hpp}}
         \scriptsize
         \vspace{-.2cm}
-        \lstinputlisting[language=C++,linerange={4-19},numbers=left,firstnumber=4]{Listener.hpp}
+        \lstinputlisting[language=C++,linerange={7-23},numbers=left,firstnumber=7]{eventHandling/Button.hpp}
         \vspace{-.2cm}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
-    \begin{exampleblock}{\textattachfile{Button.hpp}{Button.hpp}}
+    \begin{exampleblock}{\textattachfile{eventHandling/Button.cpp}{Button.cpp}}
         \scriptsize
         \vspace{-.2cm}
-        \lstinputlisting[language=C++,linerange={7-22},numbers=left,firstnumber=7]{Button.hpp}
+        \lstinputlisting[language=C++,linerange={3-18},numbers=left,firstnumber=3]{eventHandling/Button.cpp}
         \vspace{-.2cm}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
-    \begin{exampleblock}{\textattachfile{Button.hpp}{Button.hpp}}
-        \small
-        \vspace{-.2cm}
-        \lstinputlisting[language=C++,linerange={23-31},numbers=left,firstnumber=23]{Button.hpp}
-        \vspace{-.2cm}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    \begin{exampleblock}{\textattachfile{Button.cpp}{Button.cpp}}
-        \scriptsize
-        \vspace{-.2cm}
-        \lstinputlisting[language=C++,linerange={1-17},numbers=left,firstnumber=1]{Button.cpp}
-        \vspace{-.2cm}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    \begin{exampleblock}{\textattachfile{eventMain.cpp}{eventMain.cpp}}
+    \begin{exampleblock}{\textattachfile{eventHandling/eventMain.cpp}{eventMain.cpp}}
         \footnotesize
         \vspace{-.2cm}
-        \lstinputlisting[language=C++,linerange={1-14},numbers=left,firstnumber=1]{eventMain.cpp}
+        \lstinputlisting[language=C++,linerange={6-20},numbers=left,firstnumber=6]{eventHandling/eventMain.cpp}
         \vspace{-.2cm}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
-    \begin{exampleblock}{\textattachfile{eventMain.cpp}{eventMain.cpp}}
-        \scriptsize
+    \begin{exampleblock}{\textattachfile{eventHandling/eventMain.cpp}{eventMain.cpp}}
+        \footnotesize
         \vspace{-.2cm}
-        \lstinputlisting[language=C++,linerange={15-22},numbers=left,firstnumber=15]{eventMain.cpp}
+        \lstinputlisting[language=C++,linerange={22-35},numbers=left,firstnumber=22]{eventHandling/eventMain.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{eventHandling/eventMain.cpp}{eventMain.cpp}}
+        \footnotesize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={37-42},numbers=left,firstnumber=37]{eventHandling/eventMain.cpp}
         \vspace{-.2cm}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}[fragile]
     \begin{block}{Kimenet}
+        \footnotesize
         \vspace{-.3cm}
         \begin{verbatim}
-row: 0
-col: 0
-Listener1 received a click event from Button1
-Listener2 received a click event from Button1
-row: 0
-col: 150
-Listener1 received a click event from Button2
-row: 0
-col: 300
-row:     
-        \end{verbatim}
-        \vspace{-.6cm}
+1. Click (row=50, col=50):
+[Logger1] Click received from Button1 at (50, 50)
+[Logger2] Click received from Button1 at (50, 50)
+[ClickCounter] Total clicks: 1 (last from Button1)
+
+2. Click (row=50, col=200):
+[Logger1] Click received from Button2 at (50, 200)
+[ClickCounter] Total clicks: 2 (last from Button2)
+
+3. Click (row=300, col=300):
+
+Total clicks registered by ClickCounter: 2
+\end{verbatim}
+        \vspace{-.3cm}
     \end{block}
 \end{frame}
 
