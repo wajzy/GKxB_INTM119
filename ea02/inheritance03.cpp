@@ -8,6 +8,7 @@ class Employee {
     Employee(int salary) {
       baseSalary = salary;
     }
+    virtual ~Employee() = default;
     virtual int getSalary() const {
       return baseSalary;
     }

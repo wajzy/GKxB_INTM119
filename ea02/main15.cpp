@@ -27,4 +27,7 @@ int main() {
       ? "Rectangle is abstract." 
       : "Rectangle is NOT abstract.") 
     << std::endl;
+  for(size_t i = 0; i < std::size(sArray); ++i) {
+    delete sArray[i];
+  }
 }

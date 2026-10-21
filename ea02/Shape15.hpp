@@ -11,7 +11,7 @@ class Shape {
     Shape() {
       invalidateCache();
     }
-    
+    virtual ~Shape() = default;
     double getArea() const;
     double getPerimeter() const;
   protected: // private --> protected

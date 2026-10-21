@@ -194,14 +194,14 @@
             \begin{exampleblock}{\textattachfile{inheritance03.cpp}{Employee}}
                 \vspace{-.2cm}
                 \fontsize{7}{8} \selectfont
-                \lstinputlisting[language=C++,linerange={4-17},numbers=left,firstnumber=4]{inheritance03.cpp}
+                \lstinputlisting[language=C++,linerange={4-18},numbers=left,firstnumber=4]{inheritance03.cpp}
                 \vspace{-.2cm}
             \end{exampleblock}
         \column{.55\textwidth}
             \begin{exampleblock}{\textattachfile{inheritance03.cpp}{Programmer}}
                 \vspace{-.2cm}
                 \fontsize{7}{8} \selectfont
-                \lstinputlisting[language=C++,linerange={19-34},numbers=right,firstnumber=19]{inheritance03.cpp}
+                \lstinputlisting[language=C++,linerange={20-35},numbers=right,firstnumber=20]{inheritance03.cpp}
                 \vspace{-.2cm}
             \end{exampleblock}
     \end{columns}
@@ -210,8 +210,7 @@
 \begin{frame}[fragile]
     \begin{exampleblock}{\textattachfile{inheritance03.cpp}{main()}}
         \footnotesize
-        \lstinputlisting[language=C++,linerange={36-36},numbers=left,firstnumber=36]{inheritance03.cpp}
-        \lstinputlisting[language=C++,linerange={42-46},numbers=left,firstnumber=42]{inheritance03.cpp}
+        \lstinputlisting[language=C++,linerange={43-47},numbers=left,firstnumber=43]{inheritance03.cpp}
     \end{exampleblock}
     \begin{block}{Kimenet}
         \footnotesize
@@ -246,6 +245,14 @@
         \item Egységes felület (uniform interface): használható C tömbökre és STL konténerekre (ld. később) egyaránt
         \item Fordításkor kiértékelődik (\texttt{constexpr}) és garantáltan nem dob kivételt (\texttt{noexcept}) (ld. később)
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    Bár a konkrét feladatban nem okozna gondot (pl. nincsenek dinamikusan kezelt erőforrások), általában \hiv{\href{https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines\#rc-dtor-virtual}{elvárható}}, hogy minden \emph{polimorfikus ősosztályban} (van legalább egy virtuális tagfüggvénye) legyen egy \texttt{public virtual} destruktor (esetleg \texttt{protected} és nem-\texttt{virtual} destruktor).
+
+    A programozóktól ui. nem várható el, hogy dinamikusan foglalt objektumokat ne az őst címző mutatókon keresztül szabadítsanak fel, pl. \texttt{delete eArray[i];} $\to$ definiálatlan viselkedés (UB, undefined behavior).
+
+    Bár ez a feladat megoldható üres testű destruktorral (\texttt{virtual \~Employee() \{\};}), általában hatékonyabb a fordítót megkérni egy alapértelmezett destruktor készítésére (\texttt{virtual \~Employee() = default;}).
 \end{frame}
 
 \subsection{Absztrakt osztályok}
@@ -385,13 +392,13 @@ Triangle #3 Area: 84 Perimeter: 56
 
 \begin{frame}
     \begin{exampleblock}{\textattachfile{Shape15.hpp}{Shape15.hpp}}
-        \lstinputlisting[language=C++,linerange={4-13},numbers=left,firstnumber=4]{Shape15.hpp}
+        \lstinputlisting[language=C++,linerange={4-14},numbers=left,firstnumber=4]{Shape15.hpp}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
     \begin{exampleblock}{\textattachfile{Shape15.hpp}{Shape15.hpp}}
-        \lstinputlisting[language=C++,linerange={15-24},numbers=left,firstnumber=15]{Shape15.hpp}
+        \lstinputlisting[language=C++,linerange={15-23},numbers=left,firstnumber=15]{Shape15.hpp}
     \end{exampleblock}
 \end{frame}
 
@@ -463,7 +470,7 @@ Triangle #3 Area: 84 Perimeter: 56
     \begin{exampleblock}{\textattachfile{main15.cpp}{main15.cpp}}
         \footnotesize
         \vspace{-.3cm}
-        \lstinputlisting[language=C++,linerange={22-30},numbers=left,firstnumber=22]{main15.cpp}
+        \lstinputlisting[language=C++,linerange={22-29},numbers=left,firstnumber=22]{main15.cpp}
         \vspace{-.3cm}
     \end{exampleblock}
     \begin{block}{Kimenet}
@@ -476,6 +483,17 @@ Rectangle is NOT abstract.
         \vspace{-.6cm}
     \end{block}
 \end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{main15.cpp}{main15.cpp}}
+        \vspace{-.3cm}
+        \lstinputlisting[language=C++,linerange={30-32},numbers=left,firstnumber=30]{main15.cpp}
+        \vspace{-.3cm}
+    \end{exampleblock}
+    \vfill
+    Absztrakt, tehát csak örölési céllal létrehozott ős + dinamikus memóriafoglalás $\to$ \texttt{public virtual} destruktor az ősben!
+\end{frame}
+
 
 \subsection{Interfészek és alkalmazásuk: a \emph{Megfigyelő (Observer)} minta}
 
