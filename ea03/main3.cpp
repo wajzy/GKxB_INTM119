@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Complex3.h"
+#include "Complex3.hpp"
 
 int main() {
   Complex c(1., 1.);

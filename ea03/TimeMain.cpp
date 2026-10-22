@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Time.h"
+#include "Time.hpp"
 
 int main() {
     Time t1(23, 59, 58);

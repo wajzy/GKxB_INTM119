@@ -1,4 +1,4 @@
-#include "Complex5.h"
+#include "Complex5.hpp"
 
 std::ostream& operator<<(std::ostream& os, const Complex& c) {
   os << c.re << '+' << c.im << 'i';

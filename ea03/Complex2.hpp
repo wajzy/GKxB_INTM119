@@ -1,5 +1,5 @@
-#ifndef COMPLEX1_H
-#define COMPLEX1_H
+#ifndef COMPLEX2_HPP
+#define COMPLEX2_HPP
 
 #include <iostream>
 
@@ -28,10 +28,11 @@ class Complex {
     void print() const {
       std::cout << re << '+' << im << 'i' << std::endl;
     }
-    Complex add(Complex right) const {
+    // Use reference to avoid copy of 'right'
+    Complex operator+(const Complex& right) const {
       return Complex(re + right.re, im + right.im);
     }
-    Complex mult(Complex right) const {
+    Complex operator*(const Complex& right) const {
       return Complex(re*right.re - im*right.im, im*right.re + re*right.im);
     }
 };

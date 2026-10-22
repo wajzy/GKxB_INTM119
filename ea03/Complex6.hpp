@@ -1,15 +1,15 @@
-#ifndef COMPLEX5_H
-#define COMPLEX5_H
+#ifndef COMPLEX6_HPP
+#define COMPLEX6_HPP
 
 #include <iostream>
 
 class Complex {
     double re, im;
   public:
-    Complex() {
-      re = im = 0.;
-    }
-    Complex(double re, double im) {
+    // explicitely defaulted constructor
+    Complex() = default;
+    // conversion constructor
+    Complex(double re, double im = 0.) {
       this->re = re;
       this->im = im;
     }
@@ -26,14 +26,8 @@ class Complex {
       this->im = im;
     }
     friend std::ostream& operator<<(std::ostream& os, const Complex& cplx);
-
     friend Complex operator+(const Complex& left, const Complex& right);
-    friend Complex operator+(const Complex& left, double re);
-    friend Complex operator+(double re, const Complex& right);
-
     friend Complex operator*(const Complex& left, const Complex& right);
-    friend Complex operator*(const Complex& left, double re);
-    friend Complex operator*(double re, const Complex& right);
 };
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef COMPLEX4_H
-#define COMPLEX4_H
+#ifndef COMPLEX5_HPP
+#define COMPLEX5_HPP
 
 #include <iostream>
 
@@ -27,20 +27,12 @@ class Complex {
     }
     friend std::ostream& operator<<(std::ostream& os, const Complex& cplx);
 
-    Complex operator+(const Complex& right) const {
-      return Complex(re + right.re, im + right.im);
-    }
-    Complex operator+(double re) const {
-      return Complex(this->re + re, im);
-    }
+    friend Complex operator+(const Complex& left, const Complex& right);
+    friend Complex operator+(const Complex& left, double re);
     friend Complex operator+(double re, const Complex& right);
 
-    Complex operator*(const Complex& right) const {
-      return Complex(re*right.re - im*right.im, im*right.re + re*right.im);
-    }
-    Complex operator*(double re) const {
-      return Complex(this->re*re, this->im*re);
-    }
+    friend Complex operator*(const Complex& left, const Complex& right);
+    friend Complex operator*(const Complex& left, double re);
     friend Complex operator*(double re, const Complex& right);
 };
 
