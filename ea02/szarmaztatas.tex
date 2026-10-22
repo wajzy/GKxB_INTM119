@@ -646,8 +646,8 @@ Total clicks registered by ClickCounter: 2
         \column{.8\textwidth}
             \begin{itemize}
                 \item C++-ban létezik többszörös öröklődés (a legtöbb nyelv csak interfészekből enged többet megvalósítani, melyekre külön kulcsszó is van, pl. Java)
-                \item Ha egy őstől több útvonalon is örököl egy leszármazott, nem lesz egyértelmű, melyiket kellene használni $\to$ virtuális öröklés
-                      (vagy a probléma elodázása \texttt{::}-ral)
+                \item Ha egy őstől (\texttt{A}) több útvonalon át (\texttt{B}, \texttt{C}) is örököl (\texttt{i}) egy leszármazott, nem lesz egyértelmű, melyiket kellene használni (\emph{rombusz probléma}, \emph{diamond problem}) $\to$ virtuális öröklődés
+                \item Az ősök tartalmazhatnak azonos nevű tagokat (\texttt{j}, \emph{névütközés}, \emph{name collision}) $\to$ hatókör-feloldó operátor \texttt{::}
             \end{itemize}
         \column{.2\textwidth}
             \begin{center}
@@ -674,17 +674,27 @@ Total clicks registered by ClickCounter: 2
 \begin{frame}[fragile]
     \begin{block}{Kimenet}
         \vspace{-.3cm}
+        \scriptsize
         \begin{verbatim}
-diamond1.cpp: In function 'int main()':
-diamond1.cpp:26:9: error: request for member 'i' is ambiguous
-        obj.i = 42;
-            ^
-diamond1.cpp:5:9: note: candidates are: int A::i
-        int i;
-            ^
-diamond1.cpp:5:9: note:                 int A::i   
-        \end{verbatim}
-        \vspace{-.6cm}
+diamond1.cpp: In function ‘int main()’:
+diamond1.cpp:24:9: error: request for member ‘i’ is ambiguous
+   24 |     obj.i = 42; // diamond problem
+      |         ^
+diamond1.cpp:3:9: note: candidates are: ‘int A::i’
+    3 |     int i; // -> diamond problem in D
+      |         ^
+diamond1.cpp:3:9: note:                 ‘int A::i’
+diamond1.cpp:25:9: error: request for member ‘j’ is ambiguous
+   25 |     obj.j = 2;  // name collision
+      |         ^
+diamond1.cpp:13:9: note: candidates are: ‘int C::j’
+   13 |     int j; // -> name collision in D
+      |         ^
+diamond1.cpp:8:9: note:                 ‘int B::j’
+    8 |     int j; // -> name collision in D
+      |         ^
+\end{verbatim}
+        \vspace{-.3cm}
     \end{block}
 \end{frame}
 
@@ -692,11 +702,42 @@ diamond1.cpp:5:9: note:                 int A::i
     \begin{columns}[]
         \column{.55\textwidth}
             \begin{exampleblock}{\textattachfile{diamond2.cpp}{diamond2.cpp}}
-                \lstinputlisting[language=C++,linerange={6-14},numbers=left,firstnumber=6]{diamond2.cpp}
+                \small
+                \lstinputlisting[language=C++,linerange={8-16},numbers=left,firstnumber=8]{diamond2.cpp}
             \end{exampleblock}
         \column{.4\textwidth}
             \begin{center}
                 \includegraphics[scale=0.8]{diamond2.eps}
             \end{center}
     \end{columns}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{diamond2.cpp}{diamond2.cpp}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={24-33},numbers=left,firstnumber=24]{diamond2.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{diamond2.cpp}{diamond2.cpp}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={35-37},numbers=left,firstnumber=35]{diamond2.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+    \begin{block}{Kimenet}
+        \footnotesize
+        \vspace{-.3cm}
+        \begin{verbatim}
+obj.i    = 42 (at: 0x7ffdcbe0c980)
+obj.B::i = 42 (at: 0x7ffdcbe0c980)
+obj.C::i = 42 (at: 0x7ffdcbe0c980)
+obj.B::j = 2 (at: 0x7ffdcbe0c968)
+obj.C::j = 3 (at: 0x7ffdcbe0c978)
+\end{verbatim}
+        \vspace{-.3cm}
+    \end{block}
 \end{frame}
