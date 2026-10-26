@@ -6,7 +6,7 @@ class Message {
     char* pStr;
   public:
     Message() {
-      pStr = new char('\0');
+      pStr = new char[1]{'\0'};
       std::cout << "Created [" << this << "]\n";
     }
 
