@@ -49,8 +49,7 @@ class Message {
 };
 
 std::ostream& operator<<(std::ostream& os, const Message& m) {
-  os << m.pStr;
-  return os;
+  return os << m.pStr;
 }
 
 int main() {

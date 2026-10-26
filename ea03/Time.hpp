@@ -67,11 +67,10 @@ public:
 
     // Inline friend operator
     friend std::ostream& operator<<(std::ostream& os, const Time& t) {
-        os << std::setfill('0')
+        return os << std::setfill('0')
            << std::setw(2) << t.hour << ":"
            << std::setw(2) << t.minute << ":"
            << std::setw(2) << t.second;
-        return os;
     }
 };
 #endif

@@ -1,8 +1,7 @@
-#include "Complex6.h"
+#include "Complex6.hpp"
 
 std::ostream& operator<<(std::ostream& os, const Complex& c) {
-  os << c.re << '+' << c.im << 'i';
-  return os;
+  return os << c.re << '+' << c.im << 'i';
 }
 
 Complex operator+(const Complex& left, const Complex& right) {
