@@ -133,7 +133,9 @@
         \includegraphics[scale=.5]{ostream.png}
     \end{center}
     \vfill
-    Bár különösebb haszna nincs, de csupa nem tag barát függvénnyel is megoldhattuk volna az operátorok felültöltését.
+    Ha \texttt{operator<{<}} tagfüggvény lenne, akkor az \texttt{std::ostream} operátoraként kellene megvalósítani, de ezt nem tehetjük.
+    \vfill
+    Valójában csupa nem tag barát függvénnyel is megoldhattuk volna az operátorok felültöltését, sőt, a kétoperandusú tagfüggvényeket \hiv{\href{https://gist.github.com/asambol/fa234c747ba4a677dee7b2ddaa64778d}{ajánlott (Item 24)}} is így elkészíteni $\to$ \hyperlink{subsection:conversion}{konverziós konstruktor, automatikus típuskonverzió}
 \end{frame}
 
 \begin{frame}
@@ -180,10 +182,10 @@
 \begin{frame}
     Fontos észrevenni:
     \begin{itemize}
+        \item A \emph{prefix} változat referenciát ad vissza, a \emph{postfix} viszont értéket, másolatot szolgáltat a korábbi állapotról (és nem adhatja lokális változó referenciáját)
         \item A \emph{postfix} alakot az \texttt{int} ,,paraméter'' különbözteti 
         meg a \emph{prefix} változattól.
-        \item A prefix változat gyorsabb, mert a postfixnek másolatot kell készítenie
-        az objektumról.
+        \item A \emph{prefix} változat gyorsabb, mert nem kell másolatot készítenie.
         \item A csökkentés operátora analóg módon készíthető el.
     \end{itemize}
 \end{frame}
@@ -380,6 +382,7 @@ Freed [0x7fff0778e740, Hello C++ world!]
 \subsection{A konverziós konstruktor}
 
 \begin{frame}
+    \hypertarget{subsection:conversion}{}
     Mikor hívjuk a konverziós konstruktort?
     \begin{itemize}
         \item Explicit hívás, más típusú adattal.
