@@ -53,7 +53,7 @@ int main() {
 
   Message m2;
   if(m2) {
-    std::cout << "The 2nd message is: " << m1 << '\n';
+    std::cout << "The 2nd message is: " << m2 << '\n';
   } else {
     std::cout << "No 2nd message.\n";
   }

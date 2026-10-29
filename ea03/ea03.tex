@@ -470,7 +470,7 @@ Something went wrong.
     Ugyanez rövidebben, felhasználva, hogy az \texttt{std::cin} objektum képes automatikusan \hiv{\href{https://en.cppreference.com/cpp/io/basic_ios/operator_bool}{logikai értékké alakulni}} feltételes kifejezésekben:
     \begin{exampleblock}{\textattachfile{bool2.cpp}{bool2.cpp}}
         \footnotesize
-        \lstinputlisting[language=C++,linerange={6-11},numbers=left,firstnumber=6]{bool2.cpp}
+        \lstinputlisting[language=C++,linerange={5-11},numbers=left,firstnumber=5]{bool2.cpp}
     \end{exampleblock}
 \end{frame}
 
@@ -478,7 +478,7 @@ Something went wrong.
     Sőt, felhasználva, hogy a \hiv{\href{https://en.cppreference.com/cpp/io/basic_istream/operator_gtgt}{\texttt{>{>}} operátor}} az objektum referenciájával tér vissza:
     \begin{exampleblock}{\textattachfile{bool3.cpp}{bool3.cpp}}
         \footnotesize
-        \lstinputlisting[language=C++,linerange={6-10},numbers=left,firstnumber=6]{bool3.cpp}
+        \lstinputlisting[language=C++,linerange={5-10},numbers=left,firstnumber=5]{bool3.cpp}
     \end{exampleblock}
     \vfill
     Fejlesszük tovább a \texttt{Message} osztályt, hogy üres karakterlánc esetén logikai hamisat, egyébként igazat adjon!
@@ -535,7 +535,7 @@ meaningless = 1
     \begin{tabular}{p{2.5cm}p{5cm}p{5cm} }
         Szempont & Implicit megengedett & \texttt{explicit} kötelező / ajánlott \\
         \hline
-        Szemantikai kapcsolat & ,,Ugyanaz az érték'' (érték-egyenértékűség), pl. \texttt{double}~$\to$~\texttt{Complex}, \texttt{const~char*}~$\to$~\texttt{Message} & ,,Csak egy paraméter/tulajdonság'' \\
+        Szemantikai kapcsolat & ,,Ugyanaz az érték'' (érték-egyenértékűség), pl. \texttt{double}~$\to$~\texttt{Complex}, \texttt{const~char*}~$\to$~\texttt{Message} & ,,Csak egy paraméter/tulajdonság'', pl. \texttt{int} (méret)~$\to$~\texttt{IntArray} \\
         Költség & Olcsó, közvetlen átalakítás & Drága memóriaallokáció, erőforrás-foglalás (pl. fájl, mutex) \\
         Cél & Matematikai szimmetria / kommutativitás (operátorok működése: 2 + c) & Véletlen, meglepő ideiglenes objektumok megakadályozása \\
     \end{tabular}
@@ -583,19 +583,27 @@ int main() {
 
 \begin{frame}[fragile]
     \begin{alertblock}{Nem szándékolt függvény-túlterhelési (overload) kétértelműségek}
+        \scriptsize
+        \vspace{-.2cm}
         \begin{verbatim}
 class BigInt {
 public:
     BigInt(int value); 
 };
 
-void process(int x);
+class Fraction {
+public:
+    Fraction(int num);
+};
+
 void process(const BigInt& b);
+void process(const Fraction& f);
 
 int main() {
-    process(42); // which process function should we call?
+    process(42); // call of overloaded 'process(int)' is ambiguous!
 }
 \end{verbatim}
+    \vspace{-.2cm}
     \end{alertblock}
 \end{frame}
 
