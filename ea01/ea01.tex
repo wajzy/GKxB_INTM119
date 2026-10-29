@@ -540,4 +540,28 @@ Freed [0x7ffe101e7718, Hello C++ world!
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \footnotesize
+    A \texttt{Message} osztály példa a \hiv{\href{https://en.cppreference.com/cpp/language/raii}{\emph{RAII}}}-ra (Resource Acquisition Is Initialization, kb. az erőforrás-beszerzés az inicializálás maga): egy használat előtt beszerzendő erőforrás (pl. lefoglalt memória, megnyitott fájl) életciklusát az objektum élettartamához köti.
+
+    \begin{itemize}
+        \item Garantálja, hogy az erőforrás elérhető legyen minden olyan függvény számára, amely hozzáférhet az objektumhoz (az erőforrás rendelkezésre állása az osztály invariánsa (mindig fennálló feltétel)).
+        \item Biztosítja, hogy az erőforrások az őket kezelő objektum élettartamának végén felszabaduljanak, mégpedig a beszerzésük sorrendjével ellentétes sorrendben.
+    \end{itemize}
+
+    Azaz:
+    \begin{itemize}
+        \item minden erőforrást egy osztályba kell foglalni, ahol
+        \begin{itemize}
+            \item a konstruktor beszerzi az erőforrást és beállítja az osztály összes invariánsát (vagy \emph{kivételt dob} $\to$ később tárgyaljuk),
+            \item a destruktor felszabadítja az erőforrást, és soha nem dob kivételt.
+        \end{itemize}
+        \item az erőforrást mindig egy olyan RAII példányon keresztül kell használni, amely
+        \begin{itemize}
+            \item maga is automatikus tárolási időtartammal vagy ideiglenes élettartammal rendelkezik, vagy
+            \item olyan élettartammal bír, amelyet egy automatikus vagy ideiglenes objektum élettartama határol be.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
 \end{document}
