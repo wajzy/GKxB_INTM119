@@ -437,4 +437,166 @@ Freed [0x7fff0778e740, Hello C++ world!]
     \end{exampleblock}
 \end{frame}
 
+\subsection{Konvertálás más típusra}
+
+\begin{frame}
+    Az \texttt{std::cin} folyam működése során különféle hibák fordulhatnak elő, melyek hibajelző biteket állítanak be. Pl. ha egyetlen, bemenetről érkező karaktert sem tud feldolgozni, akkor magasra vált a \hiv{\href{https://en.cppreference.com/cpp/io/ios_base/iostate\#The_failbit}{\texttt{fail}}} bit.
+    \begin{exampleblock}{\textattachfile{bool1.cpp}{bool1.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,linerange={3-12},numbers=left,firstnumber=3]{bool1.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{block}{Helyes adatok}
+        \vspace{-.2cm}
+        \begin{verbatim}
+Please enter a number: 123
+The entered number is: 123
+\end{verbatim}             
+        \vspace{-.2cm}
+    \end{block}
+    \begin{block}{Hibás adatok}
+        \vspace{-.2cm}
+        \begin{verbatim}
+Please enter a number: horse
+Something went wrong.
+\end{verbatim}             
+        \vspace{-.2cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    Ugyanez rövidebben, felhasználva, hogy az \texttt{std::cin} objektum képes automatikusan \hiv{\href{https://en.cppreference.com/cpp/io/basic_ios/operator_bool}{logikai értékké alakulni}} feltételes kifejezésekben:
+    \begin{exampleblock}{\textattachfile{bool2.cpp}{bool2.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,linerange={6-11},numbers=left,firstnumber=6]{bool2.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    Sőt, felhasználva, hogy a \hiv{\href{https://en.cppreference.com/cpp/io/basic_istream/operator_gtgt}{\texttt{>{>}} operátor}} az objektum referenciájával tér vissza:
+    \begin{exampleblock}{\textattachfile{bool3.cpp}{bool3.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,linerange={6-10},numbers=left,firstnumber=6]{bool3.cpp}
+    \end{exampleblock}
+    \vfill
+    Fejlesszük tovább a \texttt{Message} osztályt, hogy üres karakterlánc esetén logikai hamisat, egyébként igazat adjon!
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{message5.cpp}{message5.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={4-7},numbers=left,firstnumber=4]{message5.cpp}
+        \lstinputlisting[language=C++,linerange={25-27},numbers=left,firstnumber=25]{message5.cpp}
+        \lstinputlisting[language=C++,linerange={40-40},numbers=left,firstnumber=40]{message5.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{message5.cpp}{message5.cpp}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={46-63},numbers=left,firstnumber=46]{message5.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{block}{Kimenet}
+        \vspace{-.2cm}
+        \begin{verbatim}
+The 1st message is: Important message.
+No 2nd message.
+meaningless = 1
+\end{verbatim}             
+        \vspace{-.2cm}
+    \end{block}
+    Az operátor (és a \texttt{bool} típusra alakítás) működik ugyan, de az adott probléma szempontjából értelmetlen átalakítások is végbemennek $\to$ utóbbiak tiltása az \texttt{explicit} kulcsszóval
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{message6.cpp}{message6.cpp}}
+        \fontSize{7}{8}
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,linerange={4-7},numbers=left,firstnumber=4]{message6.cpp}
+        \lstinputlisting[language=C++,linerange={25-27},numbers=left,firstnumber=25]{message6.cpp}
+        \lstinputlisting[language=C++,linerange={40-40},numbers=left,firstnumber=40]{message6.cpp}
+        \lstinputlisting[language=C++,linerange={46-46},numbers=left,firstnumber=46]{message6.cpp}
+        \lstinputlisting[language=C++,linerange={61-64},numbers=left,firstnumber=61]{message6.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    Minden, \emph{egy paraméterrel hívható konstruktort} is tegyünk \texttt{explicit}-té, hacsak nincs nyomós okunk az ellenkezőjére (\hiv{\href{https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines\#c46-by-default-declare-single-argument-constructors-explicit}{C++ Core Guidelines, C.46}})!
+    \vfill
+    \begin{center}
+    \begin{tabular}{p{2.5cm}p{5cm}p{5cm} }
+        Szempont & Implicit megengedett & \texttt{explicit} kötelező / ajánlott \\
+        \hline
+        Szemantikai kapcsolat & ,,Ugyanaz az érték'' (érték-egyenértékűség), pl. \texttt{double}~$\to$~\texttt{Complex}, \texttt{const~char*}~$\to$~\texttt{Message} & ,,Csak egy paraméter/tulajdonság'' \\
+        Költség & Olcsó, közvetlen átalakítás & Drága memóriaallokáció, erőforrás-foglalás (pl. fájl, mutex) \\
+        Cél & Matematikai szimmetria / kommutativitás (operátorok működése: 2 + c) & Véletlen, meglepő ideiglenes objektumok megakadályozása \\
+    \end{tabular}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    Néhány példa, amikor érdemes tiltani az implicit konverziót
+    \begin{alertblock}{A paraméter nem egyenértékű érték, csak egy mellékes tulajdonság}
+        \begin{verbatim}
+class IntArray {
+public:
+    IntArray(int size); 
+};
+
+void printArray(const IntArray& arr);
+
+int main() {
+    printArray(10); // meaningless, but compiles
+}
+\end{verbatim}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{alertblock}{Drága erőforrás használatával járó művelet}
+        \vspace{-.2cm}
+        \begin{verbatim}
+class File {
+public:
+    File(const char* path);
+};
+
+void logToFile(const File& f);
+
+int main() {
+    logToFile("config.log"); 
+    // opens a file, passes it, and then closes it 
+    // after logging a single line!
+}
+\end{verbatim}
+    \vspace{-.2cm}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{alertblock}{Nem szándékolt függvény-túlterhelési (overload) kétértelműségek}
+        \begin{verbatim}
+class BigInt {
+public:
+    BigInt(int value); 
+};
+
+void process(int x);
+void process(const BigInt& b);
+
+int main() {
+    process(42); // which process function should we call?
+}
+\end{verbatim}
+    \end{alertblock}
+\end{frame}
+
 \end{document}
