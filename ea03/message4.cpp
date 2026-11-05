@@ -7,13 +7,13 @@ class Message {
   public:
     Message() {
       pStr = new char[1]{'\0'};
-      std::cout << "Created [" << this << "]\n";
+      std::cout << "Default ctor [" << this << "]\n";
     }
 
     Message(const char* s) { // conversion ctor
       pStr = new char[strlen(s) + 1];
       strcpy(pStr, s);
-      std::cout << "Created [" << this << ", " << pStr << "]\n";
+      std::cout << "Conversion ctor [" << this << ", " << pStr << "]\n";
     }
 
     // C++11: deleted constructor

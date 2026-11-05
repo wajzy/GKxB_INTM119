@@ -7,13 +7,13 @@ class Message {
   public:
     Message() {
       pStr = new char[1]{'\0'};
-      std::cout << "Created [" << this << "]\n";
+      std::cout << "Default ctor [" << this << "]\n";
     }
 
     Message(const char* s) { // conversion ctor
       pStr = new char[strlen(s) + 1];
       strcpy(pStr, s);
-      std::cout << "Created [" << this << ", " << pStr << "]\n";
+      std::cout << "Conversion ctor [" << this << ", " << pStr << "]\n";
     }
 
     /* for old compilers
@@ -24,7 +24,9 @@ class Message {
     } */
 
     // C++11+ / delegating constructors
-    Message(const Message& m) : Message(m.pStr) {}
+    Message(const Message& m) : Message(m.pStr) {
+      std::cout << "(Copy ctor --> conversion ctor)\n";
+    }
 
     ~Message() {
       std::cout << "Freed [" << this << ", " << pStr << "]\n";
@@ -35,6 +37,7 @@ class Message {
 
     // return reference instead of void to allow multiple assignments
     Message& operator=(const Message& m) {
+      std::cout << "Assignment operator\n";
       // do not copy to itself
       if(&m == this) return *this;
       setMessage(m.pStr);
@@ -72,6 +75,6 @@ int main() {
   std::cout << m4 << std::endl;
   Message m5(m1); // calls copy ctor
   std::cout << m5 << std::endl;
-  Message m6 = "Conversion + copy ctor";
-  Message m7("Conversion ctor");
+  Message m6 = "m6";
+  Message m7("m7");
 }

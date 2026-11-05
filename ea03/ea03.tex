@@ -338,8 +338,8 @@ Aborted (core dumped)
 
 \begin{frame}
     \begin{exampleblock}{\textattachfile{message3.cpp}{message3.cpp}}
-        \scriptsize
-        \lstinputlisting[language=C++,linerange={13-27},numbers=left,firstnumber=13]{message3.cpp}
+        \fontSize{8}{9}
+        \lstinputlisting[language=C++,linerange={13-29},numbers=left,firstnumber=13]{message3.cpp}
     \end{exampleblock}
 \end{frame}
 
@@ -349,30 +349,31 @@ Aborted (core dumped)
             \begin{exampleblock}{\textattachfile{message3.cpp}{message3.cpp}}
                 \vspace{-.2cm}
                 \scriptsize
-                \lstinputlisting[language=C++,linerange={55-58},numbers=left,firstnumber=55]{message3.cpp}
-                \lstinputlisting[language=C++,linerange={71-77},numbers=left,firstnumber=71]{message3.cpp}
+                \lstinputlisting[language=C++,linerange={58-61},numbers=left,firstnumber=58]{message3.cpp}
+                \lstinputlisting[language=C++,linerange={74-80},numbers=left,firstnumber=74]{message3.cpp}
                 \vspace{-.2cm}
             \end{exampleblock}
         \column{.48\textwidth}
             \begin{block}{Kimenet}
                 \vspace{-.4cm}
-                \scriptsize
+                \fontSize{7}{8}
                 \begin{verbatim}
-Created [0x7fff0778e740]
+Default ctor [0x7ffed72bf210]
 Hello C++ world!
 ...
-Created [0x7fff0778e758, Hello C++ world!]
+Conversion ctor [0x7ffed72bf228, Hello C++ world!]
+(Copy ctor --> conversion ctor)
 Hello C++ world!
-Created [0x7fff0778e760, Hello C++ world!]
+Conversion ctor [0x7ffed72bf230, Hello C++ world!]
+(Copy ctor --> conversion ctor)
 Hello C++ world!
-Created [0x7fff0778e768, Conversion ctor]
-Created [0x7fff0778e770, Conversion ctor]
-Freed [0x7fff0778e770, Conversion ctor]
-Freed [0x7fff0778e768, Conversion ctor]
-Freed [0x7fff0778e760, Hello C++ world!]
-Freed [0x7fff0778e758, Hello C++ world!]
+Conversion ctor [0x7ffed72bf238, m6]
+Conversion ctor [0x7ffed72bf240, m7]
+Freed [0x7ffed72bf240, m7]
+Freed [0x7ffed72bf238, m6]
+Freed [0x7ffed72bf230, Hello C++ world!]
 ...
-Freed [0x7fff0778e740, Hello C++ world!]
+Freed [0x7ffed72bf210, Hello C++ world!]
 \end{verbatim}             
                 \vspace{-.4cm}
             \end{block}
