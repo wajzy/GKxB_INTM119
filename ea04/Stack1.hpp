@@ -5,12 +5,14 @@
 
 template<class T, int I> class Stack {
     T* array;
-    const int size;
     int used;
   public:
-    Stack() : size(I) {
+    Stack() {
       array = new T[I];
       used = 0;
+    }
+    ~Stack() {
+      delete[] array;
     }
     void push(T data);
     T pop() {
@@ -28,7 +30,7 @@ template<class T, int I> class Stack {
 
 // It MUST be in the header!
 template<class T, int I> void Stack<T, I>::push(T data) {
-  if(used < size) {
+  if(used < I) {
     array[used++] = data;
   } else {
     std::cerr << "Stack full :(\n";
