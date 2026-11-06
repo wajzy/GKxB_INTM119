@@ -1,5 +1,5 @@
-#ifndef STACK_HPP
-#define STACK_HPP
+#ifndef STACK1_HPP
+#define STACK1_HPP
 
 #include <iostream>
 
