@@ -179,7 +179,8 @@ Of 4.5 and 3, 4.5 is greater.
     Kivételkezelés (\emph{exception handling})
     \begin{itemize}
         \item \emph{Kivételes}, azaz ritka események (hibák) kezelésére
-        \item Előidézheti hardveres (pl. elfogy a memória) vagy szoftveres (pl. dinamikus tömb túlindexelése) hiba
+        \item A standard könyvtár vagy saját kód is kiválthatja, pl. \texttt{new} $\to$ \texttt{std::bad\_alloc} 
+        \item De pl. egy tömb túlindexelése nem definiált viselkedés (undefined behavior, UB), a nullával osztás pedig processzormegszakítás (\texttt{SIGFPE}) $\to$ kivételkezelés nem megoldás
         \item Védett blokk: felkészülés kivételes helyzet bekövetkezésére $\to$ \texttt{try}
         \item Kivétel kiváltása $\to$ \texttt{throw}
         \item Kivétel elfogása $\to$ \texttt{catch}
