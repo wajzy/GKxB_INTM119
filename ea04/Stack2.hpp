@@ -1,8 +1,9 @@
 #ifndef STACK_HPP
 #define STACK_HPP
 
-#include <iostream>
 #include <exception>
+#include <iostream>
+#include <string>
 
 class StackException : public std::exception {
   public:
