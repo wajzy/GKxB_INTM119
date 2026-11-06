@@ -320,8 +320,14 @@ Aborted (core dumped)
         \item[Konverziós konstruktor (conversion constructor):] \hfill \\ Ez is hívható egyetlen paraméterrel, de az más típusú.
     \end{description}
     \vfill
-    Közös tulajdonság: objektum \emph{inicializálásának} lehetősége kétféle szintaktikával: \\
-    \texttt{Osztaly obj(42);} $\quad\equiv\quad$ \texttt{Osztaly obj = 42;} 
+    Az objektum többféle szintaktikával is \emph{inicializálható}: \\
+    \begin{itemize}
+        \item Közvetlen inicializálás: \texttt{Osztaly obj(42);}
+        \item Másolásos inicializálás: \texttt{Osztaly obj = 42;}
+        \item Egységes / listás inicializálás: \texttt{Osztaly obj\{42\};} \\
+        (C++11-től; tiltja a szűkítő konverziókat, és az alapértelmezett konstruktor használható \texttt{Osztaly obj\{\};} alakban)
+    \end{itemize}
+    \small (Nem \texttt{explicit} konstruktor esetén a fenti formák egyenértékűek.)
 \end{frame}
 
 \begin{frame}
