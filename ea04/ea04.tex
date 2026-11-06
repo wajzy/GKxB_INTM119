@@ -216,14 +216,21 @@ Of 4.5 and 3, 4.5 is greater.
 \end{frame}
 
 \begin{frame}
+    \begin{description}[m]
+        \item[Veremlebontás (stack unwinding)] \hfill \\
+            Elhagyott blokkok lokális objektumainak destruktorai automatikusan lefutnak, RAII elvű objektumok felszabadítják erőforrásaikat, emiatt
+            \begin{itemize}
+                \item nincs szükség \texttt{finally} blokkokra, mint pl. Java, C\# nyelvekben
+                \item \emph{destruktorból tilos kivételt dobni} (C++11-től implicit \texttt{noexcept})
+            \end{itemize}
+    \end{description}
+    \vfill
     Kivételkezelési stratégiák:
     \begin{enumerate}
         \item Figyelmeztetés, felhasználói beavatkozás kérése, megpróbálkozás a hiba javításával.
         \item Program leállítása (pl. \texttt{exit()}, \texttt{abort()}) súlyos hibák esetén.
         \item Kivétel kezeletlenül hagyása.
     \end{enumerate}
-    \vfill
-    A dinamikusan foglalt erőforrásokat szükség esetén fel kell szabadítani!
 \end{frame}
 
 \begin{frame}
