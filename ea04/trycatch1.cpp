@@ -38,7 +38,7 @@ int main() {
       std::cout << "caught " << c << ", re-throw exception" 
                 << std::endl;
       throw;
-    // no implicite type conversions, no conversion ctor calls
+    // no implicit type conversions, no conversion ctor calls
     } catch(double d) {
       std::cout << "caught " << d << std::endl;
     } catch(const char*) { // parameter without name

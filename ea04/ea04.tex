@@ -26,7 +26,7 @@
             \item Sablon $\to$ \texttt{template}
             \item Típusparaméterek $\to$ \texttt{class} vagy \texttt{typename} (a sablonok \emph{fejlécében} C++17 óta egyenértékűek; előbbit vezették be először, utóbbi kevésbé félrevezető)
         \end{itemize}
-        \item \emph{Sablon példányosítás:} adott típusparaméterrel új változat előállítása $\to$ egyszerűbb, mint sok felültöltött függvényt kézzel létrehozni
+        \item \emph{Sablonpéldányosítás:} adott típusparaméterrel új változat előállítása $\to$ egyszerűbb, mint sok felültöltött függvényt kézzel létrehozni
     \end{itemize}
     \vfill
     \begin{description}[m]
@@ -229,7 +229,7 @@ Of 4.5 and 3, 4.5 is greater.
     \texttt{catch} blokkok jellemzői:
     \begin{itemize}
         \item Az első illeszkedő blokk kezeli a kivételt.
-        \item Nyilvánosan származtatott kivétel osztályok esetén a szülő típusára illeszthető a leszármazott típusú kivétel $\to$ speciálisak előre, általánosabbak hátra!
+        \item Nyilvánosan származtatott kivételosztályok esetén a szülő típusára illeszthető a leszármazott típusú kivétel $\to$ speciálisak előre, általánosabbak hátra!
         \item Nem illeszkednek viszont az implicit típuskonverzióval egyébként egymásba alakítható típusok \texttt{catch} blokkjai (pl. \texttt{int} típusú kivételt nem fogja el a \texttt{float} kezelője).
         \item A speciális, \texttt{\dots} típusú \texttt{catch} minden, korábban nem kezelt kivételt elfog $\to$ ez legyen az utolsó!
         \item A kivétel kezelését követően a program fut tovább az utolsó \texttt{catch} blokk után.
@@ -316,7 +316,7 @@ Aborted (core dumped)
 \begin{frame}
     \begin{exampleblock}{\textattachfile{trycatch2.cpp}{trycatch2.cpp}}
         \vspace{-.2cm}
-        \fontsize{8}{9} \selectfont
+        \fontSize{8}{9}
         \lstinputlisting[language=C++,linerange={16-33},numbers=left,firstnumber=16]{trycatch2.cpp}
         \vspace{-.2cm}
     \end{exampleblock}
