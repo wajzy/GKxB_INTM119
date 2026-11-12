@@ -24,7 +24,7 @@
         \item Kulcsszavak:
         \begin{itemize}
             \item Sablon $\to$ \texttt{template}
-            \item Típusparaméterek $\to$ \texttt{class} vagy \texttt{typename} (\emph{majdnem} egyenértékűek)
+            \item Típusparaméterek $\to$ \texttt{class} vagy \texttt{typename} (a sablonok \emph{fejlécében} C++17 óta egyenértékűek; előbbit vezették be először, utóbbi kevésbé félrevezető)
         \end{itemize}
         \item \emph{Sablon példányosítás:} adott típusparaméterrel új változat előállítása $\to$ egyszerűbb, mint sok felültöltött függvényt kézzel létrehozni
     \end{itemize}
@@ -153,7 +153,7 @@ Of 4.5 and 3, 4.5 is greater.
     Fontosabb tudnivalók:
     \begin{itemize}
         \item A függvénysablonokhoz hasonlóan \emph{osztálysablonokat} is létrehozhatunk.
-        \item A típusparaméterek mellett \emph{konstansparamétereket} is megadhatunk $\to$ bárhova helyettesíthetők, ahol konstans kifejezés állhat.
+        \item A típusparaméterek mellett \emph{konstansparamétereket} (non-type template parameter, NTTP) is megadhatunk $\to$ bárhova helyettesíthetők, ahol konstans kifejezés állhat.
         \item Ha egy tagfüggvényt az osztályon kívül definiálunk, meg kell ismételni a \texttt{template} kulcsszót a paraméterekkel együtt. A definíciónak kivételesen a fejfájlban a helye, hogy a fordító mindig elérje.
         \item Osztálysablon példányosítása: a típus után \texttt{<} és \texttt{>} között meg kell adni a konkrét típusokat, konstansokat. Csak ezek együtt azonosítják egyértelműen a sablon alapján előállított osztályt!
     \end{itemize}
@@ -161,7 +161,7 @@ Of 4.5 and 3, 4.5 is greater.
 
 \begin{frame}
     \begin{exampleblock}{\textattachfile{Stack1.hpp}{Stack1.hpp}}
-        \lstinputlisting[language=C++,linerange={6-16},numbers=left,firstnumber=6]{Stack1.hpp}
+        \lstinputlisting[language=C++,linerange={6-11},numbers=left,firstnumber=6]{Stack1.hpp}
     \end{exampleblock}
 \end{frame}
 
@@ -169,14 +169,14 @@ Of 4.5 and 3, 4.5 is greater.
     \begin{exampleblock}{\textattachfile{Stack1.hpp}{Stack1.hpp}}
         \small
         \vspace{-.2cm}
-        \lstinputlisting[language=C++,linerange={17-29},numbers=left,firstnumber=17]{Stack1.hpp}
+        \lstinputlisting[language=C++,linerange={12-23},numbers=left,firstnumber=12]{Stack1.hpp}
         \vspace{-.2cm}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
     \begin{exampleblock}{\textattachfile{Stack1.hpp}{Stack1.hpp}}
-        \lstinputlisting[language=C++,linerange={31-38},numbers=left,firstnumber=31]{Stack1.hpp}
+        \lstinputlisting[language=C++,linerange={25-32},numbers=left,firstnumber=25]{Stack1.hpp}
     \end{exampleblock}
 \end{frame}
 
@@ -379,15 +379,15 @@ Caught a pointer to char.
         \vspace{-.2cm}
         \lstinputlisting[language=C++,style=C++,linerange={27-27},numbers=left,firstnumber=27]{Stack2.hpp}
         \lstinputlisting[language=C++,style=C++,linerange={30-30},numbers=left,firstnumber=30]{Stack2.hpp}
-        \lstinputlisting[language=C++,style=C++,linerange={38-48},numbers=left,firstnumber=38]{Stack2.hpp}
-        \lstinputlisting[language=C++,style=C++,linerange={52-52},numbers=left,firstnumber=52]{Stack2.hpp}
+        \lstinputlisting[language=C++,style=C++,linerange={33-42},numbers=left,firstnumber=33]{Stack2.hpp}
+        \lstinputlisting[language=C++,style=C++,linerange={46-46},numbers=left,firstnumber=46]{Stack2.hpp}
         \vspace{-.2cm}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
     \begin{exampleblock}{\textattachfile{Stack2.hpp}{Stack2.hpp}}
-        \lstinputlisting[language=C++,style=C++,linerange={54-63},numbers=left,firstnumber=54]{Stack2.hpp}
+        \lstinputlisting[language=C++,style=C++,linerange={48-57},numbers=left,firstnumber=48]{Stack2.hpp}
     \end{exampleblock}
 \end{frame}
 

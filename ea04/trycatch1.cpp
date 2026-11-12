@@ -45,9 +45,9 @@ int main() {
       std::cout << "caught an unknown message" << std::endl;
     // warning: exception of type 'DerivedException' will be 
     //          caught by earlier handler for 'BaseException'
-    } catch(BaseException& se) {
+    } catch(const BaseException& se) {
       std::cout << "caught BaseException object" << std::endl;
-    } catch(DerivedException& de) {
+    } catch(const DerivedException& de) {
       std::cout << "caught DerivedException object" << std::endl;
     } catch(...) {
       std::cout << "caught an UNKNOWN exception" << std::endl;

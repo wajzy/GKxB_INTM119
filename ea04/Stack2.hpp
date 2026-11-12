@@ -25,16 +25,10 @@ class StackException : public std::exception {
 };
 
 template<class T, int I> class Stack {
-    T* array;
+    T array[I];
     int used;
   public:
-    Stack() {
-      array = new T[I];
-      used = 0;
-    }
-    ~Stack() {
-      delete[] array;
-    }
+    Stack() : used(0) {}
     void push(T data);
     T pop() {
       if(used > 0) {
@@ -46,7 +40,7 @@ template<class T, int I> class Stack {
         );
       }
     }
-    bool isEmpty() {
+    bool isEmpty() const {
       return used == 0;
     }
 };
