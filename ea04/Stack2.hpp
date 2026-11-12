@@ -19,12 +19,12 @@ class StackException : public std::exception {
       return code;
     }
     // we have to promise not to throw exceptions in what()
-    virtual const char* what() const noexcept {
+    virtual const char* what() const noexcept override {
       return message.c_str();
     }
 };
 
-template<class T, int I> class Stack {
+template<typename T, int I> class Stack {
     T array[I];
     int used;
   public:
@@ -45,7 +45,7 @@ template<class T, int I> class Stack {
     }
 };
 
-template<class T, int I> void Stack<T, I>::push(T data) {
+template<typename T, int I> void Stack<T, I>::push(T data) {
   if(used < I) {
     array[used++] = data;
   } else {

@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-template<class T, int I> class Stack {
+template<typename T, int I> class Stack {
     T array[I];
     int used;
   public:
@@ -23,7 +23,7 @@ template<class T, int I> class Stack {
 };
 
 // It MUST be in the header!
-template<class T, int I> void Stack<T, I>::push(T data) {
+template<typename T, int I> void Stack<T, I>::push(T data) {
   if(used < I) {
     array[used++] = data;
   } else {

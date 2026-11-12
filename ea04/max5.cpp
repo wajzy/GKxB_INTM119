@@ -1,7 +1,7 @@
 #include <iostream>
 #include <type_traits>
 
-template<class T1, class T2>
+template<typename T1, typename T2>
 std::common_type_t<T1, T2> max(T1 a, T2 b) {
   return a > b ? a : b;
 }
