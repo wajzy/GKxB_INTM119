@@ -85,7 +85,7 @@ Of 1.5 and 2.5, 2.5 is greater.
 \begin{frame}
     \begin{description}[m]
         \item[Probléma:] \hfill \\ A két paraméter típusának mindenképpen egyeznie kell!
-        \item[Félmegoldás:] \hfill \\ Két típusparaméter használata (nem befolyásolható futásidőben, melyikben keletkezzen az eredmény)  
+        \item[Félmegoldás:] \hfill \\ Két típusparaméter használata $\to$ mindig ugyanabban a típusban (pl. \texttt{T1}) keletkezik az eredmény, akkor is, ha az nem megfelelő
     \end{description}
 \end{frame}
 
@@ -124,6 +124,27 @@ Of 4.5 and 3, 4.5 is greater.
         \end{verbatim}
         \vspace{-.4cm}
     \end{block}
+\end{frame}
+
+\begin{frame}
+    Problémák:
+    \begin{itemize}
+        \item A felültöltött függvények létrehozását szerettük volna elkerülni a sablonozással
+        \item Könnyen kifelejthető egy szükséges függvény létrehozása $\to$ hibaforrás
+    \end{itemize}
+    C++14: fordítási időben megállapítható tetszőleges típusok közös típusa, amibe bármelyik konvertálható, pl. \texttt{std::common\_type\_t<int, double> $\to$ double}
+    \begin{exampleblock}{\textattachfile{max5.cpp}{max5.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={2-7},numbers=left,firstnumber=2]{max5.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    C++11-től kezdve egyre több helyen (pl. függvény visszatérési értékének típusa, változók deklarálása) alkalmazható az \hiv{\href{https://en.cppreference.com/cpp/language/auto}{\texttt{auto}}} kulcsszó a konkrét típus helyőrzőjeként $\to$ fordító megpróbálja kikövetkeztetni a megfelelő típust. A példában konkrétan a feltételes operátor típuspromóciós szabályai alapján a kifejezés típusa a tágabb típus lesz $\to$ egyszerűbb használat (nem kell \texttt{include} se), de feltételezi a függvény testének megvizsgálhatóságát.
+    \begin{exampleblock}{\textattachfile{max6.cpp}{max6.cpp}}
+        \small
+        \lstinputlisting[language=C++,linerange={1-6},numbers=left,firstnumber=1]{max6.cpp}
+    \end{exampleblock}
 \end{frame}
 
 \subsection{Osztálysablonok}
