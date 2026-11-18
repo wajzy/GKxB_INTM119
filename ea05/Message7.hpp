@@ -31,7 +31,7 @@ class Message {
     int len; // The length of str is also stored
   public:
     Message() { // default ctor
-      pStr = new char('\0');
+      pStr = new char[1]{'\0'};
       len = 0;
     }
 
