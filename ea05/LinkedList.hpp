@@ -38,6 +38,9 @@ class LinkedList {
     LinkedList() {
       front = tail = nullptr;
     }
+
+    LinkedList(const LinkedList&) = delete; // Rule of Three
+    LinkedList& operator=(const LinkedList&) = delete;
     
     ~LinkedList() {
       for(ListItem<T>* current = front; current != nullptr;) {
