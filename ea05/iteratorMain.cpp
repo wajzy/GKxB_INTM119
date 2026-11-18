@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Message5.h"
-#include "LinkedList.h"
+#include "Message7.hpp"
+#include "LinkedList.hpp"
 
 int main() {
   Message m = "Hello C++ world!";

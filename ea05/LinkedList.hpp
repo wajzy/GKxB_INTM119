@@ -1,7 +1,7 @@
-#ifndef LINKED_LIST_H
-#define LINKED_LIST_H
+#ifndef LINKED_LIST_HPP
+#define LINKED_LIST_HPP
 #include <iostream>
-#include "Iterator.h"
+#include "Iterator.hpp"
 
 template<class T>
 struct ListItem {

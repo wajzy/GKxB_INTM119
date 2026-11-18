@@ -1,8 +1,8 @@
-#ifndef MESSAGE_H
-#define MESSAGE_H
+#ifndef MESSAGE7_HPP
+#define MESSAGE7_HPP
 #include <cstring>
 #include <stdexcept>
-#include "Iterator.h"
+#include "Iterator.hpp"
 
 class MessageIterator : public Iterator<char> {
     char* p;
