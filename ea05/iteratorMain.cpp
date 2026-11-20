@@ -27,7 +27,7 @@ int main() {
   }
 
   LinkedList<int> l;
-  l.append(1); l.append(2); l.append(3);
+  l.push_back(1); l.push_back(2); l.push_back(3);
   for (auto i = l.begin(); i != l.end(); ++i) {
     std::cout << *i << '\t';
   }

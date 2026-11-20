@@ -374,6 +374,13 @@ Caught a pointer to char.
 \end{frame}
 
 \begin{frame}
+    \begin{description}[m]
+        \item[\hiv{\href{https://en.cppreference.com/cpp/language/noexcept_spec}{\texttt{noexcept}}}] \hfill \\ Azt ígéri, hogy a függvény nem enged ki kivételt saját hatókörén kívülre. Ha keletkezik benne kivétel, és azt nem kezeli le, a futásidejű környezet nem keresi a \texttt{catch} blokkokat, hanem egyből hívja az \texttt{std::terminate()} függvényt (lokális objektumok destruktorai sem feltétlenül futnak le).
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/language/override}{\texttt{override}}}] \hfill \\ Azt állítjuk, hogy a tagfüggvény (felül)definiálja az öröklött függvényt $\to$ ha nem így van (pl. elgépelés), akkor hibaüzenettel leáll a fordítás.
+    \end{description}
+\end{frame}
+
+\begin{frame}
     \begin{exampleblock}{\textattachfile{Stack2.hpp}{Stack2.hpp}}
         \fontSize{8}{9}
         \vspace{-.2cm}

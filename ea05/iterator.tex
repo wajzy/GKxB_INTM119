@@ -1,4 +1,4 @@
-\section{Tervezési minták}
+\section{Iterátorok megvalósítása}
 
 \subsection{Iterátorok}
 
@@ -49,24 +49,21 @@
         \item[\texttt{operator++}] \hfill \\ A postfix alak operátorának felültöltése:\\ \texttt{virtual Iterator operator++(\kiemel{int}) = 0;} \\
             Probléma: absztrakt osztály nem példányosítható $\to$ a visszatérési érték típusa nem lehet \texttt{Iterator}! 
     \end{description}
-\end{frame}
-
-\begin{frame}
     \begin{exampleblock}{\textattachfile{Message7.hpp}{Message7.hpp}}
-        \lstinputlisting[language=C++,linerange={3-12},numbers=left,firstnumber=3]{Message7.hpp}
+        \small
+        \lstinputlisting[language=C++,linerange={8-13},numbers=left,firstnumber=8]{Message7.hpp}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
     \begin{exampleblock}{\textattachfile{Message7.hpp}{Message7.hpp}}
-        \small
-        \lstinputlisting[language=C++,style=C++,linerange={13-25},numbers=left,firstnumber=13]{Message7.hpp}
+        \tiny
+        \lstinputlisting[language=C++,linerange={14-35},numbers=left,firstnumber=14]{Message7.hpp}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
     \begin{description}[m]
-        \item[\hiv{\href{https://en.cppreference.com/w/cpp/language/override}{\texttt{override}}}] \hfill \\ Azt állítjuk, hogy a tagfüggvény (felül)definiálja az öröklött függvényt $\to$ ha nem így van (pl. elgépelés), akkor hibaüzenettel leáll a fordítás.
         \item[\hiv{\href{https://en.cppreference.com/w/cpp/language/static_cast}{\texttt{static\_cast}}}] \hfill \\ Az implicit és a felhasználó által definiált típuskonverzió kombinációja, szükség esetén hívja a konverziós konstruktort. \emph{Fordítási időben} ellenőrzi a típusokat és eldönti, hogy az átalakítás végrehajtható-e. Használható primitív típusok közötti átalakításhoz, a származtatási hierarchiában történő fel- és lefelé lépéshez, vagy \texttt{void} mutatóról/ra történő konverzióhoz is.
     \end{description}
 \end{frame}
@@ -74,91 +71,79 @@
 \begin{frame}
     \begin{exampleblock}{\textattachfile{Message7.hpp}{Message7.hpp}}
         \scriptsize
-        \lstinputlisting[language=C++,style=C++,linerange={28-42},numbers=left,firstnumber=28]{Message7.hpp}
+        \lstinputlisting[language=C++,style=C++,linerange={58-63},numbers=left,firstnumber=58]{Message7.hpp}
+        \lstinputlisting[language=C++,style=C++,linerange={69-76},numbers=left,firstnumber=69]{Message7.hpp}
     \end{exampleblock}
 \end{frame}
 
 \begin{frame}
-    \begin{exampleblock}{\textattachfile{Message7.hpp}{Message7.hpp}}
-        \scriptsize
-        \lstinputlisting[language=C++,style=C++,linerange={44-59},numbers=left,firstnumber=44]{Message7.hpp}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    \hiv{\href{https://en.cppreference.com/w/cpp/error/out_of_range}{\texttt{std::out\_of\_range}}}
-    \begin{center}
+    \begin{description}[m]
+        \item[\hiv{\href{https://en.cppreference.com/w/cpp/error/out_of_range}{\texttt{std::out\_of\_range}}}] \hfill \\ Szabványos kivétel, melyet akkor váltanak ki, amikor a definiált tartományon kívüli elemekre hivatkoznak.
+    \end{description}
+        \begin{center}
         \includegraphics[scale=.6]{outofrange.pdf}
     \end{center}
-    \begin{exampleblock}{\textattachfile{Message7.hpp}{Message7.hpp}}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{LinkedList.hpp}{LinkedList.hpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,style=C++,linerange={5-16},numbers=left,firstnumber=5]{LinkedList.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{LinkedList.hpp}{LinkedList.hpp}}
+        \vspace{-.2cm}
+        \fontSize{8}{9}
+        \lstinputlisting[language=C++,style=C++,linerange={17-34},numbers=left,firstnumber=17]{LinkedList.hpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{LinkedList.hpp}{LinkedList.hpp}}
+        \small
+        \lstinputlisting[language=C++,style=C++,linerange={36-47},numbers=left,firstnumber=36]{LinkedList.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{LinkedList.hpp}{LinkedList.hpp}}
+        \lstinputlisting[language=C++,style=C++,linerange={49-57},numbers=left,firstnumber=49]{LinkedList.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{LinkedList.hpp}{LinkedList.hpp}}
+        \small
+        \lstinputlisting[language=C++,style=C++,linerange={59-66},numbers=left,firstnumber=59]{LinkedList.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{iteratorMain.cpp}{iteratorMain.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,style=C++,linerange={5-18},numbers=left,firstnumber=5]{iteratorMain.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{iteratorMain.cpp}{iteratorMain.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,style=C++,linerange={20-27},numbers=left,firstnumber=20]{iteratorMain.cpp}
+    \end{exampleblock}
+    \begin{block}{Kimenet}
+        \vspace{-.3cm}
         \scriptsize
-        \vspace{-.2cm}
-        \lstinputlisting[language=C++,style=C++,linerange={61-72},numbers=left,firstnumber=61]{Message7.hpp}
-        \vspace{-.2cm}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    \begin{exampleblock}{\textattachfile{Message7.cpp}{Message7.cpp}}
-        \small
-        \vspace{-.2cm}
-        \lstinputlisting[language=C++,style=C++,linerange={3-15},numbers=left,firstnumber=3]{Message7.cpp}
-        \vspace{-.2cm}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    \begin{exampleblock}{\textattachfile{LinkedList.hpp}{LinkedList.hpp}}
-        \footnotesize
-        \lstinputlisting[language=C++,style=C++,linerange={3-16},numbers=left,firstnumber=3]{LinkedList.hpp}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    \begin{exampleblock}{\textattachfile{LinkedList.hpp}{LinkedList.hpp}}
-        \footnotesize
-        \lstinputlisting[language=C++,style=C++,linerange={18-30},numbers=left,firstnumber=18]{LinkedList.hpp}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    \begin{exampleblock}{\textattachfile{LinkedList.hpp}{LinkedList.hpp}}
-        \lstinputlisting[language=C++,style=C++,linerange={32-40},numbers=left,firstnumber=32]{LinkedList.hpp}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    \begin{exampleblock}{\textattachfile{LinkedList.hpp}{LinkedList.hpp}}
-        \small
-        \lstinputlisting[language=C++,style=C++,linerange={42-51},numbers=left,firstnumber=42]{LinkedList.hpp}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    \begin{exampleblock}{\textattachfile{LinkedList.hpp}{LinkedList.hpp}}
-        \small
-        \lstinputlisting[language=C++,style=C++,linerange={53-62},numbers=left,firstnumber=53]{LinkedList.hpp}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    \begin{exampleblock}{\textattachfile{LinkedList.hpp}{LinkedList.hpp}}
-        \lstinputlisting[language=C++,style=C++,linerange={64-71},numbers=left,firstnumber=64]{LinkedList.hpp}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    \begin{exampleblock}{\textattachfile{iteratorMain.cpp}{iteratorMain.cpp}}
-        \small
-        \lstinputlisting[language=C++,style=C++,linerange={1-12},numbers=left,firstnumber=1]{iteratorMain.cpp}
-    \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    \begin{exampleblock}{\textattachfile{iteratorMain.cpp}{iteratorMain.cpp}}
-        \footnotesize
-        \lstinputlisting[language=C++,style=C++,linerange={14-27},numbers=left,firstnumber=14]{iteratorMain.cpp}
-    \end{exampleblock}
+        \begin{verbatim}
+Hello C++ world!
+Hello C++ world!
+Hello C++ world!
+Exception caught: Message::operator[]
+\end{verbatim}
+    \vspace{-.3cm}
+    \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -170,10 +155,6 @@
         \vspace{-.3cm}
         \scriptsize
         \begin{verbatim}
-Hello C++ world!
-Hello C++ world!
-Hello C++ world!
-Exception caught: Message::operator[]
 1	2	3          
 \end{verbatim}
     \vspace{-.3cm}
@@ -204,14 +185,6 @@ Exception caught: Message::operator[]
         \scriptsize
         \lstinputlisting[language=C++,style=C++,linerange={20-34},numbers=left,firstnumber=20]{range.cpp}
     \end{exampleblock}
-\end{frame}
-
-\begin{frame}
-    Az \hiv{\href{https://en.cppreference.com/w/cpp/types/size_t}{\texttt{std::size\_t}}} típus
-    \begin{itemize}
-        \item Előjel nélküli egész típus, ami tetszőlegesen nagy objektum méretét ($\to$ \texttt{sizeof}) képes megadni bájtokban mérve.
-        \item Általában indexelésre és ciklusszámlálóként használják az ilyen típusú változókat. 
-    \end{itemize}
 \end{frame}
 
 \subsection{C++ iterátorok}
@@ -252,4 +225,187 @@ Exception caught: Message::operator[]
         \scriptsize
         \lstinputlisting[language=C++,style=C++,linerange={36-41},numbers=left,firstnumber=36]{range.cpp}
     \end{exampleblock}
+\end{frame}
+
+\subsection{Konstans és nem konstans iterátorok}
+
+\begin{frame}
+    Térjünk vissza a saját készítésű iterátorainkhoz, és vegyük észre, hogy
+    \begin{itemize}
+        \item használhatóak a bejárt adatok módosítására,
+        \item viszont nem használhatók konstans objektumokkal, még azok olvasására sem!
+    \end{itemize}
+    \begin{exampleblock}{\textattachfile{iteratorMain2.cpp}{iteratorMain2.cpp}}
+        \fontSize{7}{8}
+        \lstinputlisting[language=C++,style=C++,linerange={27-37},numbers=left,firstnumber=27]{iteratorMain2.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{iteratorMain2.cpp}{iteratorMain2.cpp}}
+        \scriptsize
+        \vspace{-.2cm}
+        \lstinputlisting[language=C++,style=C++,linerange={39-55},numbers=left,firstnumber=39]{iteratorMain2.cpp}
+        \vspace{-.2cm}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{iteratorMain2.cpp}{iteratorMain2.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,style=C++,linerange={6-15},numbers=left,firstnumber=6]{iteratorMain2.cpp}
+        \lstinputlisting[language=C++,style=C++,linerange={57-58},numbers=left,firstnumber=57]{iteratorMain2.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{iteratorMain2.cpp}{iteratorMain2.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={17-25},numbers=left,firstnumber=17]{iteratorMain2.cpp}
+        \lstinputlisting[language=C++,style=C++,linerange={60-64},numbers=left,firstnumber=60]{iteratorMain2.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    Egészítsük ki osztályainkat konstans iterátorokkal!
+    \begin{exampleblock}{\textattachfile{Message8.hpp}{Message8.hpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={8-8},numbers=left,firstnumber=8]{Message8.hpp}
+        \lstinputlisting[language=C++,style=C++,linerange={13-24},numbers=left,firstnumber=13]{Message8.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Message8.hpp}{Message8.hpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={26-34},numbers=left,firstnumber=26]{Message8.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Message8.hpp}{Message8.hpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={36-50},numbers=left,firstnumber=36]{Message8.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Message8.hpp}{Message8.hpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={52-55},numbers=left,firstnumber=52]{Message8.hpp}
+        \lstinputlisting[language=C++,style=C++,linerange={96-102},numbers=left,firstnumber=96]{Message8.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{Message8.hpp}{Message8.hpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={104-119},numbers=left,firstnumber=104]{Message8.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{LinkedList2.hpp}{LinkedList2.hpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={5-6},numbers=left,firstnumber=5]{LinkedList2.hpp}
+        \lstinputlisting[language=C++,style=C++,linerange={16-27},numbers=left,firstnumber=16]{LinkedList2.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{LinkedList2.hpp}{LinkedList2.hpp}}
+        \lstinputlisting[language=C++,style=C++,linerange={29-37},numbers=left,firstnumber=29]{LinkedList2.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{LinkedList2.hpp}{LinkedList2.hpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={39-53},numbers=left,firstnumber=39]{LinkedList2.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{LinkedList2.hpp}{LinkedList2.hpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={44-44},numbers=left,firstnumber=44]{LinkedList2.hpp}
+    \end{exampleblock}
+    A \texttt{T}-től függő belső típus (\texttt{itarator}) előtt kötelezően fel kell tüntetni a \texttt{typename}-et (és nem a \texttt{class}-ot), mert a sablon elemzése közben a fordító még nem tudja, milyen konkrét típus kerül \texttt{T} helyére. Ha \texttt{T}-nek van belső tagja (\texttt{T::member}), azt változónak/statikus adattagnak tekinti, nem típusnak.
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{LinkedList2.hpp}{LinkedList2.hpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={55-58},numbers=left,firstnumber=55]{LinkedList2.hpp}
+        \lstinputlisting[language=C++,style=C++,linerange={83-89},numbers=left,firstnumber=83]{LinkedList2.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{LinkedList2.hpp}{LinkedList2.hpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={91-106},numbers=left,firstnumber=91]{LinkedList2.hpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{iteratorMain3.cpp}{iteratorMain3.cpp}}
+        \fontSize{7}{8}
+        \lstinputlisting[language=C++,style=C++,linerange={6-11},numbers=left,firstnumber=6]{iteratorMain3.cpp}
+        \lstinputlisting[language=C++,style=C++,linerange={21-27},numbers=left,firstnumber=21]{iteratorMain3.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{iteratorMain3.cpp}{iteratorMain3.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={28-41},numbers=left,firstnumber=28]{iteratorMain3.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{iteratorMain3.cpp}{iteratorMain3.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={43-45},numbers=left,firstnumber=43]{iteratorMain3.cpp}
+    \end{exampleblock}
+        \begin{block}{Kimenet}
+        \vspace{-.3cm}
+        \scriptsize
+        \begin{verbatim}
+Original text: test message to be modified
+Lowercase --> uppercase (iterator-based loop): TEST MESSAGE TO BE MODIFIED
+Spaces --> underscores (range-based loop): TEST_MESSAGE_TO_BE_MODIFIED
+printMessage works: TEST_MESSAGE_TO_BE_MODIFIED
+Explicit usage of cbegin()/cend(): TEST_MESSAGE_TO_BE_MODIFIED
+1st char accessed via const iterator: T
+\end{verbatim}
+    \vspace{-.3cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \begin{exampleblock}{\textattachfile{iteratorMain3.cpp}{iteratorMain3.cpp}}
+        \footnotesize
+        \lstinputlisting[language=C++,style=C++,linerange={47-56},numbers=left,firstnumber=47]{iteratorMain3.cpp}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{\textattachfile{iteratorMain3.cpp}{iteratorMain3.cpp}}
+        \scriptsize
+        \lstinputlisting[language=C++,style=C++,linerange={58-66},numbers=left,firstnumber=58]{iteratorMain3.cpp}
+    \end{exampleblock}
+            \begin{block}{Kimenet}
+        \vspace{-.3cm}
+        \scriptsize
+        \begin{verbatim}
+Doubled values (iterator-based loop): 20 40 60 
+Explicit usage of cbegin()/cend(): 20 40 60
+\end{verbatim}
+    \vspace{-.3cm}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    A problémát megoldottuk, de jelentős kódismétlődés jelent meg a kétféle iterátor miatt $\to$ a szabvány könyvtárakban ezt is kiküszöbölik az \hiv{\href{https://en.cppreference.com/cpp/types/conditional}{\texttt{std::conditional\_t}}} (feltételes típusparaméter), illetve a típusokhoz készített álnevek segítségével.
 \end{frame}
