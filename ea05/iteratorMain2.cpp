@@ -17,8 +17,8 @@ void printConstMessage(const Message& /*cm*/) {
 template<typename T>
 void printConstList(const LinkedList<T>& /*cl*/) {
   /*
-  for (int x : cl) {
-    std::cout << x << " ";
+  for (const auto& item : cl) {
+    std::cout << item << " ";
   }
   */
   std::cout << '\n';

@@ -1,7 +1,7 @@
 #ifndef ITERATOR_HPP
 #define ITERATOR_HPP
 
-template<class T>
+template<typename T>
 class Iterator {
   public:
     virtual bool operator!=(const Iterator<T>&) const = 0;

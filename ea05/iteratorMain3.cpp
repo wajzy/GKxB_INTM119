@@ -3,16 +3,16 @@
 #include "Message8.hpp"
 #include "LinkedList2.hpp"
 
-void printMessage(const Message& msg) {
-  for (char c : msg) {
+void printMessage(const Message& cm) {
+  for (char c : cm) {
     std::cout << c;
   }
   std::cout << '\n';
 }
 
 template<typename T>
-void printList(const LinkedList<T>& list) {
-  for (const auto& item : list) {
+void printList(const LinkedList<T>& cl) {
+  for (const auto& item : cl) {
     std::cout << item << ' ';
   }
   std::cout << '\n';
