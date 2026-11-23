@@ -37,6 +37,6 @@ int main() {
   }
   std::cout << "Numbers divisible by three: " << three << std::endl;
   
-  std::cout << "Numbers divisable by six: " 
+  std::cout << "Numbers divisible by six: " 
             << intersection(even, three) << std::endl;
 }

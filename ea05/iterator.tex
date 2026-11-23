@@ -201,7 +201,7 @@ Exception caught: Message::operator[]
     \begin{itemize}
         \item Azonos típusú értékből vagy referenciából másolással létrehozható (copy constructible).
         \item Azonos típusú érték vagy referencia hozzárendelhető (copy assignable).
-        \item Megsemmisíthatő (destructible), azaz létezik nem törölt destruktor, ami nem dob kivételt. Minden nem statikus tagnak is megsemmisíthetőnek kell lennie.
+        \item Megsemmisíthető (destructible), azaz létezik nem törölt destruktor, ami nem dob kivételt. Minden nem statikus tagnak is megsemmisíthetőnek kell lennie.
         \item Értelmezett rajta a növelés (\texttt{++}) operátor (prefix és suffix alakban is).
     \end{itemize}
 \end{frame}
@@ -219,7 +219,7 @@ Exception caught: Message::operator[]
     \begin{description}[m]
         \small
         \item[Bidirectional] \hfill \\ A Forward iterátorok képességein túl a csökkentés (\texttt{-{-}}) operátort is támogatja, bejárás hátrafelé.
-        \item[Random access] \hfill \\ Mint Bidirection, de támogatja még az összeadást (\texttt{+}, \texttt{+=}), kivonást (\texttt{-}, \texttt{-=}), az egyenlőtlenségi relációkat (\texttt{<}, \texttt{<=}, \texttt{>}, \texttt{>=}) és az indexelést (\texttt{[]}) is. 
+        \item[Random access] \hfill \\ Mint Bidirectional, de támogatja még az összeadást (\texttt{+}, \texttt{+=}), kivonást (\texttt{-}, \texttt{-=}), az egyenlőtlenségi relációkat (\texttt{<}, \texttt{<=}, \texttt{>}, \texttt{>=}) és az indexelést (\texttt{[]}) is. 
     \end{description}
     \begin{exampleblock}{\textattachfile{range.cpp}{range.cpp}}
         \scriptsize
