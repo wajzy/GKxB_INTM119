@@ -201,7 +201,7 @@ Exception caught: Message::operator[]
     \begin{itemize}
         \item Azonos típusú értékből vagy referenciából másolással létrehozható (copy constructible).
         \item Azonos típusú érték vagy referencia hozzárendelhető (copy assignable).
-        \item Megsemmisíthatő (destructible), azaz skalár típus (felültöltés nélkül is értelmezhető rajta az összeadás művelet) vagy elérhető destruktorral rendelkező osztály, melynek minden nem statikus tagja is megsemmisíthető.
+        \item Megsemmisíthatő (destructible), azaz létezik nem törölt destruktor, ami nem dob kivételt. Minden nem statikus tagnak is megsemmisíthetőnek kell lennie.
         \item Értelmezett rajta a növelés (\texttt{++}) operátor (prefix és suffix alakban is).
     \end{itemize}
 \end{frame}
